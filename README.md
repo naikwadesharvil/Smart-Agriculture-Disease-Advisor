@@ -8,7 +8,7 @@ AI-powered Smart Agriculture Disease Advisor built using Python, TensorFlow, Ope
 - [x] Data Exploration
 - [x] Data Preprocessing
 - [x] CNN Model Training
-- [ ] Model Evaluation
+- [x] Model Evaluation
 - [ ] Disease Prediction
 - [ ] Flask Web Application
 - [ ] Database Integration
@@ -21,3 +21,16 @@ AI-powered Smart Agriculture Disease Advisor built using Python, TensorFlow, Ope
 - Applied image normalization and optimized the data pipeline.
 - Used EarlyStopping and ModelCheckpoint callbacks.
 - Saved the trained model for future inference and deployment.
+
+### ✔️ Model Evaluation
+
+The trained CNN model was evaluated using the PlantVillage validation dataset.
+
+**Evaluation includes:**
+- Validation accuracy and loss
+- Classification report
+- Confusion matrix
+- Sample prediction visualization
+- Performance analysis
+
+The evaluation results demonstrate the effectiveness of the CNN model in identifying multiple plant diseases across different crop species.
