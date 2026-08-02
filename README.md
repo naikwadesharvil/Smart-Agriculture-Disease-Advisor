@@ -9,7 +9,7 @@ AI-powered Smart Agriculture Disease Advisor built using Python, TensorFlow, Ope
 - [x] Data Preprocessing
 - [x] CNN Model Training
 - [x] Model Evaluation
-- [ ] Disease Prediction
+- [x] Disease Prediction
 - [ ] Flask Web Application
 - [ ] Database Integration
 - [ ] Deployment
@@ -34,3 +34,15 @@ The trained CNN model was evaluated using the PlantVillage validation dataset.
 - Performance analysis
 
 The evaluation results demonstrate the effectiveness of the CNN model in identifying multiple plant diseases across different crop species.
+
+### ✔️ Disease Prediction
+
+The trained CNN model performs disease prediction on unseen plant leaf images.
+
+**Features:**
+- Upload a plant leaf image
+- Automatic image preprocessing
+- CNN-based disease prediction
+- Confidence score estimation
+- Prediction result visualization
+- Supports all 38 disease classes from the PlantVillage dataset
