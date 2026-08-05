@@ -1,89 +1,76 @@
 {% extends "base.html" %}
 
 {% block title %}
-Home | Smart Agriculture Disease Advisor
+Smart Agriculture Disease Advisor
 {% endblock %}
 
 {% block content %}
 
 <!-- ================= HERO ================= -->
 
-<section class="container mb-5">
+<section class="hero">
 
-    <div class="row align-items-center">
+    <div class="container">
 
-        <!-- LEFT SIDE -->
+        <div class="row align-items-center">
 
-        <div class="col-lg-6">
+            <div class="col-lg-6">
 
-            <span class="badge bg-success mb-3 fs-6">
+                <span class="badge bg-light text-success mb-3 px-3 py-2">
 
-                🌱 AI Powered Agriculture
-
-            </span>
-
-            <h1 class="display-4 fw-bold text-primary-green">
-
-                Detect Plant Diseases
-
-                <br>
-
-                using Artificial Intelligence
-
-            </h1>
-
-            <p class="lead text-muted mt-4">
-
-                Upload a plant leaf image and let our trained
-                Convolutional Neural Network identify the disease,
-                explain its causes, symptoms, treatment,
-                prevention and scientific information within seconds.
-
-            </p>
-
-            <div class="mt-4">
-
-                <span class="metric-badge">
-
-                    <i class="bi bi-cpu-fill"></i>
-
-                    CNN Model
+                    🌱 AI Powered Crop Protection
 
                 </span>
 
-                <span class="metric-badge">
+                <h1>
 
-                    <i class="bi bi-bar-chart-fill"></i>
+                    Smart Agriculture Disease Advisor
 
-                    Deep Learning
+                </h1>
 
-                </span>
+                <p>
 
-                <span class="metric-badge">
+                    Detect plant diseases instantly using our Deep Learning
+                    CNN model and receive detailed treatment,
+                    prevention and scientific analysis.
 
-                    <i class="bi bi-database-fill"></i>
+                </p>
 
-                    PlantVillage Dataset
+                <div class="mt-4">
 
-                </span>
+                    <a href="#uploadSection"
+                       class="btn btn-main btn-lg">
+
+                        <i class="bi bi-upload"></i>
+
+                        Detect Disease
+
+                    </a>
+
+                    <a href="/about"
+                       class="btn btn-outline-light btn-lg ms-2">
+
+                        Learn More
+
+                    </a>
+
+                </div>
 
             </div>
 
-        </div>
+            <div class="col-lg-6 text-center">
 
-        <!-- RIGHT SIDE -->
+                <img
 
-        <div class="col-lg-6 text-center">
+                    src="{{ url_for('static', filename='images/hero.png') }}"
 
-            <img
+                    class="img-fluid"
 
-                    src="{{ url_for('static', filename='images/hero-plant.png') }}"
+                    style="max-height:450px;"
 
-                    class="img-fluid rounded-image shadow-medium"
+                    alt="Plant AI">
 
-                    alt="Plant"
-
-                    onerror="this.src='https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900';">
+            </div>
 
         </div>
 
@@ -91,93 +78,66 @@ Home | Smart Agriculture Disease Advisor
 
 </section>
 
+<!-- ================= UPLOAD SECTION ================= -->
 
-<!-- ================= UPLOAD CARD ================= -->
+<section
+id="uploadSection"
+class="py-5">
 
-<section class="container">
+<div class="container">
 
 <div class="row justify-content-center">
 
 <div class="col-lg-8">
 
-<div class="dashboard-card hover-lift">
+<div class="dashboard-card">
 
-<h2 class="text-center text-primary-green mb-4">
-
-<i class="bi bi-cloud-arrow-up-fill"></i>
+<h2 class="text-center mb-4">
 
 Upload Plant Leaf
 
 </h2>
 
-<p class="text-center text-muted mb-4">
+<p class="text-center text-muted mb-5">
 
-Supported Formats
+Upload a clear image of a plant leaf.
 
-JPG • JPEG • PNG
+Our AI model will detect the disease
+and provide detailed recommendations.
 
 </p>
 
 <form
 
-action="{{ url_for('predict') }}"
+action="/predict"
 
 method="POST"
 
 enctype="multipart/form-data">
 
-<div class="upload-box">
-
-<i class="bi bi-cloud-upload-fill display-2 text-success mb-3"></i>
-
-<h4>
-
-Drag & Drop
-
-</h4>
-
-<p class="text-muted">
-
-or click below
-
-</p>
+<div class="mb-4">
 
 <input
 
 type="file"
 
+class="form-control form-control-lg"
+
 name="image"
 
-class="form-control mt-4"
+accept="image/*"
 
-accept=".jpg,.jpeg,.png"
-
-required
-
-onchange="previewImage(event)">
+required>
 
 </div>
 
-<div class="text-center mt-4">
-
-<img
-
-id="preview"
-
-style="display:none;
-max-width:350px;
-border-radius:15px;
-box-shadow:0 10px 25px rgba(0,0,0,.15);">
-
-</div>
-
-<div class="text-center mt-5">
+<div class="text-center">
 
 <button
 
-type="submit"
+class="btn btn-main btn-lg px-5"
 
-class="btn btn-success btn-lg px-5">
+type="submit">
 
 <i class="bi bi-search"></i>
 
@@ -195,504 +155,93 @@ Predict Disease
 
 </div>
 
-</section>
-
-{% endblock %}
-
-
-{% block scripts %}
-
-<script>
-
-function previewImage(event){
-
-const image=document.getElementById("preview");
-
-image.src=URL.createObjectURL(event.target.files[0]);
-
-image.style.display="block";
-
-}
-
-</script>
-<!-- ================= WHY CHOOSE US ================= -->
-
-<section class="container mt-5">
-
-    <div class="text-center mb-5">
-
-        <h2 class="section-title">
-
-            Why Choose Our AI Advisor?
-
-        </h2>
-
-        <p class="text-muted">
-
-            Modern Artificial Intelligence assisting farmers with fast,
-            accurate and informative disease diagnosis.
-
-        </p>
-
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-lg-4">
-
-            <div class="dashboard-card text-center hover-lift">
-
-                <div class="feature-icon mx-auto">
-
-                    <i class="bi bi-cpu-fill"></i>
-
-                </div>
-
-                <h4>Deep Learning CNN</h4>
-
-                <p>
-
-                    Powered by a Convolutional Neural Network trained
-                    on the PlantVillage dataset.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-4">
-
-            <div class="dashboard-card text-center hover-lift">
-
-                <div class="feature-icon mx-auto">
-
-                    <i class="bi bi-bug-fill"></i>
-
-                </div>
-
-                <h4>Disease Knowledge</h4>
-
-                <p>
-
-                    Provides scientific information, causes,
-                    symptoms, treatment and prevention.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-4">
-
-            <div class="dashboard-card text-center hover-lift">
-
-                <div class="feature-icon mx-auto">
-
-                    <i class="bi bi-bar-chart-fill"></i>
-
-                </div>
-
-                <h4>Prediction Analytics</h4>
-
-                <p>
-
-                    Visual confidence analysis and prediction
-                    dashboard with AI insights.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= PROJECT STATS ================= -->
-
-<section class="container mt-5">
-
-<div class="stats-grid">
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="bi bi-tree-fill"></i>
-
-</div>
-
-<div class="stat-number">
-
-38
-
-</div>
-
-<div class="stat-text">
-
-Disease Classes
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="bi bi-images"></i>
-
-</div>
-
-<div class="stat-number">
-
-54K+
-
-</div>
-
-<div class="stat-text">
-
-Training Images
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="bi bi-graph-up-arrow"></i>
-
-</div>
-
-<div class="stat-number">
-
-98.7%
-
-</div>
-
-<div class="stat-text">
-
-Model Accuracy
-
-</div>
-
-</div>
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="bi bi-lightning-charge-fill"></i>
-
-</div>
-
-<div class="stat-number">
-
-&lt;2s
-
-</div>
-
-<div class="stat-text">
-
-Prediction Time
-
-</div>
-
-</div>
-
 </div>
 
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
+<!-- ================= FEATURES ================= -->
 
-<section class="container mt-5">
+<section class="py-5 bg-light">
 
-<div class="dashboard-card">
+    <div class="container">
 
-<h2 class="section-title text-center">
+        <div class="text-center mb-5">
 
-AI Prediction Workflow
+            <h2 class="page-title">
 
-</h2>
-
-<div class="row text-center mt-5">
-
-<div class="col-md-3">
-
-<div class="feature-icon mx-auto">
-
-<i class="bi bi-cloud-upload-fill"></i>
-
-</div>
-
-<h5>
-
-Upload
-
-</h5>
-
-<p>
-
-Upload a clear image of the affected leaf.
-
-</p>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="feature-icon mx-auto">
-
-<i class="bi bi-cpu-fill"></i>
-
-</div>
-
-<h5>
-
-AI Analysis
-
-</h5>
-
-<p>
-
-CNN extracts disease features automatically.
-
-</p>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="feature-icon mx-auto">
-
-<i class="bi bi-search"></i>
-
-</div>
-
-<h5>
-
-Prediction
-
-</h5>
-
-<p>
-
-Disease class and confidence are predicted.
-
-</p>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="feature-icon mx-auto">
-
-<i class="bi bi-heart-pulse-fill"></i>
-
-</div>
-
-<h5>
-
-Recommendation
-
-</h5>
-
-<p>
-
-Treatment, prevention and scientific guidance.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= SUPPORTED CROPS ================= -->
-
-<section class="container mt-5 mb-5">
-
-<h2 class="section-title text-center">
-
-Supported Crops
-
-</h2>
-
-<div class="row g-4 mt-3">
-
-<div class="col-lg-2 col-md-4 col-6">
-
-<div class="dashboard-card text-center">
-
-🌿
-
-<h6 class="mt-3">
-
-Apple
-
-</h6>
-
-</div>
-
-</div>
-
-<div class="col-lg-2 col-md-4 col-6">
-
-<div class="dashboard-card text-center">
-
-🍅
-
-<h6 class="mt-3">
-
-Tomato
-
-</h6>
-
-</div>
-
-</div>
-
-<div class="col-lg-2 col-md-4 col-6">
-
-<div class="dashboard-card text-center">
-
-🍇
-
-<h6 class="mt-3">
-
-Grape
-
-</h6>
-
-</div>
-
-</div>
-
-<div class="col-lg-2 col-md-4 col-6">
-
-<div class="dashboard-card text-center">
-
-🍑
-
-<h6 class="mt-3">
-
-Peach
-
-</h6>
-
-</div>
-
-</div>
-
-<div class="col-lg-2 col-md-4 col-6">
-
-<div class="dashboard-card text-center">
-
-🌶
-
-<h6 class="mt-3">
-
-Pepper
-
-</h6>
-
-</div>
-
-</div>
-
-<div class="col-lg-2 col-md-4 col-6">
-
-<div class="dashboard-card text-center">
-
-🥔
-
-<h6 class="mt-3">
-
-Potato
-
-</h6>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= PROJECT HIGHLIGHTS ================= -->
-
-<section class="container mt-5">
-
-    <div class="dashboard-card">
-
-        <div class="text-center">
-
-            <h2 class="section-title">
-
-                Why This Project?
+                Why Choose Our AI?
 
             </h2>
 
-            <p class="text-muted">
+            <p class="page-subtitle">
 
-                A complete AI-powered decision support system designed
-                to assist farmers and researchers in identifying plant
-                diseases quickly and accurately.
+                Modern Deep Learning powered disease detection for farmers and researchers.
 
             </p>
 
         </div>
 
-        <div class="row mt-5">
+        <div class="row">
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 mb-4">
 
-                <div class="text-center">
+                <div class="dashboard-card text-center">
 
-                    <div class="feature-icon mx-auto">
+                    <div class="icon-circle mx-auto">
+
+                        <i class="bi bi-cpu-fill"></i>
+
+                    </div>
+
+                    <h4>Deep Learning</h4>
+
+                    <p class="text-muted">
+
+                        CNN model trained on thousands of plant leaf images.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="dashboard-card text-center">
+
+                    <div class="icon-circle mx-auto">
+
+                        <i class="bi bi-bar-chart-fill"></i>
+
+                    </div>
+
+                    <h4>AI Analytics</h4>
+
+                    <p class="text-muted">
+
+                        Interactive dashboard with confidence analysis.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="dashboard-card text-center">
+
+                    <div class="icon-circle mx-auto">
 
                         <i class="bi bi-shield-check"></i>
 
                     </div>
 
-                    <h5>Reliable Prediction</h5>
+                    <h4>Accurate Detection</h4>
 
-                    <p>
+                    <p class="text-muted">
 
-                        CNN model trained on thousands of labelled
-                        leaf images.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-
-                <div class="text-center">
-
-                    <div class="feature-icon mx-auto">
-
-                        <i class="bi bi-clock-history"></i>
-
-                    </div>
-
-                    <h5>Fast Analysis</h5>
-
-                    <p>
-
-                        Results generated within seconds.
+                        Detect diseases quickly using a trained CNN model.
 
                     </p>
 
@@ -700,43 +249,21 @@ Potato
 
             </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 mb-4">
 
-                <div class="text-center">
+                <div class="dashboard-card text-center">
 
-                    <div class="feature-icon mx-auto">
+                    <div class="icon-circle mx-auto">
 
-                        <i class="bi bi-book-half"></i>
-
-                    </div>
-
-                    <h5>Knowledge Base</h5>
-
-                    <p>
-
-                        Scientific information about every disease.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-
-                <div class="text-center">
-
-                    <div class="feature-icon mx-auto">
-
-                        <i class="bi bi-graph-up-arrow"></i>
+                        <i class="bi bi-capsule-pill"></i>
 
                     </div>
 
-                    <h5>AI Dashboard</h5>
+                    <h4>Treatment Guide</h4>
 
-                    <p>
+                    <p class="text-muted">
 
-                        Interactive analytics and confidence visualization.
+                        Get prevention tips and treatment recommendations.
 
                     </p>
 
@@ -750,61 +277,77 @@ Potato
 
 </section>
 
-<!-- ================= TECHNOLOGY STACK ================= -->
 
-<section class="container mt-5">
 
-    <h2 class="section-title text-center">
+<!-- ================= PROJECT STATS ================= -->
 
-        Technology Stack
+<section class="py-5">
 
-    </h2>
+    <div class="container">
 
-    <div class="row g-4 mt-3">
+        <div class="row text-center">
 
-        <div class="col-md-3">
+            <div class="col-md-3">
 
-            <div class="dashboard-card text-center">
+                <div class="dashboard-card">
 
-                <h4>🐍</h4>
+                    <h1 class="display-5 fw-bold text-success">
 
-                <h5>Python</h5>
+                        38+
 
-            </div>
+                    </h1>
 
-        </div>
+                    <p>Disease Classes</p>
 
-        <div class="col-md-3">
-
-            <div class="dashboard-card text-center">
-
-                <h4>🧠</h4>
-
-                <h5>TensorFlow</h5>
+                </div>
 
             </div>
 
-        </div>
+            <div class="col-md-3">
 
-        <div class="col-md-3">
+                <div class="dashboard-card">
 
-            <div class="dashboard-card text-center">
+                    <h1 class="display-5 fw-bold text-success">
 
-                <h4>🌐</h4>
+                        87K+
 
-                <h5>Flask</h5>
+                    </h1>
+
+                    <p>Training Images</p>
+
+                </div>
 
             </div>
 
-        </div>
+            <div class="col-md-3">
 
-        <div class="col-md-3">
+                <div class="dashboard-card">
 
-            <div class="dashboard-card text-center">
+                    <h1 class="display-5 fw-bold text-success">
 
-                <h4>📊</h4>
+                        CNN
 
-                <h5>Chart.js</h5>
+                    </h1>
+
+                    <p>Deep Learning Model</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="dashboard-card">
+
+                    <h1 class="display-5 fw-bold text-success">
+
+                        AI
+
+                    </h1>
+
+                    <p>Smart Recommendations</p>
+
+                </div>
 
             </div>
 
@@ -814,38 +357,361 @@ Potato
 
 </section>
 
-<!-- ================= CALL TO ACTION ================= -->
 
-<section class="container mt-5 mb-5">
 
-    <div class="dashboard-card text-center glass">
+<!-- ================= SUPPORTED CROPS ================= -->
 
-        <h2 class="fw-bold text-primary-green">
+<section class="py-5 bg-light">
 
-            Ready to Diagnose Your Plant?
+    <div class="container">
 
-        </h2>
+        <div class="text-center mb-5">
 
-        <p class="lead text-muted mt-3">
+            <h2 class="page-title">
 
-            Upload a healthy or infected leaf image and let our AI
-            analyze it instantly.
+                Supported Crops
 
-        </p>
+            </h2>
 
-        <button
+            <p class="page-subtitle">
 
-                onclick="window.scrollTo({top:0,behavior:'smooth'})"
+                Detect diseases from multiple crop species.
 
-                class="btn btn-success btn-lg mt-4">
+            </p>
 
-            <i class="bi bi-arrow-up-circle-fill"></i>
+        </div>
 
-            Upload Leaf Now
+        <div class="row text-center">
 
-        </button>
+            <div class="col-lg-2 col-md-3 col-6 mb-4">
+
+                <div class="dashboard-card">
+
+                    🍎
+
+                    <h5>Apple</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-6 mb-4">
+
+                <div class="dashboard-card">
+
+                    🍅
+
+                    <h5>Tomato</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-6 mb-4">
+
+                <div class="dashboard-card">
+
+                    🌽
+
+                    <h5>Corn</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-6 mb-4">
+
+                <div class="dashboard-card">
+
+                    🍇
+
+                    <h5>Grape</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-6 mb-4">
+
+                <div class="dashboard-card">
+
+                    🥔
+
+                    <h5>Potato</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-6 mb-4">
+
+                <div class="dashboard-card">
+
+                    🍑
+
+                    <h5>Peach</h5>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
+
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="page-title">
+
+                How It Works
+
+            </h2>
+
+            <p class="page-subtitle">
+
+                Detect plant diseases in four simple steps.
+
+            </p>
+
+        </div>
+
+        <div class="row text-center">
+
+            <div class="col-md-3 mb-4">
+
+                <div class="dashboard-card">
+
+                    <div class="icon-circle mx-auto">
+
+                        <i class="bi bi-camera-fill"></i>
+
+                    </div>
+
+                    <h4>Capture</h4>
+
+                    <p>Take a clear picture of the affected leaf.</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-4">
+
+                <div class="dashboard-card">
+
+                    <div class="icon-circle mx-auto">
+
+                        <i class="bi bi-upload"></i>
+
+                    </div>
+
+                    <h4>Upload</h4>
+
+                    <p>Upload the leaf image to our AI system.</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-4">
+
+                <div class="dashboard-card">
+
+                    <div class="icon-circle mx-auto">
+
+                        <i class="bi bi-cpu-fill"></i>
+
+                    </div>
+
+                    <h4>AI Analysis</h4>
+
+                    <p>The CNN model predicts the disease with confidence.</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-4">
+
+                <div class="dashboard-card">
+
+                    <div class="icon-circle mx-auto">
+
+                        <i class="bi bi-clipboard2-pulse-fill"></i>
+
+                    </div>
+
+                    <h4>Recommendation</h4>
+
+                    <p>Receive treatment, prevention, and disease insights.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Frequently Asked Questions
+
+</h2>
+
+</div>
+
+<div class="accordion" id="faqAccordion">
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#q1">
+
+How accurate is the AI prediction?
+
+</button>
+
+</h2>
+
+<div id="q1"
+
+class="accordion-collapse collapse show"
+
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+The CNN model is trained on the PlantVillage dataset and provides high-confidence predictions for supported crops.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button collapsed"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#q2">
+
+Which crops are supported?
+
+</button>
+
+</h2>
+
+<div id="q2"
+
+class="accordion-collapse collapse"
+
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Apple, Tomato, Potato, Corn, Peach, Pepper, Strawberry, Grape, Blueberry and more.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button collapsed"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#q3">
+
+Can I use it on a mobile phone?
+
+</button>
+
+</h2>
+
+<div id="q3"
+
+class="accordion-collapse collapse"
+
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Yes. The interface is fully responsive and works on mobile, tablet and desktop devices.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="hero">
+
+<div class="container text-center">
+
+<h2 class="display-5 fw-bold">
+
+Ready to Protect Your Crops?
+
+</h2>
+
+<p class="lead">
+
+Upload a plant leaf image and let AI identify diseases in seconds.
+
+</p>
+
+<a href="#uploadSection"
+
+class="btn btn-light btn-lg px-5">
+
+<i class="bi bi-arrow-up-circle"></i>
+
+Start Prediction
+
+</a>
+
+</div>
 
 </section>
 

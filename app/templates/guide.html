@@ -1,0 +1,493 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Guide | Smart Agriculture Disease Advisor
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="container text-center">
+
+        <span class="badge bg-light text-success px-3 py-2 mb-3">
+
+            📖 User Guide
+
+        </span>
+
+        <h1>
+
+            How to Use the Smart Agriculture Disease Advisor
+
+        </h1>
+
+        <p class="lead mt-3">
+
+            Follow these simple steps to obtain accurate AI-powered disease predictions.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= STEP BY STEP ================= -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Getting Started
+
+</h2>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-camera-fill"></i>
+
+</div>
+
+<h4>Step 1</h4>
+
+<h5>Capture</h5>
+
+<p>
+
+Take a clear photo of one leaf using natural daylight.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-upload"></i>
+
+</div>
+
+<h4>Step 2</h4>
+
+<h5>Upload</h5>
+
+<p>
+
+Upload the leaf image from your device.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-cpu-fill"></i>
+
+</div>
+
+<h4>Step 3</h4>
+
+<h5>AI Analysis</h5>
+
+<p>
+
+The CNN model analyzes the uploaded image.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-check-circle-fill"></i>
+
+</div>
+
+<h4>Step 4</h4>
+
+<h5>Results</h5>
+
+<p>
+
+Review disease details, confidence and recommendations.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= IMAGE TIPS ================= -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Image Guidelines
+
+</h2>
+
+<p class="page-subtitle">
+
+Good quality images improve prediction accuracy.
+
+</p>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="dashboard-card">
+
+<h3 class="text-success">
+
+✅ Good Images
+
+</h3>
+
+<ul class="custom-list">
+
+<li>✔ One leaf only</li>
+
+<li>✔ Natural daylight</li>
+
+<li>✔ Plain background</li>
+
+<li>✔ Entire leaf visible</li>
+
+<li>✔ Sharp focus</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="dashboard-card">
+
+<h3 class="text-danger">
+
+❌ Avoid
+
+</h3>
+
+<ul class="custom-list">
+
+<li>✖ Blurry photos</li>
+
+<li>✖ Dark lighting</li>
+
+<li>✖ Multiple leaves</li>
+
+<li>✖ Hands covering leaf</li>
+
+<li>✖ Low resolution</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= SUPPORTED CROPS ================= -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Supported Crops
+
+</h2>
+
+</div>
+
+<div class="row text-center">
+
+{% set crops = [
+
+"🍎 Apple",
+
+"🍇 Grape",
+
+"🍅 Tomato",
+
+"🥔 Potato",
+
+"🌽 Corn",
+
+"🍑 Peach",
+
+"🌶 Pepper",
+
+"🍓 Strawberry",
+
+"🫐 Blueberry",
+
+"🌱 Soybean"
+
+] %}
+
+{% for crop in crops %}
+
+<div class="col-lg-2 col-md-3 col-6 mb-3">
+
+<div class="dashboard-card">
+
+<h5>{{ crop }}</h5>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TIPS ================= -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="action-box">
+
+<h2>
+
+💡 Tips for Better Accuracy
+
+</h2>
+
+<ul class="custom-list mt-4">
+
+<li>✔ Capture fresh leaves.</li>
+
+<li>✔ Avoid shadows.</li>
+
+<li>✔ Keep the camera steady.</li>
+
+<li>✔ Use daylight whenever possible.</li>
+
+<li>✔ Upload one leaf at a time.</li>
+
+<li>✔ Avoid edited or filtered photos.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Frequently Asked Questions
+
+</h2>
+
+</div>
+
+<div class="accordion" id="guideFAQ">
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#faq1">
+
+Can the AI detect every plant disease?
+
+</button>
+
+</h2>
+
+<div id="faq1"
+
+class="accordion-collapse collapse show"
+
+data-bs-parent="#guideFAQ">
+
+<div class="accordion-body">
+
+The current model predicts the disease classes included in the trained PlantVillage dataset.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button collapsed"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#faq2">
+
+What image format is supported?
+
+</button>
+
+</h2>
+
+<div id="faq2"
+
+class="accordion-collapse collapse"
+
+data-bs-parent="#guideFAQ">
+
+<div class="accordion-body">
+
+JPG, JPEG and PNG images.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button class="accordion-button collapsed"
+
+data-bs-toggle="collapse"
+
+data-bs-target="#faq3">
+
+How long does prediction take?
+
+</button>
+
+</h2>
+
+<div id="faq3"
+
+class="accordion-collapse collapse"
+
+data-bs-parent="#guideFAQ">
+
+<div class="accordion-body">
+
+Usually only a few seconds depending on your computer.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= CTA ================= -->
+
+<section class="hero">
+
+<div class="container text-center">
+
+<h2>
+
+Ready to Detect a Disease?
+
+</h2>
+
+<p class="lead">
+
+Upload your first leaf image and let AI analyze it instantly.
+
+</p>
+
+<a href="/"
+
+class="btn btn-light btn-lg">
+
+<i class="bi bi-upload"></i>
+
+Start Prediction
+
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}

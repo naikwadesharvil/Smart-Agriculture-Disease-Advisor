@@ -1,0 +1,488 @@
+{% extends "base.html" %}
+
+{% block title %}
+About | Smart Agriculture Disease Advisor
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="container text-center">
+
+        <span class="badge bg-light text-success px-3 py-2 mb-3">
+
+            🌿 About Our Project
+
+        </span>
+
+        <h1>
+
+            Smart Agriculture Disease Advisor
+
+        </h1>
+
+        <p class="lead mt-3">
+
+            AI-powered plant disease detection using Deep Learning,
+            Computer Vision and modern web technologies.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= PROJECT ================= -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-lg-6">
+
+<h2 class="page-title">
+
+Our Mission
+
+</h2>
+
+<p class="mt-4">
+
+Our goal is to help farmers, students and researchers
+identify plant diseases quickly using Artificial Intelligence.
+
+The system analyzes plant leaf images using a trained
+Convolutional Neural Network (CNN) and provides
+detailed disease information, confidence score,
+treatment recommendations and prevention methods.
+
+</p>
+
+</div>
+
+<div class="col-lg-6">
+
+<img
+
+src="{{ url_for('static', filename='images/about.png') }}"
+
+class="img-fluid rounded shadow"
+
+alt="AI Agriculture">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Core Features
+
+</h2>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-4 mb-4">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-cpu-fill"></i>
+
+</div>
+
+<h4>
+
+Deep Learning
+
+</h4>
+
+<p>
+
+CNN model trained on the PlantVillage dataset.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4 mb-4">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-graph-up-arrow"></i>
+
+</div>
+
+<h4>
+
+Confidence Analysis
+
+</h4>
+
+<p>
+
+Interactive confidence charts and disease analytics.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4 mb-4">
+
+<div class="dashboard-card text-center">
+
+<div class="icon-circle mx-auto">
+
+<i class="bi bi-heart-pulse-fill"></i>
+
+</div>
+
+<h4>
+
+Treatment Guide
+
+</h4>
+
+<p>
+
+Chemical, organic and preventive recommendations.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TECH STACK ================= -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Technology Stack
+
+</h2>
+
+</div>
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card text-center">
+
+🐍
+
+<h5>Python</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card text-center">
+
+⚡
+
+<h5>Flask</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card text-center">
+
+🧠
+
+<h5>TensorFlow</h5>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="dashboard-card text-center">
+
+📊
+
+<h5>Chart.js</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= DATASET ================= -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h2 class="text-success">
+
+87K+
+
+</h2>
+
+<p>
+
+Dataset Images
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h2 class="text-success">
+
+38
+
+</h2>
+
+<p>
+
+Disease Classes
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h2 class="text-success">
+
+CNN
+
+</h2>
+
+<p>
+
+Deep Learning
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h2 class="text-success">
+
+AI
+
+</h2>
+
+<p>
+
+Prediction Dashboard
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FUTURE ================= -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="page-title">
+
+Future Scope
+
+</h2>
+
+</div>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<h5>
+
+🌦 Weather API Integration
+
+</h5>
+
+<p>
+
+Predict disease risk based on local weather conditions.
+
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h5>
+
+📄 PDF Report
+
+</h5>
+
+<p>
+
+Download AI-generated diagnosis reports.
+
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h5>
+
+📱 Mobile Application
+
+</h5>
+
+<p>
+
+Android & iOS companion app.
+
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h5>
+
+🌐 Multi-language Support
+
+</h5>
+
+<p>
+
+Support regional languages for wider accessibility.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= DEVELOPER ================= -->
+
+<section class="hero">
+
+<div class="container text-center">
+
+<h2>
+
+Developer
+
+</h2>
+
+<h3 class="mt-3">
+
+Sharvil Naikwade
+
+</h3>
+
+<p class="mt-3">
+
+B.Tech – Artificial Intelligence & Machine Learning
+
+<br>
+
+Rajarambapu Institute of Technology
+
+</p>
+
+<a
+
+href="https://github.com/naikwadesharvil"
+
+target="_blank"
+
+class="btn btn-light btn-lg mt-3">
+
+<i class="bi bi-github"></i>
+
+View GitHub
+
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}
