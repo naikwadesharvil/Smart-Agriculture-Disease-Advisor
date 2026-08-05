@@ -16,3 +16,5 @@ static/uploads/*
 
 .DS_Store
 Thumbs.db
+
+app/static/uploads/*
