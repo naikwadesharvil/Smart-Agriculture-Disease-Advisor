@@ -1,60 +1,519 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#eef8ee;
+/* ======================================================
+   Smart Agriculture Disease Advisor
+   Global Theme
+====================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --primary:#1B5E20;
+    --secondary:#2E7D32;
+    --accent:#43A047;
+
+    --light:#E8F5E9;
+    --background:#F4F8F5;
+
+    --danger:#E53935;
+    --warning:#FB8C00;
+
+    --text:#1F2937;
+    --muted:#6B7280;
+
+    --card:#FFFFFF;
+
+    --radius:18px;
+
+    --shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+*{
+
     margin:0;
-    padding:40px;
-}
-
-.container{
-
-    width:900px;
-
-    margin:auto;
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:15px;
-
-    box-shadow:0 0 20px rgba(0,0,0,.15);
+    padding:0;
+    box-sizing:border-box;
 
 }
 
-img{
+html{
 
-    border-radius:10px;
-
-}
-
-h1{
-
-    color:#2E7D32;
+    scroll-behavior:smooth;
 
 }
 
-h2{
+body{
 
-    color:#388E3C;
+    font-family:'Poppins',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    overflow-x:hidden;
 
 }
 
-ul{
 
-    line-height:30px;
+/* ================= Scrollbar ================= */
+
+::-webkit-scrollbar{
+
+    width:10px;
 
 }
 
-a{
+::-webkit-scrollbar-track{
 
-    text-decoration:none;
+    background:#ECEFF1;
 
-    background:#2E7D32;
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--secondary);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary);
+
+}
+
+
+/* ================= Navbar ================= */
+
+.navbar{
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    padding:16px 0;
+
+}
+
+.navbar-brand{
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+}
+
+.nav-link{
+
+    color:white !important;
+
+    font-weight:500;
+
+    margin-left:20px;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    transform:translateY(-2px);
+
+    color:#D4EDDA !important;
+
+}
+
+
+/* ================= Header ================= */
+
+.dashboard-header{
+
+    background:linear-gradient(
+        135deg,
+        #2E7D32,
+        #43A047
+    );
 
     color:white;
 
-    padding:12px 20px;
+    padding:55px 0;
 
-    border-radius:8px;
+    margin-bottom:30px;
+
+}
+
+.dashboard-header h1{
+
+    font-size:2.8rem;
+
+    font-weight:700;
+
+}
+
+.dashboard-header p{
+
+    margin-top:10px;
+
+    opacity:.9;
+
+}
+
+
+/* ================= Header Card ================= */
+
+.header-card{
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:16px;
+
+    padding:20px;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+
+/* ================= Main ================= */
+
+main{
+
+    min-height:65vh;
+
+}
+
+
+/* ================= Cards ================= */
+
+.card,
+
+.custom-card{
+
+    border:none;
+
+    border-radius:var(--radius);
+
+    background:var(--card);
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+}
+
+.card:hover,
+
+.custom-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+
+/* ================= Buttons ================= */
+
+.btn-success{
+
+    background:var(--secondary);
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px 28px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-success:hover{
+
+    background:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ================= Upload Box ================= */
+
+.upload-box{
+
+    background:white;
+
+    border:2px dashed var(--secondary);
+
+    border-radius:18px;
+
+    padding:40px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.upload-box:hover{
+
+    background:#F1F8E9;
+
+    border-color:var(--primary);
+
+}
+
+
+/* ================= Section Title ================= */
+
+.section-title{
+
+    font-size:1.7rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    margin-bottom:25px;
+
+}
+
+
+/* ================= Badges ================= */
+
+.badge-success{
+
+    background:var(--secondary);
+
+    color:white;
+
+}
+
+.badge-danger{
+
+    background:var(--danger);
+
+}
+
+.badge-warning{
+
+    background:var(--warning);
+
+}
+
+
+/* ================= Tables ================= */
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:var(--secondary);
+
+    color:white;
+
+}
+
+
+/* ================= Lists ================= */
+
+.info-list{
+
+    list-style:none;
+
+    padding-left:0;
+
+}
+
+.info-list li{
+
+    padding:12px;
+
+    border-bottom:1px solid #ECECEC;
+
+}
+
+.info-list li:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* ================= Footer ================= */
+
+.footer{
+
+    margin-top:70px;
+
+    background:#173C21;
+
+    color:white;
+
+    padding:60px 0 25px;
+
+}
+
+.footer h5{
+
+    margin-bottom:20px;
+
+    font-weight:600;
+
+}
+
+.footer ul{
+
+    list-style:none;
+
+    padding-left:0;
+
+}
+
+.footer li{
+
+    margin-bottom:10px;
+
+    color:#D6EFD8;
+
+}
+
+.footer hr{
+
+    border-color:rgba(255,255,255,.2);
+
+}
+
+
+/* ================= Images ================= */
+
+img{
+
+    max-width:100%;
+
+}
+
+.rounded-image{
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+/* ================= Utility ================= */
+
+.shadow-soft{
+
+    box-shadow:var(--shadow);
+
+}
+
+.radius{
+
+    border-radius:18px;
+
+}
+
+.bg-light-green{
+
+    background:var(--light);
+
+}
+
+.text-primary-green{
+
+    color:var(--primary);
+
+}
+
+.text-muted{
+
+    color:var(--muted)!important;
+
+}
+
+
+/* ================= Responsive ================= */
+
+@media(max-width:992px){
+
+.dashboard-header{
+
+    text-align:center;
+
+}
+
+.dashboard-header h1{
+
+    font-size:2.2rem;
+
+}
+
+.header-card{
+
+    margin-top:25px;
+
+}
+
+.nav-link{
+
+    margin-left:0;
+
+    margin-top:12px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard-header{
+
+    padding:40px 0;
+
+}
+
+.dashboard-header h1{
+
+    font-size:1.8rem;
+
+}
+
+.upload-box{
+
+    padding:25px;
+
+}
+
+.btn-success{
+
+    width:100%;
+
+}
+
+.footer{
+
+    text-align:center;
+
+}
 
 }

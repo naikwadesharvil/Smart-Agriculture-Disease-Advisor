@@ -4,6 +4,7 @@ import json
 import numpy as np
 import tensorflow as tf
 from PIL import Image
+from werkzeug.utils import secure_filename
 
 # -------------------------------
 # Flask App
@@ -11,21 +12,33 @@ from PIL import Image
 app = Flask(__name__)
 
 UPLOAD_FOLDER = os.path.join("static", "uploads")
+
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
+
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+def allowed_file(filename):
+
+    return "." in filename and \
+           filename.rsplit(".",1)[1].lower() in ALLOWED_EXTENSIONS
+
 # -------------------------------
 # Load CNN Model
 # -------------------------------
-MODEL_PATH = os.path.join("..", "models", "plant_disease_cnn.keras")
+MODEL_PATH = os.path.join(
+    "..",
+    "models",
+    "plant_disease_cnn.keras"
+)
 
-model = tf.keras.models.load_model(
+MODEL = tf.keras.models.load_model(
     MODEL_PATH,
     compile=False
 )
 
-model.compile(
+MODEL.compile(
     optimizer="adam",
     loss="sparse_categorical_crossentropy",
     metrics=["accuracy"]
@@ -94,6 +107,15 @@ CLASS_NAMES = [
 def home():
     return render_template("index.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/guide")
+def guide():
+    return render_template("guide.html")
+
 
 # -------------------------------
 # Prediction Route
@@ -103,18 +125,25 @@ def predict():
 
     if "image" not in request.files:
         return "No image uploaded."
+file = request.files["image"]
 
-    file = request.files["image"]
+if file.filename == "":
+    return "No file selected."
 
-    if file.filename == "":
-        return "No file selected."
+if not allowed_file(file.filename):
+    return "Unsupported file type."
 
-    filepath = os.path.join(
-        app.config["UPLOAD_FOLDER"],
-        file.filename
-    )
+filename = secure_filename(file.filename)
 
-    file.save(filepath)
+filepath = os.path.join(
+
+    app.config["UPLOAD_FOLDER"],
+
+    filename
+
+)
+
+file.save(filepath)
 
     # -------------------------------
     # Image Preprocessing
@@ -130,55 +159,112 @@ def predict():
 
     img_array = np.expand_dims(img_array, axis=0)
 
-    # -------------------------------
-    # Prediction
-    # -------------------------------
+  # -------------------------------
+# Prediction
+# -------------------------------
 
-    prediction = model.predict(img_array)
+prediction = MODEL.predict(img_array)
 
-    predicted_index = np.argmax(prediction)
+predicted_index = int(np.argmax(prediction))
 
-    confidence = np.max(prediction)
+confidence = float(np.max(prediction))*100
 
-    predicted_class = CLASS_NAMES[predicted_index]
+predicted_class = CLASS_NAMES[predicted_index]
+probabilities = prediction[0]
+
+top5_indices = np.argsort(probabilities)[-5:][::-1]
+
+chart_labels = []
+
+chart_values = []
+
+for index in top5_indices:
+
+    chart_labels.append(
+
+        CLASS_NAMES[index].replace("_"," ")
+
+    )
+
+    chart_values.append(
+
+        round(float(probabilities[index])*100,2)
+
+    )
+
+chart_data={
+
+    "labels":chart_labels,
+
+    "values":chart_values
+
+}
 
     # -------------------------------
     # Disease Information
     # -------------------------------
 
-    info = disease_database.get(
-        predicted_class,
-        {
-            "Crop": "Unknown",
-            "Disease": predicted_class,
-            "Description": "Information not available.",
-            "Symptoms": [],
-            "Treatment": [],
-            "Prevention": []
-        }
-    )
+default_info = {
+    "Crop": "Unknown",
+    "Disease": predicted_class,
+    "Scientific_Name": "Unknown",
+    "Pathogen": "Unknown",
+    "Pathogen_Type": "Unknown",
+    "Category": "Unknown",
+    "Affected_Part": "Unknown",
+    "Environment": "Unknown",
+    "Spread": "Unknown",
+    "Description": "Information not available.",
+    "Cause": [],
+    "Age_Cycle": {
+        "Early": "-",
+        "Moderate": "-",
+        "Severe": "-",
+        "Estimated": "-"
+    },
+    "Symptoms": [],
+    "Treatment": [],
+    "Organic_Treatment": [],
+    "Recommended_Chemicals": [],
+    "Prevention": [],
+    "Risk_Level": "Low",
+    "Severity": "Low",
+    "Recommended_Actions": []
+}
 
-    return render_template(
+info = disease_database.get(predicted_class, default_info)
 
-        "result.html",
+chart_data = {
+    "labels": [
+        "Healthy",
+        "Early Blight",
+        "Late Blight",
+        "Leaf Mold",
+        info["Disease"]
+    ],
+    "values": [
+        0.2,
+        0.3,
+        0.1,
+        0.1,
+        round(confidence, 2)
+    ]
+}
 
-        image_path=filepath,
+return render_template(
 
-        crop=info["Crop"],
+    "result.html",
 
-        prediction=info["Disease"],
+    image_path=filepath,
 
-        description=info["Description"],
+    prediction=info["Disease"],
 
-        symptoms=info["Symptoms"],
+    confidence=f"{confidence:.2f}%",
 
-        treatment=info["Treatment"],
+    info=info,
 
-        prevention=info["Prevention"],
-
-        confidence=f"{confidence*100:.2f}%"
-
-    )
+    chart_data=chart_data
+)
 
 
 # -------------------------------
