@@ -1,0 +1,63 @@
+{
+    "Peach___Bacterial_spot": {
+        "Crop": "Peach",
+        "Disease": "Bacterial Spot",
+        "Description": "A bacterial disease that causes dark spots on peach leaves and fruits.",
+        "Symptoms": [
+            "Brown spots on leaves",
+            "Yellow halos around lesions",
+            "Premature leaf drop"
+        ],
+        "Causes": [
+            "Xanthomonas bacteria",
+            "Warm and humid weather"
+        ],
+        "Treatment": [
+            "Apply copper-based bactericides",
+            "Remove infected leaves"
+        ],
+        "Prevention": [
+            "Use disease-free plants",
+            "Avoid overhead irrigation",
+            "Improve air circulation"
+        ],
+        "Severity": "Medium",
+        "Organic_Treatment": [
+            "Neem oil spray",
+            "Compost tea"
+        ],
+        "Recommended_Chemicals": [
+            "Copper Oxychloride",
+            "Copper Hydroxide"
+        ]
+    },
+    "Apple___Apple_scab": {
+        "Crop": "Apple",
+        "Disease": "Apple Scab",
+        "Description": "A fungal disease that affects apple leaves and fruits.",
+        "Symptoms": [
+            "Olive-green spots",
+            "Dark lesions",
+            "Leaf curling"
+        ],
+        "Causes": [
+            "Venturia inaequalis fungus"
+        ],
+        "Treatment": [
+            "Apply fungicide",
+            "Remove infected leaves"
+        ],
+        "Prevention": [
+            "Plant resistant varieties",
+            "Maintain orchard hygiene"
+        ],
+        "Severity": "High",
+        "Organic_Treatment": [
+            "Sulfur spray"
+        ],
+        "Recommended_Chemicals": [
+            "Captan",
+            "Mancozeb"
+        ]
+    }
+}

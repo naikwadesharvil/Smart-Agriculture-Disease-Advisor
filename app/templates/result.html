@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌿 Prediction Result</h1>
+
+<img src="{{ image_path }}" width="350">
+
+<h2>{{ prediction }}</h2>
+
+<h3>Confidence : {{ confidence }}</h3>
+
+<hr>
+
+<h2>Crop</h2>
+
+<p>{{ crop }}</p>
+
+<h2>Description</h2>
+
+<p>{{ description }}</p>
+
+<h2>Symptoms</h2>
+
+<ul>
+
+{% for item in symptoms %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+<h2>Treatment</h2>
+
+<ul>
+
+{% for item in treatment %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+<h2>Prevention</h2>
+
+<ul>
+
+{% for item in prevention %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+<br>
+
+<a href="/">⬅ Predict Another Image</a>
+
+</div>
+
+</body>
+
+</html>
