@@ -18,3 +18,4 @@ static/uploads/*
 Thumbs.db
 
 app/static/uploads/*
+!app/static/uploads/.gitkeep
