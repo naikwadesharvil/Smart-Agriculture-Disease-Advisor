@@ -9,26 +9,24 @@
           content="width=device-width, initial-scale=1.0">
 
     <title>
-
         {% block title %}
-
         Smart Agriculture Disease Advisor
-
         {% endblock %}
-
     </title>
 
     <!-- Bootstrap -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
     <!-- Bootstrap Icons -->
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-          rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
 
-    <!-- Google Font -->
+    <!-- Google Fonts -->
 
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
@@ -37,12 +35,24 @@
           href="https://fonts.gstatic.com"
           crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-    <!-- Chart JS -->
+    <!-- AOS Animation -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Chart.js -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Favicon -->
+
+    <link rel="icon"
+          href="{{ url_for('static', filename='images/logo.png') }}">
 
     <!-- Custom CSS -->
 
@@ -53,20 +63,34 @@
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- ===================== LOADER ===================== -->
 
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+<div id="loader">
+
+    <div class="spinner-border text-success"
+         role="status">
+
+    </div>
+
+</div>
+
+<!-- ===================== NAVBAR ===================== -->
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-lg sticky-top">
 
     <div class="container">
 
         <a class="navbar-brand fw-bold"
            href="/">
 
-            🌿 Smart Agriculture
+            <i class="bi bi-tree-fill text-success"></i>
+
+            Smart Agriculture
 
         </a>
 
         <button class="navbar-toggler"
+                type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbar">
 
@@ -102,27 +126,42 @@
 
             </ul>
 
+            <!-- Dark Mode -->
+
+            <button
+                type="button"
+                class="btn btn-outline-light ms-lg-3 mt-3 mt-lg-0"
+                id="themeToggle">
+
+                <i class="bi bi-moon-stars-fill"></i>
+
+            </button>
+
         </div>
 
     </div>
 
 </nav>
 
-<!-- ================= CONTENT ================= -->
+<!-- ===================== MAIN ===================== -->
 
-<main>
+<main class="py-4">
 
-    {% block content %}
+    <div class="container">
 
-    {% endblock %}
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
 
 </main>
 
-<!-- ================= FOOTER ================= -->
+<!-- ===================== FOOTER ===================== -->
 
-<footer>
+<footer class="py-5 mt-5">
 
-    <div class="container">
+    <div class="container text-center">
 
         <h4>
 
@@ -152,7 +191,7 @@
 
         <small>
 
-            © 2026 All Rights Reserved
+            © 2026 Smart Agriculture Disease Advisor
 
         </small>
 
@@ -160,9 +199,62 @@
 
 </footer>
 
+<!-- ===================== TOAST ===================== -->
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div id="successToast"
+         class="toast"
+         role="alert">
+
+        <div class="toast-body">
+
+            🌿 Welcome to Smart Agriculture AI
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===================== SCROLL TO TOP ===================== -->
+
+<button id="topBtn"
+        title="Go to Top">
+
+    <i class="bi bi-arrow-up"></i>
+
+</button>
+
+<!-- ===================== Bootstrap ===================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- ===================== AOS ===================== -->
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    AOS.init({
+
+        duration: 900,
+
+        once: true
+
+    });
+
+});
+
+</script>
+
+<!-- ===================== Main JS ===================== -->
+
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+<!-- ===================== Page Scripts ===================== -->
 
 {% block scripts %}
 

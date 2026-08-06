@@ -1,69 +1,212 @@
-/* ==========================================
-   SMART AGRICULTURE DISEASE ADVISOR
-   Global JavaScript
-========================================== */
+/*
+=========================================
+Smart Agriculture Disease Advisor
+Main JavaScript
+=========================================
+*/
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("🌿 Smart Agriculture Disease Advisor Loaded");
+    console.log("Smart Agriculture Loaded");
 
-    // ==========================================
-    // Active Navbar Link
-    // ==========================================
+    /* =====================================
+       Dark Mode
+    ===================================== */
 
-    const currentPath = window.location.pathname;
+    const themeToggle = document.getElementById("themeToggle");
 
-    document.querySelectorAll(".navbar .nav-link").forEach(link => {
+    if (localStorage.getItem("theme") === "dark") {
 
-        if (link.getAttribute("href") === currentPath) {
+        document.body.classList.add("dark-mode");
 
-            link.classList.add("active");
+        if (themeToggle) {
+
+            themeToggle.innerHTML =
+                '<i class="bi bi-sun-fill"></i>';
 
         }
 
-    });
+    }
 
-    // ==========================================
-    // Fade-in Animation on Scroll
-    // ==========================================
+    if (themeToggle) {
 
-    const observer = new IntersectionObserver((entries) => {
+        themeToggle.addEventListener("click", function () {
 
-        entries.forEach(entry => {
+            document.body.classList.toggle("dark-mode");
 
-            if (entry.isIntersecting) {
+            if (document.body.classList.contains("dark-mode")) {
 
-                entry.target.classList.add("show");
+                localStorage.setItem("theme", "dark");
+
+                themeToggle.innerHTML =
+                    '<i class="bi bi-sun-fill"></i>';
+
+            } else {
+
+                localStorage.setItem("theme", "light");
+
+                themeToggle.innerHTML =
+                    '<i class="bi bi-moon-stars-fill"></i>';
 
             }
 
         });
 
-    }, {
-        threshold: 0.15
+    }
+
+    /* =====================================
+       Loading Spinner
+    ===================================== */
+
+    const loader = document.getElementById("loader");
+
+    if (loader) {
+
+        loader.style.display = "none";
+
+    }
+
+    document.querySelectorAll("form").forEach(function (form) {
+
+        form.addEventListener("submit", function () {
+
+            if (loader) {
+
+                loader.style.display = "flex";
+
+            }
+
+        });
+
     });
 
-    document.querySelectorAll(".dashboard-card, .info-card").forEach(card => {
+    /* =====================================
+       Scroll To Top Button
+    ===================================== */
 
-        card.classList.add("hidden");
+    const topBtn = document.getElementById("topBtn");
 
-        observer.observe(card);
+    if (topBtn) {
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 300) {
+
+                topBtn.style.display = "block";
+
+            } else {
+
+                topBtn.style.display = "none";
+
+            }
+
+        });
+
+        topBtn.addEventListener("click", function () {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+    }
+
+    /* =====================================
+       Bootstrap Toast
+    ===================================== */
+
+    const toastElement = document.getElementById("successToast");
+
+    if (toastElement && typeof bootstrap !== "undefined") {
+
+        const toast = new bootstrap.Toast(toastElement, {
+
+            delay: 3000
+
+        });
+
+        toast.show();
+
+    }
+
+    /* =====================================
+       Card Hover Animation
+    ===================================== */
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(function (card) {
+
+        card.addEventListener("mouseenter", function () {
+
+            card.style.transform = "translateY(-6px)";
+
+            card.style.transition = "0.3s ease";
+
+        });
+
+        card.addEventListener("mouseleave", function () {
+
+            card.style.transform = "translateY(0px)";
+
+        });
 
     });
 
-    // ==========================================
-    // Smooth Scroll
-    // ==========================================
+    /* =====================================
+       Button Ripple Effect
+    ===================================== */
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll(".btn").forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            button.classList.add("active");
+
+            setTimeout(function () {
+
+                button.classList.remove("active");
+
+            }, 200);
+
+        });
+
+    });
+
+    /* =====================================
+       Fade Images After Load
+    ===================================== */
+
+    document.querySelectorAll("img").forEach(function (img) {
+
+        img.onload = function () {
+
+            img.style.opacity = "1";
+
+            img.style.transition = "opacity 0.5s ease";
+
+        };
+
+    });
+
+    /* =====================================
+       Smooth Anchor Links
+    ===================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
 
         anchor.addEventListener("click", function (e) {
-
-            e.preventDefault();
 
             const target = document.querySelector(this.getAttribute("href"));
 
             if (target) {
+
+                e.preventDefault();
 
                 target.scrollIntoView({
 
@@ -77,83 +220,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-});
+    /* =====================================
+       Auto Hide Loader After Page Load
+    ===================================== */
 
-/* ================= COUNTER ================= */
+    window.addEventListener("load", function () {
 
-const counters = document.querySelectorAll(".display-5");
+        if (loader) {
 
-counters.forEach(counter=>{
+            loader.style.display = "none";
 
-const update=()=>{
-
-const target=parseInt(counter.innerText);
-
-let count=0;
-
-const increment=target/80;
-
-const timer=setInterval(()=>{
-
-count+=increment;
-
-if(count>=target){
-
-counter.innerText=target+"+";
-
-clearInterval(timer);
-
-}
-
-else{
-
-counter.innerText=Math.floor(count);
-
-}
-
-},20);
-
-}
-
-update();
-
-});
-
-/* ==========================================
-   Scroll To Top Button
-========================================== */
-
-const topButton = document.createElement("button");
-
-topButton.innerHTML = "↑";
-
-topButton.id = "topButton";
-
-document.body.appendChild(topButton);
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 400) {
-
-        topButton.style.display = "block";
-
-    }
-
-    else {
-
-        topButton.style.display = "none";
-
-    }
-
-});
-
-topButton.addEventListener("click", () => {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
+        }
 
     });
 

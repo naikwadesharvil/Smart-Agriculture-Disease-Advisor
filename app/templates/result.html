@@ -1,1404 +1,1088 @@
 {% extends "base.html" %}
 
 {% block title %}
-Prediction Result | Smart Agriculture Disease Advisor
+Prediction Result | Smart Agriculture
 {% endblock %}
 
 {% block content %}
 
-<!-- ===================== PAGE TITLE ===================== -->
+<div class="container-fluid mt-4">
 
-<section class="py-4 bg-light border-bottom">
+    <!-- ================= DASHBOARD HEADER ================= -->
 
-    <div class="container">
+    <div class="card dashboard-header shadow-lg border-0 mb-4"
+         data-aos="fade-up">
 
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="row align-items-center">
 
-            <div>
+            <!-- ================= IMAGE ================= -->
 
-                <h2 class="fw-bold">
+            <div class="col-lg-4 text-center p-4">
 
-                    <i class="bi bi-clipboard2-pulse-fill text-success"></i>
+                <img
+                    src="/{{ image_path }}"
+                    class="prediction-image img-fluid"
+                    alt="Plant Leaf">
 
-                    Prediction Result
+            </div>
 
-                </h2>
+            <!-- ================= SUMMARY ================= -->
 
-                <p class="text-muted mb-0">
+            <div class="col-lg-8 p-4">
 
-                    AI Analysis of Uploaded Plant Leaf
+                <h1 class="fw-bold text-success">
+
+                    {{ prediction }}
+
+                </h1>
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <h6 class="text-muted">
+
+                            Crop
+
+                        </h6>
+
+                        <h4>
+
+                            {{ info.Crop }}
+
+                        </h4>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <h6 class="text-muted">
+
+                            Scientific Name
+
+                        </h6>
+
+                        <h5>
+
+                            <em>
+
+                                {{ info.Scientific_Name }}
+
+                            </em>
+
+                        </h5>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <h6 class="text-muted">
+
+                            Confidence
+
+                        </h6>
+
+                        <span
+                            class="badge bg-success fs-6 px-4 py-3">
+
+                            {{ confidence }}
+
+                        </span>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <h6 class="text-muted">
+
+                            Risk Level
+
+                        </h6>
+
+                        {% if info.Risk_Level == "Low" %}
+
+                        <span class="badge bg-success fs-6 px-4 py-3">
+
+                            🟢 {{ info.Risk_Level }}
+
+                        </span>
+
+                        {% elif info.Risk_Level == "Medium" %}
+
+                        <span class="badge bg-warning text-dark fs-6 px-4 py-3">
+
+                            🟡 {{ info.Risk_Level }}
+
+                        </span>
+
+                        {% elif info.Risk_Level == "High" %}
+
+                        <span class="badge bg-danger fs-6 px-4 py-3">
+
+                            🔴 {{ info.Risk_Level }}
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-dark fs-6 px-4 py-3">
+
+                            ⚫ {{ info.Risk_Level }}
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <p class="lead">
+
+                    {{ info.Description }}
 
                 </p>
 
             </div>
 
-            <a href="/"
+        </div>
 
-               class="btn btn-outline-success">
+    </div>
 
-                <i class="bi bi-arrow-left"></i>
+    <!-- ================= QUICK ANALYTICS ================= -->
 
-                Back to Home
+    <div class="row mb-4">
 
-            </a>
+        <div class="col-md-3">
+
+            <div class="card text-center shadow-sm border-0"
+                 data-aos="zoom-in">
+
+                <div class="card-body">
+
+                    <i class="bi bi-cpu-fill text-success display-5"></i>
+
+                    <h5 class="mt-3">
+
+                        AI Model
+
+                    </h5>
+
+                    <h3>
+
+                        CNN
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card text-center shadow-sm border-0"
+                 data-aos="zoom-in"
+                 data-aos-delay="100">
+
+                <div class="card-body">
+
+                    <i class="bi bi-bar-chart-fill text-primary display-5"></i>
+
+                    <h5 class="mt-3">
+
+                        Confidence
+
+                    </h5>
+
+                    <h3>
+
+                        {{ confidence }}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card text-center shadow-sm border-0"
+                 data-aos="zoom-in"
+                 data-aos-delay="200">
+
+                <div class="card-body">
+
+                    <i class="bi bi-bug-fill text-danger display-5"></i>
+
+                    <h5 class="mt-3">
+
+                        Pathogen
+
+                    </h5>
+
+                    <h5>
+
+                        {{ info.Pathogen_Type }}
+
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card text-center shadow-sm border-0"
+                 data-aos="zoom-in"
+                 data-aos-delay="300">
+
+                <div class="card-body">
+
+                    <i class="bi bi-shield-check text-warning display-5"></i>
+
+                    <h5 class="mt-3">
+
+                        Severity
+
+                    </h5>
+
+                    <h4>
+
+                        {{ info.Severity }}
+
+                    </h4>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-</section>
+    <!-- ================= ANALYTICS ROW START ================= -->
 
-<!-- ===================== SUMMARY ===================== -->
+    <div class="row">
+    <!-- ================= LEFT COLUMN ================= -->
 
-<section class="py-5">
+    <div class="col-lg-6">
 
-<div class="container">
+        <!-- Top 5 Predictions -->
 
-<div class="row g-4">
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-right">
 
-<!-- Uploaded Image -->
+            <div class="card-header bg-success text-white">
 
-<div class="col-lg-4">
+                <h4 class="mb-0">
 
-<div class="dashboard-card h-100">
+                    <i class="bi bi-bar-chart-fill"></i>
 
-<h4 class="mb-3">
+                    Top 5 Predictions
 
-📷 Uploaded Leaf
+                </h4>
 
-</h4>
+            </div>
 
-<img
+            <div class="card-body">
 
-src="{{ image_path }}"
+                <table class="table table-hover align-middle">
 
-class="leaf-image"
+                    <thead>
 
-alt="Uploaded Leaf">
+                        <tr>
 
-<div class="text-center mt-4">
+                            <th>Rank</th>
 
-<span class="metric-badge">
+                            <th>Disease</th>
 
-{{ info.Crop }}
+                            <th>Confidence</th>
 
-</span>
+                        </tr>
 
-<span class="metric-badge">
+                    </thead>
 
-CNN Model
+                    <tbody>
 
-</span>
+                        {% for disease, score in ranking %}
+
+                        <tr>
+
+                            <td>
+
+                                {{ loop.index }}
+
+                            </td>
+
+                            <td>
+
+                                {{ disease }}
+
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-primary">
+
+                                    {{ score }}%
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Disease Profile -->
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-up">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-info-circle-fill"></i>
+
+                    Disease Profile
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table">
+
+                    <tr>
+
+                        <th>Crop</th>
+
+                        <td>{{ info.Crop }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Disease</th>
+
+                        <td>{{ info.Disease }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Scientific Name</th>
+
+                        <td>
+
+                            <em>
+
+                                {{ info.Scientific_Name }}
+
+                            </em>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Category</th>
+
+                        <td>{{ info.Category }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Pathogen</th>
+
+                        <td>{{ info.Pathogen }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Type</th>
+
+                        <td>{{ info.Pathogen_Type }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Affected Part</th>
+
+                        <td>{{ info.Affected_Part }}</td>
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= RIGHT COLUMN ================= -->
+
+    <div class="col-lg-6">
+
+        <!-- Confidence Chart -->
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-left">
+
+            <div class="card-header bg-success text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                    Confidence Distribution
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <canvas id="predictionChart"
+                        height="300">
+
+                </canvas>
+
+            </div>
+
+        </div>
+
+        <!-- Doughnut Chart -->
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-left"
+             data-aos-delay="100">
+
+            <div class="card-header bg-warning">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-pie-chart-fill"></i>
+
+                    Prediction Confidence
+
+                </h4>
+
+            </div>
+
+            <div class="card-body text-center">
+
+                <canvas id="confidenceChart"
+                        width="280"
+                        height="280">
+
+                </canvas>
+
+            </div>
+
+        </div>
+
+        <!-- Environment -->
+
+        <div class="card shadow-sm border-0"
+             data-aos="fade-up">
+
+            <div class="card-header bg-info text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-cloud-sun-fill"></i>
+
+                    Environment & Spread
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <h6>
+
+                    Environment
+
+                </h6>
+
+                <p>
+
+                    {{ info.Environment }}
+
+                </p>
+
+                <hr>
+
+                <h6>
+
+                    Spread
+
+                </h6>
+
+                <p>
+
+                    {{ info.Spread }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
+<!-- ================= NEXT SECTION ================= -->
+
+<div class="row mt-4">
+    <!-- ================= Disease Timeline ================= -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-up">
+
+            <div class="card-header bg-dark text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-clock-history"></i>
+
+                    Disease Timeline
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-4">
+
+                    <h6 class="text-success">
+
+                        Early Stage
+
+                    </h6>
+
+                    <p>
+
+                        {{ info.Age_Cycle.Early }}
+
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <div class="mb-4">
+
+                    <h6 class="text-warning">
+
+                        Moderate Stage
+
+                    </h6>
+
+                    <p>
+
+                        {{ info.Age_Cycle.Moderate }}
+
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <div class="mb-4">
+
+                    <h6 class="text-danger">
+
+                        Severe Stage
+
+                    </h6>
+
+                    <p>
+
+                        {{ info.Age_Cycle.Severe }}
+
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <div>
+
+                    <h6 class="text-primary">
+
+                        Estimated Progress
+
+                    </h6>
+
+                    <p>
+
+                        {{ info.Age_Cycle.Estimated }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Causes ================= -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-up">
+
+            <div class="card-header bg-danger text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    Causes
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+
+                    {% for item in info.Cause %}
+
+                    <li class="list-group-item">
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-<!-- Disease Summary -->
-
-<div class="col-lg-4">
-
-<div class="dashboard-card h-100">
-
-<h5 class="text-muted">
-
-Disease Detected
-
-</h5>
-
-<h1 class="text-success fw-bold">
-
-{{ prediction }}
-
-</h1>
-
-<p class="text-muted">
-
-{{ info.Scientific_Name }}
-
-</p>
-
-<hr>
+<!-- ================= Symptoms & Treatment ================= -->
 
 <div class="row">
 
-<div class="col-6 mb-3">
+    <div class="col-lg-6">
 
-<strong>Crop</strong>
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-right">
 
-<p>
+            <div class="card-header bg-warning">
 
-{{ info.Crop }}
+                <h4 class="mb-0">
 
-</p>
+                    <i class="bi bi-heart-pulse-fill"></i>
 
-</div>
+                    Symptoms
 
-<div class="col-6 mb-3">
+                </h4>
 
-<strong>Category</strong>
+            </div>
 
-<p>
+            <div class="card-body">
 
-{{ info.Category }}
+                <ul class="list-group list-group-flush">
 
-</p>
+                    {% for item in info.Symptoms %}
 
-</div>
+                    <li class="list-group-item">
 
-<div class="col-6">
+                        {{ item }}
 
-<strong>Pathogen</strong>
+                    </li>
 
-<p>
+                    {% endfor %}
 
-{{ info.Pathogen_Type }}
+                </ul>
 
-</p>
+            </div>
 
-</div>
+        </div>
 
-<div class="col-6">
+    </div>
 
-<strong>Risk</strong>
+    <div class="col-lg-6">
 
-<p>
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-left">
 
-{{ info.Risk_Level }}
+            <div class="card-header bg-success text-white">
 
-</p>
+                <h4 class="mb-0">
 
-</div>
+                    <i class="bi bi-capsule-pill"></i>
 
-</div>
+                    Treatment
 
-</div>
+                </h4>
 
-</div>
+            </div>
 
-<!-- Confidence -->
+            <div class="card-body">
 
-<div class="col-lg-4">
+                <ul class="list-group list-group-flush">
 
-<div class="dashboard-card h-100">
+                    {% for item in info.Treatment %}
 
-<h5 class="mb-4">
+                    <li class="list-group-item">
 
-AI Prediction Confidence
+                        {{ item }}
 
-</h5>
+                    </li>
 
-<div class="text-center">
+                    {% endfor %}
 
-<h1 class="display-3 text-success fw-bold">
+                </ul>
 
-{{ confidence }}
+            </div>
 
-</h1>
+        </div>
 
-</div>
-
-<div class="progress mt-4"
-
-style="height:18px;">
-
-<div
-
-class="progress-bar bg-success"
-
-style="width: {{ confidence }};">
+    </div>
 
 </div>
 
-</div>
-
-<div class="mt-4">
-
-{% if info.Severity=="High" %}
-
-<span class="badge bg-danger fs-6">
-
-High Severity
-
-</span>
-
-{% elif info.Severity=="Medium" %}
-
-<span class="badge bg-warning text-dark fs-6">
-
-Medium Severity
-
-</span>
-
-{% else %}
-
-<span class="badge bg-success fs-6">
-
-Low Severity
-
-</span>
-
-{% endif %}
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ===================== QUICK STATS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<div class="col-md-3">
-
-<div class="dashboard-card text-center">
-
-<div class="icon-circle mx-auto">
-
-🦠
-
-</div>
-
-<h4>
-
-{{ info.Pathogen }}
-
-</h4>
-
-<p>
-
-Pathogen
-
-</p>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="dashboard-card text-center">
-
-<div class="icon-circle mx-auto">
-
-🌱
-
-</div>
-
-<h4>
-
-{{ info.Affected_Part }}
-
-</h4>
-
-<p>
-
-Affected Part
-
-</p>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="dashboard-card text-center">
-
-<div class="icon-circle mx-auto">
-
-🌦
-
-</div>
-
-<h4>
-
-{{ info.Category }}
-
-</h4>
-
-<p>
-
-Category
-
-</p>
-
-</div>
-
-</div>
-
-<div class="col-md-3">
-
-<div class="dashboard-card text-center">
-
-<div class="icon-circle mx-auto">
-
-⚠
-
-</div>
-
-<h4>
-
-{{ info.Severity }}
-
-</h4>
-
-<p>
-
-Severity
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ===================== AI ANALYTICS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<!-- Prediction Chart -->
-
-<div class="col-lg-8">
-
-<div class="dashboard-card">
-
-<div class="d-flex justify-content-between align-items-center mb-4">
-
-<h3>
-
-📊 AI Prediction Analysis
-
-</h3>
-
-<span class="metric-badge">
-
-Top 5 Predictions
-
-</span>
-
-</div>
-
-<div style="height:380px;">
-
-<canvas id="predictionChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Pie Chart -->
-
-<div class="col-lg-4">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🥧 Probability Distribution
-
-</h3>
-
-<div style="height:350px;">
-
-<canvas id="pieChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== TOP PREDICTIONS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🏆 Top 5 AI Predictions
-
-</h3>
-
-<table class="table table-hover align-middle">
-
-<thead class="table-success">
-
-<tr>
-
-<th>#</th>
-
-<th>Disease</th>
-
-<th>Confidence</th>
-
-<th width="35%">Probability</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-{% for item in ranking %}
-
-<tr>
-
-<td>
-
-{{ loop.index }}
-
-</td>
-
-<td>
-
-{{ item[0] }}
-
-</td>
-
-<td>
-
-{{ item[1] }}%
-
-</td>
-
-<td>
-
-<div class="progress">
-
-<div
-
-class="progress-bar bg-success"
-
-style="width: {{ item[1] }}%;">
-
-</div>
-
-</div>
-
-</td>
-
-</tr>
-
-{% endfor %}
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== DISEASE PROFILE ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<div class="col-lg-6">
-
-<div class="dashboard-card h-100">
-
-<h3>
-
-📖 Disease Description
-
-</h3>
-
-<hr>
-
-<p>
-
-{{ info.Description }}
-
-</p>
-
-</div>
-
-</div>
-
-<div class="col-lg-6">
-
-<div class="dashboard-card h-100">
-
-<h3>
-
-🧬 Scientific Profile
-
-</h3>
-
-<hr>
-
-<table class="spec-table">
-
-<tr>
-
-<td>
-
-<strong>Scientific Name</strong>
-
-</td>
-
-<td>
-
-{{ info.Scientific_Name }}
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<strong>Pathogen</strong>
-
-</td>
-
-<td>
-
-{{ info.Pathogen }}
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<strong>Pathogen Type</strong>
-
-</td>
-
-<td>
-
-{{ info.Pathogen_Type }}
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<strong>Category</strong>
-
-</td>
-
-<td>
-
-{{ info.Category }}
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-
-<strong>Affected Part</strong>
-
-</td>
-
-<td>
-
-{{ info.Affected_Part }}
-
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== ENVIRONMENT ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="row g-4">
-
-<div class="col-lg-6">
-
-<div class="dashboard-card h-100">
-
-<h3>
-
-🌦 Favorable Environment
-
-</h3>
-
-<hr>
-
-<p>
-
-{{ info.Environment }}
-
-</p>
-
-</div>
-
-</div>
-
-<div class="col-lg-6">
-
-<div class="dashboard-card h-100">
-
-<h3>
-
-🌱 Disease Spread
-
-</h3>
-
-<hr>
-
-<p>
-
-{{ info.Spread }}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== DISEASE TIMELINE ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-⏳ Disease Progression Timeline
-
-</h3>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<h5>
-
-🟢 Early Stage
-
-</h5>
-
-<p>
-
-{{ info.Age_Cycle.Early }}
-
-</p>
-
-</div>
-
-<div class="timeline-item">
-
-<h5>
-
-🟡 Moderate Stage
-
-</h5>
-
-<p>
-
-{{ info.Age_Cycle.Moderate }}
-
-</p>
-
-</div>
-
-<div class="timeline-item">
-
-<h5>
-
-🔴 Severe Stage
-
-</h5>
-
-<p>
-
-{{ info.Age_Cycle.Severe }}
-
-</p>
-
-</div>
-
-<div class="timeline-item">
-
-<h5>
-
-📅 Estimated Duration
-
-</h5>
-
-<p>
-
-{{ info.Age_Cycle.Estimated }}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ===================== DISEASE CAUSES ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🦠 Causes of Disease
-
-</h3>
+<!-- ================= Organic & Chemicals ================= -->
 
 <div class="row">
 
-{% for cause in info.Cause %}
+    <div class="col-lg-6">
 
-<div class="col-md-6 mb-3">
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-right">
 
-<div class="action-box">
+            <div class="card-header bg-success text-white">
 
-<i class="bi bi-bug-fill text-danger me-2"></i>
+                <h4 class="mb-0">
 
-{{ cause }}
+                    <i class="bi bi-flower1"></i>
+
+                    Organic Treatment
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+
+                    {% for item in info.Organic_Treatment %}
+
+                    <li class="list-group-item">
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-left">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-eyedropper"></i>
+
+                    Recommended Chemicals
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+
+                    {% for item in info.Recommended_Chemicals %}
+
+                    <li class="list-group-item">
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== SYMPTOMS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🤒 Symptoms
-
-</h3>
+<!-- =================  ================= -->
+<!-- ================= Prevention & Recommended Actions ================= -->
 
 <div class="row">
 
-{% for symptom in info.Symptoms %}
+    <!-- Prevention -->
 
-<div class="col-md-6 mb-3">
+    <div class="col-lg-6">
 
-<div class="action-box">
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-right">
 
-<i class="bi bi-check-circle-fill text-success me-2"></i>
+            <div class="card-header bg-info text-white">
 
-{{ symptom }}
+                <h4 class="mb-0">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    Prevention
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+
+                    {% for item in info.Prevention %}
+
+                    <li class="list-group-item">
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Recommended Actions -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0 mb-4"
+             data-aos="fade-left">
+
+            <div class="card-header bg-success text-white">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    Recommended Actions
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+
+                    {% for item in info.Recommended_Actions %}
+
+                    <li class="list-group-item">
+
+                        {{ item }}
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Risk Assessment ================= -->
+
+<div class="card shadow-sm border-0 mb-4"
+     data-aos="zoom-in">
+
+    <div class="card-header bg-danger text-white">
+
+        <h4 class="mb-0">
+
+            <i class="bi bi-activity"></i>
+
+            Disease Risk Assessment
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <h5>
+
+            Risk Level :
+            <strong>{{ info.Risk_Level }}</strong>
+
+        </h5>
+
+        <div class="progress mt-3"
+             style="height:30px;">
+
+            {% if info.Risk_Level == "Low" %}
+
+            <div class="progress-bar bg-success"
+                 style="width:25%;">
+
+                Low
+
+            </div>
+
+            {% elif info.Risk_Level == "Medium" %}
+
+            <div class="progress-bar bg-warning text-dark"
+                 style="width:60%;">
+
+                Medium
+
+            </div>
+
+            {% elif info.Risk_Level == "High" %}
+
+            <div class="progress-bar bg-danger"
+                 style="width:90%;">
+
+                High
+
+            </div>
+
+            {% else %}
+
+            <div class="progress-bar bg-dark"
+                 style="width:100%;">
+
+                Very High
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Action Buttons ================= -->
+
+<div class="text-center my-5"
+     data-aos="fade-up">
+
+    <button
+        class="btn btn-success btn-lg me-3"
+        onclick="window.print()">
+
+        <i class="bi bi-printer-fill"></i>
+
+        Print Report
+
+    </button>
+
+    <button
+        class="btn btn-primary btn-lg me-3"
+        disabled>
+
+        <i class="bi bi-file-earmark-pdf-fill"></i>
+
+        PDF Report (Coming Soon)
+
+    </button>
+
+    <a
+        href="/"
+        class="btn btn-outline-success btn-lg">
+
+        <i class="bi bi-arrow-repeat"></i>
+
+        Analyze Another Image
+
+    </a>
 
 </div>
 
 </div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== TREATMENT ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-💊 Recommended Treatment
-
-</h3>
-
-<div class="row">
-
-{% for treatment in info.Treatment %}
-
-<div class="col-lg-6 mb-4">
-
-<div class="dashboard-card h-100">
-
-<div class="d-flex">
-
-<div class="icon-circle">
-
-💊
-
-</div>
-
-<div class="ms-3">
-
-<h5>
-
-Treatment {{ loop.index }}
-
-</h5>
-
-<p class="mb-0">
-
-{{ treatment }}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== ORGANIC TREATMENT ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🌿 Organic Treatment
-
-</h3>
-
-<div class="row">
-
-{% for organic in info.Organic_Treatment %}
-
-<div class="col-lg-6 mb-4">
-
-<div class="dashboard-card h-100">
-
-<div class="d-flex">
-
-<div class="icon-circle">
-
-🌱
-
-</div>
-
-<div class="ms-3">
-
-<h5>
-
-Organic Method {{ loop.index }}
-
-</h5>
-
-<p class="mb-0">
-
-{{ organic }}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== RECOMMENDED CHEMICALS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🧪 Recommended Chemicals
-
-</h3>
-
-<div class="row">
-
-{% for chemical in info.Recommended_Chemicals %}
-
-<div class="col-md-4 mb-4">
-
-<div class="dashboard-card text-center h-100">
-
-<div class="icon-circle mx-auto">
-
-🧪
-
-</div>
-
-<h5 class="mt-3">
-
-{{ chemical }}
-
-</h5>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== PREVENTION ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🛡 Prevention Checklist
-
-</h3>
-
-<div class="row">
-
-{% for prevention in info.Prevention %}
-
-<div class="col-md-6 mb-3">
-
-<div class="action-box">
-
-<i class="bi bi-shield-check text-success me-2"></i>
-
-{{ prevention }}
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ===================== AI DIAGNOSIS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<div class="d-flex align-items-center mb-4">
-
-<div class="icon-circle">
-
-🤖
-
-</div>
-
-<div class="ms-3">
-
-<h2>
-
-AI Diagnosis Summary
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="alert alert-success">
-
-<h4>
-
-{{ prediction }}
-
-Detected
-
-</h4>
-
-<p>
-
-The uploaded image is predicted as
-
-<strong>
-
-{{ prediction }}
-
-</strong>
-
-with an AI confidence of
-
-<strong>
-
-{{ confidence }}
-
-</strong>.
-
-</p>
-
-<p>
-
-Review the disease profile, treatment recommendations, and prevention measures below before taking action in the field.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== RISK INDICATOR ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-⚠ Disease Risk Indicator
-
-</h3>
-
-<div class="progress" style="height:30px;">
-
-{% if info.Severity=="High" %}
-
-<div
-
-class="progress-bar bg-danger"
-
-style="width:100%;">
-
-High Risk
-
-</div>
-
-{% elif info.Severity=="Medium" %}
-
-<div
-
-class="progress-bar bg-warning text-dark"
-
-style="width:70%;">
-
-Medium Risk
-
-</div>
-
-{% else %}
-
-<div
-
-class="progress-bar bg-success"
-
-style="width:40%;">
-
-Low Risk
-
-</div>
-
-{% endif %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== AI RECOMMENDATIONS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-🌱 AI Recommendations
-
-</h3>
-
-<div class="row">
-
-{% for action in info.Recommended_Actions %}
-
-<div class="col-md-6 mb-3">
-
-<div class="action-box">
-
-✔ {{ action }}
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== PREDICTION DETAILS ===================== -->
-
-<section class="pb-5">
-
-<div class="container">
-
-<div class="dashboard-card">
-
-<h3 class="mb-4">
-
-📋 Prediction Summary
-
-</h3>
-
-<div class="row">
-
-<div class="col-md-3">
-
-<strong>Crop</strong>
-
-<p>{{ info.Crop }}</p>
-
-</div>
-
-<div class="col-md-3">
-
-<strong>Disease</strong>
-
-<p>{{ prediction }}</p>
-
-</div>
-
-<div class="col-md-3">
-
-<strong>Confidence</strong>
-
-<p>{{ confidence }}</p>
-
-</div>
-
-<div class="col-md-3">
-
-<strong>Risk Level</strong>
-
-<p>{{ info.Risk_Level }}</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ===================== ACTION BUTTONS ===================== -->
-
-<section class="pb-5">
-
-<div class="container text-center">
-
-<a
-
-href="/"
-
-class="btn btn-main btn-lg me-3">
-
-<i class="bi bi-arrow-repeat"></i>
-
-Analyze Another Leaf
-
-</a>
-
-<button
-
-onclick="window.print()"
-
-class="btn btn-outline-success btn-lg">
-
-<i class="bi bi-printer"></i>
-
-Print Report
-
-</button>
-
-</div>
-
-</section>
 
 {% endblock %}
-
-
 
 {% block scripts %}
 
 <script>
 
-const chartData = {{ chart_data | tojson }};
+const chartData = {{ chart_data|tojson }};
 
-// ================= BAR CHART =================
+// =======================
+// Bar Chart
+// =======================
 
 new Chart(
 
@@ -1418,8 +1102,6 @@ label:"Confidence (%)",
 
 data:chartData.values,
 
-borderRadius:8,
-
 backgroundColor:[
 
 "#2E7D32",
@@ -1432,7 +1114,9 @@ backgroundColor:[
 
 "#A5D6A7"
 
-]
+],
+
+borderRadius:12
 
 }]
 
@@ -1441,8 +1125,6 @@ backgroundColor:[
 options:{
 
 responsive:true,
-
-maintainAspectRatio:false,
 
 plugins:{
 
@@ -1472,11 +1154,15 @@ max:100
 
 );
 
-// ================= PIE CHART =================
+// =======================
+// Doughnut Chart
+// =======================
+
+const confidence = parseFloat("{{ confidence }}");
 
 new Chart(
 
-document.getElementById("pieChart"),
+document.getElementById("confidenceChart"),
 
 {
 
@@ -1484,25 +1170,33 @@ type:"doughnut",
 
 data:{
 
-labels:chartData.labels,
+labels:[
+
+"Confidence",
+
+"Remaining"
+
+],
 
 datasets:[{
 
-data:chartData.values,
+data:[
+
+confidence,
+
+100-confidence
+
+],
 
 backgroundColor:[
 
 "#2E7D32",
 
-"#43A047",
+"#E5E5E5"
 
-"#66BB6A",
+],
 
-"#81C784",
-
-"#A5D6A7"
-
-]
+borderWidth:0
 
 }]
 
@@ -1510,9 +1204,7 @@ backgroundColor:[
 
 options:{
 
-responsive:true,
-
-maintainAspectRatio:false,
+cutout:"75%",
 
 plugins:{
 
@@ -1532,4 +1224,4 @@ position:"bottom"
 
 </script>
 
-{% endblock %}
+{% endblock %}        

@@ -125,8 +125,6 @@ def predict():
 
     try:
 
-        # Check uploaded file
-
         if "image" not in request.files:
             return "No image uploaded."
 
@@ -141,128 +139,82 @@ def predict():
         filename = secure_filename(file.filename)
 
         filepath = os.path.join(
-
             app.config["UPLOAD_FOLDER"],
-
             filename
-
         )
 
         file.save(filepath)
 
-        # -------------------------------
-        # Image Preprocessing
-        # -------------------------------
-
+        # Image preprocessing
         img = Image.open(filepath).convert("RGB")
+        img = img.resize((128, 128))
+        img_array = np.array(img, dtype=np.float32) / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
 
-        img = img.resize((128,128))
-
-        img_array = np.array(img,dtype=np.float32)
-
-        img_array = img_array / 255.0
-
-        img_array = np.expand_dims(img_array,axis=0)
-
-        # -------------------------------
-        # CNN Prediction
-        # -------------------------------
-
-        predictions = MODEL.predict(img_array,verbose=0)
-
+        # Prediction
+        predictions = MODEL.predict(img_array, verbose=0)
         probabilities = predictions[0]
 
         predicted_index = int(np.argmax(probabilities))
-
         predicted_class = CLASS_NAMES[predicted_index]
+        confidence = float(probabilities[predicted_index]) * 100
 
-        confidence = float(probabilities[predicted_index])*100
-                # -------------------------------
-        # Top 5 Predictions
-        # -------------------------------
-
+        # Top 5 predictions
         top5_indices = np.argsort(probabilities)[-5:][::-1]
 
         chart_labels = []
         chart_values = []
 
         for index in top5_indices:
-
-             chart_labels.append(
+            chart_labels.append(
                 CLASS_NAMES[index].replace("_", " ")
             )
 
-             chart_values.append(
+            chart_values.append(
                 round(float(probabilities[index]) * 100, 2)
-        )
+            )
 
-             chart_data = {
-                "labels": chart_labels,
-                "values": chart_values
-}
-             ranking = list(zip(chart_labels, chart_values))
-
-        # -------------------------------
-        # Disease Information
-        # -------------------------------
-
-        default_info = {
-
-            "Crop": "Unknown",
-            "Disease": predicted_class,
-
-            "Scientific_Name": "Unknown",
-
-            "Pathogen": "Unknown",
-
-            "Pathogen_Type": "Unknown",
-
-            "Category": "Unknown",
-
-            "Affected_Part": "Unknown",
-
-            "Environment": "Unknown",
-
-            "Spread": "Unknown",
-
-            "Description": "Information not available.",
-
-            "Cause": [],
-
-            "Age_Cycle": {
-
-                "Early": "-",
-
-                "Moderate": "-",
-
-                "Severe": "-",
-
-                "Estimated": "-"
-
-            },
-
-            "Symptoms": [],
-
-            "Treatment": [],
-
-            "Organic_Treatment": [],
-
-            "Recommended_Chemicals": [],
-
-            "Prevention": [],
-
-            "Risk_Level": "Low",
-
-            "Severity": "Low",
-
-            "Recommended_Actions": []
-
+        chart_data = {
+            "labels": chart_labels,
+            "values": chart_values
         }
 
-        info = disease_database.get(
-            predicted_class,
-            default_info
-        )
+        ranking = list(zip(chart_labels, chart_values))
+
+        # Disease information
+        default_info = {
+            "Crop": "Unknown",
+            "Disease": predicted_class,
+            "Scientific_Name": "Unknown",
+            "Pathogen": "Unknown",
+            "Pathogen_Type": "Unknown",
+            "Category": "Unknown",
+            "Affected_Part": "Unknown",
+            "Environment": "Unknown",
+            "Spread": "Unknown",
+            "Description": "Information not available.",
+            "Cause": [],
+            "Age_Cycle": {
+                "Early": "-",
+                "Moderate": "-",
+                "Severe": "-",
+                "Estimated": "-"
+            },
+            "Symptoms": [],
+            "Treatment": [],
+            "Organic_Treatment": [],
+            "Recommended_Chemicals": [],
+            "Prevention": [],
+            "Risk_Level": "Low",
+            "Severity": "Low",
+            "Recommended_Actions": [
+                "Monitor the crop regularly.",
+                "Remove infected plant parts.",
+                "Follow the recommended treatment schedule."
+            ]
+        }
+
+        info = disease_database.get(predicted_class, default_info)
 
         image_path = os.path.join(
             "static",
@@ -271,25 +223,22 @@ def predict():
         ).replace("\\", "/")
 
         return render_template(
-    "result.html",
-    image_path=image_path,
-    prediction=info["Disease"],
-    confidence=f"{confidence:.2f}%",
-    info=info,
-    chart_data=chart_data,
-    ranking=ranking
-)
+            "result.html",
+            image_path=image_path,
+            prediction=info["Disease"],
+            confidence=f"{confidence:.2f}%",
+            info=info,
+            chart_data=chart_data,
+            ranking=ranking
+        )
 
     except Exception as e:
-
-        print(e)
+        import traceback
+        traceback.print_exc()
 
         return render_template(
-
             "error.html",
-
             error=str(e)
-
         )
 
 
@@ -299,6 +248,4 @@ def predict():
 
 if __name__ == "__main__":
 
-    app.run(
-        debug=True
-    )
+     app.run(debug=True)  
