@@ -1,0 +1,124 @@
+{
+  "Strawberry___Leaf_scorch": {
+    "Crop": "Strawberry",
+    "Disease": "Leaf Scorch",
+    "Scientific_Name": "Diplocarpon earlianum",
+    "Pathogen": "Diplocarpon earlianum",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "Warm temperatures (20–30°C), high humidity, prolonged leaf wetness and frequent rainfall.",
+    "Spread": "Spread through wind-blown spores, rain splash, contaminated tools and infected plant debris.",
+    "Description": "Leaf Scorch is a common fungal disease of strawberry that reduces photosynthesis by damaging leaves. Severe infections weaken plants, reduce fruit yield and decrease fruit quality.",
+    "Cause": [
+      "Diplocarpon earlianum infection",
+      "High humidity",
+      "Frequent rainfall",
+      "Poor field sanitation",
+      "Overcrowded plants"
+    ],
+    "Age_Cycle": {
+      "Early": "Small purple spots appear on older leaves.",
+      "Moderate": "Lesions enlarge and merge, causing reddish-brown discoloration.",
+      "Severe": "Leaves become dry, scorched and die prematurely, reducing plant vigor.",
+      "Estimated": "Symptoms generally develop within 7–14 days after infection under favorable conditions."
+    },
+    "Symptoms": [
+      "Small purple spots",
+      "Reddish-brown leaf lesions",
+      "Scorched leaf edges",
+      "Premature leaf drying",
+      "Reduced photosynthesis",
+      "Lower fruit yield"
+    ],
+    "Treatment": [
+      "Remove infected leaves.",
+      "Apply recommended fungicides.",
+      "Improve field ventilation.",
+      "Avoid overhead irrigation."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Sulfur spray",
+      "Bacillus subtilis biofungicide",
+      "Neem oil (early infection)"
+    ],
+    "Recommended_Chemicals": [
+      "Captan",
+      "Mancozeb",
+      "Azoxystrobin",
+      "Copper Hydroxide"
+    ],
+    "Prevention": [
+      "Use disease-free planting material.",
+      "Maintain proper spacing between plants.",
+      "Remove infected leaves after harvest.",
+      "Rotate crops.",
+      "Maintain good field sanitation."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect leaves weekly.",
+      "Remove infected foliage immediately.",
+      "Apply preventive fungicides during humid weather.",
+      "Maintain proper air circulation."
+    ]
+  },
+
+  "Strawberry___healthy": {
+    "Crop": "Strawberry",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Strawberry Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Cool to moderate temperatures (15–26°C), fertile well-drained soil (pH 5.5–6.8), adequate sunlight and consistent irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded strawberry leaf shows no visible signs of disease, pest infestation or nutrient deficiency. The plant appears healthy and capable of producing vigorous growth and high-quality fruit.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence with bright green coloration.",
+      "Moderate": "Normal vegetative growth, flowering and fruit development.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season under proper crop management."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "Uniform coloration",
+      "No visible lesions",
+      "Healthy leaf texture",
+      "Normal flowering",
+      "Healthy fruit development"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain fertile soil using compost.",
+      "Apply balanced organic fertilizers when needed.",
+      "Use organic mulch to conserve soil moisture."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue routine crop monitoring.",
+      "Maintain balanced irrigation.",
+      "Practice crop rotation.",
+      "Remove old leaves after harvest.",
+      "Maintain good field sanitation."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue current crop management.",
+      "Inspect plants weekly.",
+      "Maintain balanced nutrition and irrigation.",
+      "Monitor for early disease symptoms."
+    ]
+  }
+}

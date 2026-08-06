@@ -1,0 +1,72 @@
+{
+  "Orange___Haunglongbing_(Citrus_greening)": {
+    "Crop": "Orange",
+    "Disease": "Huanglongbing (Citrus Greening)",
+    "Scientific_Name": "Candidatus Liberibacter asiaticus",
+    "Pathogen": "Candidatus Liberibacter asiaticus",
+    "Pathogen_Type": "Bacterium",
+    "Category": "Bacterial Disease",
+    "Affected_Part": "Leaves, Shoots, Fruits, Roots, Entire Plant",
+    "Environment": "Warm subtropical and tropical climates (20–35°C). Disease spreads rapidly where Asian citrus psyllids are abundant.",
+    "Spread": "Primarily transmitted by the Asian Citrus Psyllid (Diaphorina citri). It can also spread through infected nursery stock and grafting material.",
+    "Description": "Huanglongbing (HLB), also known as Citrus Greening, is one of the most destructive citrus diseases worldwide. The bacterium infects the phloem tissue, disrupting nutrient transport, resulting in yellow shoots, deformed fruits and eventual tree decline.",
+    "Cause": [
+      "Infection by Candidatus Liberibacter asiaticus",
+      "Asian Citrus Psyllid infestation",
+      "Infected nursery plants",
+      "Movement of infected grafting material"
+    ],
+    "Age_Cycle": {
+      "Early": "Leaves develop blotchy yellow mottling and asymmetric chlorosis.",
+      "Moderate": "Shoots become yellow, fruits remain small, green and misshapen.",
+      "Severe": "Tree decline, heavy fruit drop, root deterioration and eventual death.",
+      "Estimated": "Symptoms usually appear several months after infection, while tree decline may take several years."
+    },
+    "Symptoms": [
+      "Blotchy yellow leaf mottling",
+      "Asymmetrical chlorosis",
+      "Yellow shoots",
+      "Small misshapen fruits",
+      "Green fruit shoulders",
+      "Bitter fruit taste",
+      "Premature fruit drop",
+      "Twig dieback",
+      "Reduced root growth",
+      "Overall tree decline"
+    ],
+    "Treatment": [
+      "There is currently no cure for infected trees.",
+      "Remove severely infected trees to reduce disease spread.",
+      "Control Asian Citrus Psyllid populations.",
+      "Maintain balanced nutrition to improve tree health."
+    ],
+    "Organic_Treatment": [
+      "Neem oil for psyllid suppression",
+      "Release beneficial predators such as lady beetles and parasitic wasps",
+      "Yellow sticky traps for psyllid monitoring"
+    ],
+    "Recommended_Chemicals": [
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Dinotefuran",
+      "Spirotetramat"
+    ],
+    "Prevention": [
+      "Plant certified disease-free nursery stock.",
+      "Regularly monitor orchards for psyllids.",
+      "Implement integrated pest management (IPM).",
+      "Remove infected trees promptly.",
+      "Disinfect pruning equipment.",
+      "Avoid transporting infected plant material."
+    ],
+    "Severity": "Very High",
+    "Risk_Level": "Very High",
+    "Recommended_Actions": [
+      "Inspect citrus trees every week for psyllids and yellow shoots.",
+      "Immediately report suspected HLB outbreaks to local agricultural authorities if required.",
+      "Remove severely infected trees.",
+      "Implement continuous psyllid management.",
+      "Use only certified disease-free planting material."
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "Blueberry___healthy": {
+    "Crop": "Blueberry",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Blueberry Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Cool to moderate temperatures (18–26°C), acidic well-drained soil (pH 4.5–5.5), consistent moisture and full sunlight.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded blueberry leaf shows no visible symptoms of disease, nutrient deficiency or pest infestation. The plant appears healthy and capable of normal growth and fruit production under proper management.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence with normal green coloration.",
+      "Moderate": "Normal vegetative growth and canopy development.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season under proper management."
+    },
+    "Symptoms": [
+      "Uniform green leaves",
+      "Healthy leaf texture",
+      "No visible spots or lesions",
+      "No discoloration",
+      "Normal plant vigor"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain soil organic matter using compost or mulch.",
+      "Apply balanced organic fertilizer if recommended by soil testing."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Monitor plants regularly for early disease symptoms.",
+      "Maintain proper soil pH (4.5–5.5).",
+      "Provide adequate irrigation without waterlogging.",
+      "Prune damaged or dead branches.",
+      "Maintain good field sanitation."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue routine monitoring.",
+      "Maintain balanced irrigation and nutrition.",
+      "Inspect plants weekly during the growing season.",
+      "Continue current crop management practices."
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "Soybean___healthy": {
+    "Crop": "Soybean",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Soybean Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Warm temperatures (20–30°C), fertile well-drained loamy soil (pH 6.0–7.0), adequate sunlight and consistent soil moisture.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded soybean leaf shows no visible signs of disease, pest infestation or nutrient deficiency. The plant appears healthy and capable of normal vegetative growth, flowering and pod development under proper crop management.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy seedling emergence with bright green leaves.",
+      "Moderate": "Normal vegetative growth, flowering and pod formation.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy development throughout the crop growth cycle."
+    },
+    "Symptoms": [
+      "Uniform green leaves",
+      "Healthy leaf texture",
+      "No spots or lesions",
+      "No yellowing or wilting",
+      "Normal plant vigor",
+      "Healthy pod development"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain fertile soil using compost or farmyard manure.",
+      "Apply biofertilizers such as Rhizobium inoculants.",
+      "Use organic mulch to conserve soil moisture."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue regular crop monitoring.",
+      "Maintain balanced fertilization.",
+      "Practice crop rotation.",
+      "Ensure proper irrigation and drainage.",
+      "Keep the field free from weeds and crop residues."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue routine field inspections.",
+      "Maintain balanced nutrient management.",
+      "Monitor plants weekly for early disease or pest symptoms.",
+      "Continue current soybean crop management practices."
+    ]
+  }
+}

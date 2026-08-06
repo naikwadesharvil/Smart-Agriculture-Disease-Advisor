@@ -1,0 +1,123 @@
+{
+  "Peach___Bacterial_spot": {
+    "Crop": "Peach",
+    "Disease": "Bacterial Spot",
+    "Scientific_Name": "Xanthomonas arboricola pv. pruni",
+    "Pathogen": "Xanthomonas arboricola pv. pruni",
+    "Pathogen_Type": "Bacterium",
+    "Category": "Bacterial Disease",
+    "Affected_Part": "Leaves, Fruits, Twigs",
+    "Environment": "Warm temperatures (20–30°C), frequent rainfall, high humidity and strong winds promote disease development.",
+    "Spread": "Spread through rain splash, wind-driven rain, contaminated pruning tools, infected nursery stock and plant debris.",
+    "Description": "Bacterial Spot is a serious bacterial disease affecting peach trees. It damages leaves, fruits and young twigs, reducing fruit quality and market value. Severe infections may cause premature defoliation and reduced tree vigor.",
+    "Cause": [
+      "Xanthomonas arboricola pv. pruni infection",
+      "Warm humid weather",
+      "Frequent rainfall",
+      "Infected nursery plants",
+      "Poor orchard sanitation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small water-soaked lesions appear on young leaves.",
+      "Moderate": "Lesions enlarge, becoming dark brown with yellow halos. Fruits develop sunken spots.",
+      "Severe": "Leaves fall prematurely, fruits crack and twigs may develop cankers.",
+      "Estimated": "Symptoms usually appear within 7–14 days after infection under favorable conditions."
+    },
+    "Symptoms": [
+      "Small brown leaf spots",
+      "Yellow halos around lesions",
+      "Water-soaked lesions",
+      "Premature leaf drop",
+      "Sunken fruit spots",
+      "Fruit cracking",
+      "Twig cankers"
+    ],
+    "Treatment": [
+      "Apply copper-based bactericides during dormant and early growing seasons.",
+      "Remove infected leaves and fruits.",
+      "Prune infected twigs.",
+      "Avoid overhead irrigation where possible."
+    ],
+    "Organic_Treatment": [
+      "Copper soap spray",
+      "Neem oil (early infection)",
+      "Compost tea"
+    ],
+    "Recommended_Chemicals": [
+      "Copper Hydroxide",
+      "Copper Oxychloride",
+      "Oxytetracycline (where approved)",
+      "Mancozeb (combined programs)"
+    ],
+    "Prevention": [
+      "Use certified disease-free nursery stock.",
+      "Maintain orchard sanitation.",
+      "Disinfect pruning tools.",
+      "Improve air circulation by pruning.",
+      "Avoid working in wet orchards."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect trees weekly during rainy periods.",
+      "Remove infected fruits immediately.",
+      "Apply preventive copper sprays before disease spreads.",
+      "Maintain proper pruning and orchard hygiene."
+    ]
+  },
+
+  "Peach___healthy": {
+    "Crop": "Peach",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Peach Tree",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained fertile soil, full sunlight (6–8 hours daily), balanced fertilization and proper irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded peach leaf shows no visible symptoms of disease, pest infestation or nutrient deficiency. The tree appears healthy and capable of normal vegetative growth and fruit production.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence with normal green coloration.",
+      "Moderate": "Normal shoot growth and canopy development.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season under proper orchard management."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "Uniform leaf color",
+      "No visible lesions",
+      "No discoloration",
+      "Normal leaf texture",
+      "Healthy tree vigor"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain healthy soil with compost or well-decomposed manure.",
+      "Apply balanced organic fertilizers as needed."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue routine orchard monitoring.",
+      "Maintain balanced irrigation.",
+      "Prune annually for good airflow.",
+      "Practice good orchard sanitation.",
+      "Inspect trees regularly for early disease symptoms."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue current orchard management practices.",
+      "Inspect trees every week during the growing season.",
+      "Maintain balanced nutrition and irrigation.",
+      "Remove dead branches during routine pruning."
+    ]
+  }
+}

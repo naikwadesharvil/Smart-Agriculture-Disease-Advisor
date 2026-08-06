@@ -1,0 +1,232 @@
+{
+  "Grape___Black_rot": {
+    "Crop": "Grape",
+    "Disease": "Black Rot",
+    "Scientific_Name": "Guignardia bidwellii",
+    "Pathogen": "Guignardia bidwellii",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Shoots, Tendrils, Fruits",
+    "Environment": "Warm temperatures (20–30°C), frequent rainfall and prolonged leaf wetness.",
+    "Spread": "Fungal spores spread through rain splash, wind and infected plant debris.",
+    "Description": "Black Rot is one of the most damaging fungal diseases of grapevines. It affects leaves, shoots and berries, causing severe yield losses if not managed.",
+    "Cause": [
+      "Guignardia bidwellii infection",
+      "Warm humid weather",
+      "Poor vineyard sanitation",
+      "Infected mummified berries"
+    ],
+    "Age_Cycle": {
+      "Early": "Small tan circular spots appear on leaves.",
+      "Moderate": "Black fruiting bodies develop in lesions and berries begin to shrivel.",
+      "Severe": "Berries become hard black mummies and leaves dry prematurely.",
+      "Estimated": "Symptoms typically develop within 10–21 days after infection."
+    },
+    "Symptoms": [
+      "Brown leaf spots with black dots",
+      "Shriveled black berries",
+      "Leaf yellowing",
+      "Fruit mummification",
+      "Reduced fruit quality"
+    ],
+    "Treatment": [
+      "Remove infected berries and leaves.",
+      "Apply fungicides during the growing season.",
+      "Prune infected shoots."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Sulfur spray",
+      "Neem oil (early infection)"
+    ],
+    "Recommended_Chemicals": [
+      "Mancozeb",
+      "Myclobutanil",
+      "Captan",
+      "Azoxystrobin"
+    ],
+    "Prevention": [
+      "Remove mummified fruits.",
+      "Maintain vineyard sanitation.",
+      "Improve air circulation through pruning.",
+      "Apply preventive fungicides."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect vines weekly.",
+      "Remove infected berries immediately.",
+      "Spray fungicides before rainy periods."
+    ]
+  },
+
+  "Grape___Esca_(Black_Measles)": {
+    "Crop": "Grape",
+    "Disease": "Esca (Black Measles)",
+    "Scientific_Name": "Phaeomoniella chlamydospora, Phaeoacremonium minimum and Fomitiporia mediterranea",
+    "Pathogen": "Esca Disease Complex",
+    "Pathogen_Type": "Fungal Complex",
+    "Category": "Trunk Disease",
+    "Affected_Part": "Leaves, Wood, Trunk, Fruits",
+    "Environment": "Warm climates with stressed vines and pruning wounds.",
+    "Spread": "Fungal spores enter through pruning wounds and infected wood.",
+    "Description": "Esca is a complex trunk disease that damages the vascular system of grapevines. It weakens vines over several years and significantly reduces vineyard productivity.",
+    "Cause": [
+      "Multiple fungal pathogens",
+      "Pruning wounds",
+      "Old vineyard age",
+      "Environmental stress"
+    ],
+    "Age_Cycle": {
+      "Early": "Interveinal yellow or reddish discoloration appears on leaves.",
+      "Moderate": "Wood decay progresses and berries develop dark spots.",
+      "Severe": "Sudden vine collapse (apoplexy) may occur during hot weather.",
+      "Estimated": "Disease develops over several growing seasons."
+    },
+    "Symptoms": [
+      "Tiger-striped leaves",
+      "Dark berry spots",
+      "Wood decay",
+      "Reduced vine vigor",
+      "Sudden vine death"
+    ],
+    "Treatment": [
+      "Remove severely infected vines.",
+      "Prune infected wood.",
+      "Protect pruning wounds with wound sealants."
+    ],
+    "Organic_Treatment": [
+      "Biological wound protectants",
+      "Trichoderma-based products"
+    ],
+    "Recommended_Chemicals": [
+      "No fully curative chemical treatment available"
+    ],
+    "Prevention": [
+      "Avoid unnecessary pruning injuries.",
+      "Disinfect pruning tools.",
+      "Protect pruning wounds.",
+      "Remove dead wood."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect trunks annually.",
+      "Remove heavily infected vines.",
+      "Protect pruning wounds immediately after pruning."
+    ]
+  }
+,
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "Crop": "Grape",
+    "Disease": "Leaf Blight (Isariopsis Leaf Spot)",
+    "Scientific_Name": "Pseudocercospora vitis",
+    "Pathogen": "Pseudocercospora vitis",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "Warm temperatures (22–30°C), high humidity and prolonged periods of leaf wetness.",
+    "Spread": "Fungal spores spread through wind, rain splash and infected plant debris.",
+    "Description": "Leaf Blight is a fungal disease that primarily attacks grape leaves. Severe infection causes premature defoliation, reducing photosynthesis, fruit quality and vine vigor.",
+    "Cause": [
+      "Pseudocercospora vitis infection",
+      "Warm humid weather",
+      "Poor vineyard sanitation",
+      "Dense vine canopy"
+    ],
+    "Age_Cycle": {
+      "Early": "Small brown spots develop on older leaves.",
+      "Moderate": "Lesions enlarge with gray centers and dark margins.",
+      "Severe": "Leaves dry, curl and fall prematurely.",
+      "Estimated": "Symptoms generally develop within 10–15 days after infection."
+    },
+    "Symptoms": [
+      "Brown leaf spots",
+      "Gray lesion centers",
+      "Dark lesion margins",
+      "Leaf curling",
+      "Premature leaf drop"
+    ],
+    "Treatment": [
+      "Remove infected leaves.",
+      "Apply protective fungicides.",
+      "Improve air circulation by pruning."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Sulfur spray",
+      "Trichoderma-based biofungicide"
+    ],
+    "Recommended_Chemicals": [
+      "Mancozeb",
+      "Copper Hydroxide",
+      "Azoxystrobin",
+      "Chlorothalonil"
+    ],
+    "Prevention": [
+      "Prune vines regularly.",
+      "Avoid overhead irrigation.",
+      "Remove infected debris.",
+      "Monitor vineyards during humid weather."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect leaves weekly.",
+      "Apply fungicides at the first sign of disease.",
+      "Maintain proper canopy ventilation."
+    ]
+  },
+
+  "Grape___healthy": {
+    "Crop": "Grape",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Grapevine",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained fertile soil, full sunlight, balanced irrigation and good vineyard management.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded grape leaf shows no visible symptoms of disease, pest infestation or nutrient deficiency. The vine appears healthy and capable of normal vegetative growth and fruit production.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence.",
+      "Moderate": "Normal vine growth and canopy development.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "Uniform coloration",
+      "No visible lesions",
+      "Normal leaf texture",
+      "Healthy vine vigor"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain healthy soil with compost.",
+      "Apply balanced organic fertilizers when necessary."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue routine vineyard monitoring.",
+      "Maintain balanced irrigation.",
+      "Prune regularly for airflow.",
+      "Practice good vineyard sanitation."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue current vineyard management.",
+      "Inspect vines periodically.",
+      "Maintain balanced nutrition and irrigation."
+    ]
+  }
+}

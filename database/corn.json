@@ -1,0 +1,232 @@
+{
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "Crop": "Corn (Maize)",
+    "Disease": "Gray Leaf Spot",
+    "Scientific_Name": "Cercospora zeae-maydis",
+    "Pathogen": "Cercospora zeae-maydis",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "Warm temperatures (25–30°C), high humidity (>90%), prolonged leaf wetness and frequent rainfall.",
+    "Spread": "Wind-borne spores, rain splash, infected crop residue and contaminated equipment.",
+    "Description": "Gray Leaf Spot is one of the most economically important foliar diseases of maize. Severe infections reduce photosynthesis, weaken plants and significantly reduce grain yield.",
+    "Cause": [
+      "Cercospora zeae-maydis infection",
+      "High humidity",
+      "Continuous maize cultivation",
+      "Infected crop residue"
+    ],
+    "Age_Cycle": {
+      "Early": "Small tan lesions appear between leaf veins.",
+      "Moderate": "Lesions become rectangular and gray with distinct margins.",
+      "Severe": "Large portions of leaves become blighted, reducing photosynthesis.",
+      "Estimated": "Symptoms usually develop within 10–21 days after infection."
+    },
+    "Symptoms": [
+      "Rectangular gray lesions",
+      "Leaf blighting",
+      "Gray fungal appearance",
+      "Reduced green leaf area",
+      "Premature leaf death"
+    ],
+    "Treatment": [
+      "Apply foliar fungicides.",
+      "Use resistant hybrids.",
+      "Rotate crops.",
+      "Remove infected crop residue."
+    ],
+    "Organic_Treatment": [
+      "Trichoderma-based biofungicides",
+      "Copper fungicide (early stage)"
+    ],
+    "Recommended_Chemicals": [
+      "Azoxystrobin",
+      "Propiconazole",
+      "Pyraclostrobin"
+    ],
+    "Prevention": [
+      "Use resistant maize hybrids.",
+      "Practice crop rotation.",
+      "Avoid continuous maize cultivation.",
+      "Maintain field sanitation."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect lower leaves regularly.",
+      "Apply fungicide before severe infection.",
+      "Destroy infected crop residue."
+    ]
+  },
+
+  "Corn_(maize)___Common_rust_": {
+    "Crop": "Corn (Maize)",
+    "Disease": "Common Rust",
+    "Scientific_Name": "Puccinia sorghi",
+    "Pathogen": "Puccinia sorghi",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "Cool to moderate temperatures (16–25°C), humid weather and frequent dew formation.",
+    "Spread": "Wind-borne fungal spores travel long distances between maize fields.",
+    "Description": "Common Rust is a widespread fungal disease characterized by reddish-brown pustules on maize leaves. Severe infections reduce photosynthesis and grain production.",
+    "Cause": [
+      "Puccinia sorghi infection",
+      "Cool humid weather",
+      "Wind-dispersed spores"
+    ],
+    "Age_Cycle": {
+      "Early": "Small chlorotic spots appear.",
+      "Moderate": "Raised reddish-brown pustules develop.",
+      "Severe": "Numerous pustules cover leaves causing reduced photosynthesis.",
+      "Estimated": "Disease develops within 7–14 days after infection."
+    },
+    "Symptoms": [
+      "Reddish-brown pustules",
+      "Yellow halos",
+      "Leaf drying",
+      "Reduced plant vigor"
+    ],
+    "Treatment": [
+      "Apply foliar fungicides.",
+      "Grow resistant hybrids.",
+      "Monitor disease progression."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Compost tea"
+    ],
+    "Recommended_Chemicals": [
+      "Azoxystrobin",
+      "Propiconazole",
+      "Tebuconazole"
+    ],
+    "Prevention": [
+      "Plant resistant hybrids.",
+      "Monitor fields regularly.",
+      "Avoid late planting where possible."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Monitor leaf pustules weekly.",
+      "Apply fungicide when disease threshold is reached.",
+      "Maintain healthy crop nutrition."
+    ]
+  },
+
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "Crop": "Corn (Maize)",
+    "Disease": "Northern Leaf Blight",
+    "Scientific_Name": "Exserohilum turcicum",
+    "Pathogen": "Exserohilum turcicum",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "Moderate temperatures (18–27°C), high humidity, frequent rainfall and prolonged leaf wetness.",
+    "Spread": "Airborne spores spread through wind, rain splash and infected crop residue.",
+    "Description": "Northern Leaf Blight is a destructive foliar disease of maize that causes long cigar-shaped lesions on leaves. Severe infections reduce photosynthesis, weaken plants and significantly decrease grain yield.",
+    "Cause": [
+      "Exserohilum turcicum infection",
+      "High humidity",
+      "Frequent rainfall",
+      "Continuous maize cultivation",
+      "Infected crop residue"
+    ],
+    "Age_Cycle": {
+      "Early": "Small gray-green elliptical lesions appear on lower leaves.",
+      "Moderate": "Lesions expand into long cigar-shaped gray or tan patches.",
+      "Severe": "Large portions of leaves become blighted, reducing grain filling and plant vigor.",
+      "Estimated": "Symptoms usually develop within 7–14 days after infection under favorable conditions."
+    },
+    "Symptoms": [
+      "Long cigar-shaped leaf lesions",
+      "Gray or tan patches",
+      "Leaf blighting",
+      "Premature leaf death",
+      "Reduced grain yield"
+    ],
+    "Treatment": [
+      "Apply foliar fungicides.",
+      "Use resistant hybrids.",
+      "Remove infected crop residue.",
+      "Rotate crops."
+    ],
+    "Organic_Treatment": [
+      "Trichoderma-based biofungicides",
+      "Copper fungicide (early infection)"
+    ],
+    "Recommended_Chemicals": [
+      "Azoxystrobin",
+      "Propiconazole",
+      "Pyraclostrobin",
+      "Mancozeb"
+    ],
+    "Prevention": [
+      "Plant resistant hybrids.",
+      "Practice crop rotation.",
+      "Remove infected crop residue after harvest.",
+      "Monitor fields during humid weather."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect lower leaves weekly.",
+      "Apply fungicides before severe infection develops.",
+      "Maintain proper field sanitation.",
+      "Avoid continuous maize cultivation."
+    ]
+  },
+
+  "Corn_(maize)___healthy": {
+    "Crop": "Corn (Maize)",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Corn Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained fertile soil, balanced fertilization, adequate sunlight and proper irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded maize leaf shows no visible symptoms of disease, pest infestation or nutrient deficiency. The crop appears healthy and capable of normal growth and grain production.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence with uniform green color.",
+      "Moderate": "Normal vegetative growth and canopy development.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy development throughout the growing season."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "Uniform coloration",
+      "No visible lesions",
+      "No fungal growth",
+      "Strong plant vigor"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain healthy soil using compost.",
+      "Apply balanced organic fertilizers when necessary."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue regular field monitoring.",
+      "Maintain balanced fertilization.",
+      "Provide adequate irrigation.",
+      "Follow good agricultural practices."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue routine crop monitoring.",
+      "Maintain current crop management practices.",
+      "Inspect plants weekly for early disease symptoms."
+    ]
+  }
+}

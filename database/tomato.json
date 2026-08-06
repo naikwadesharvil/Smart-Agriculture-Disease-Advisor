@@ -1,0 +1,594 @@
+{
+  "Tomato___Bacterial_spot": {
+    "Crop": "Tomato",
+    "Disease": "Bacterial Spot",
+    "Scientific_Name": "Xanthomonas euvesicatoria",
+    "Pathogen": "Xanthomonas euvesicatoria",
+    "Pathogen_Type": "Bacterium",
+    "Category": "Bacterial Disease",
+    "Affected_Part": "Leaves, Stems, Fruits",
+    "Environment": "Warm temperatures (24–30°C), high humidity, rainfall and overhead irrigation favor disease development.",
+    "Spread": "Spread through infected seeds, rain splash, irrigation water, contaminated tools and human handling.",
+    "Description": "Bacterial Spot is a serious bacterial disease of tomato that affects leaves, stems and fruits. Severe infection causes premature leaf drop, reducing fruit quality and yield.",
+    "Cause": [
+      "Infection by Xanthomonas euvesicatoria",
+      "Warm and humid weather",
+      "Infected seeds or transplants",
+      "Poor field sanitation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small water-soaked spots appear on young leaves.",
+      "Moderate": "Dark brown lesions enlarge and merge, causing yellowing.",
+      "Severe": "Leaves dry and fall prematurely. Fruits develop raised scabby lesions.",
+      "Estimated": "Symptoms usually appear within 5–10 days after infection."
+    },
+    "Symptoms": [
+      "Small dark brown leaf spots",
+      "Yellow halos around lesions",
+      "Water-soaked spots",
+      "Premature leaf drop",
+      "Raised fruit lesions"
+    ],
+    "Treatment": [
+      "Apply copper-based bactericides.",
+      "Use copper mixed with mancozeb for improved effectiveness.",
+      "Remove heavily infected leaves.",
+      "Avoid working with wet plants."
+    ],
+    "Organic_Treatment": [
+      "Copper soap spray",
+      "Neem oil (early infection)",
+      "Compost tea"
+    ],
+    "Recommended_Chemicals": [
+      "Copper Hydroxide",
+      "Copper Oxychloride",
+      "Mancozeb"
+    ],
+    "Prevention": [
+      "Use certified disease-free seeds.",
+      "Practice crop rotation.",
+      "Avoid overhead irrigation.",
+      "Disinfect tools regularly."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect plants every 2–3 days.",
+      "Remove infected leaves immediately.",
+      "Apply preventive copper sprays during humid weather.",
+      "Improve air circulation between plants."
+    ]
+  },
+
+  "Tomato___Early_blight": {
+    "Crop": "Tomato",
+    "Disease": "Early Blight",
+    "Scientific_Name": "Alternaria solani",
+    "Pathogen": "Alternaria solani",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Stems, Fruits",
+    "Environment": "Warm temperatures (24–29°C), high humidity and frequent rainfall promote infection.",
+    "Spread": "Fungal spores spread through wind, rain splash, contaminated soil and infected plant debris.",
+    "Description": "Early Blight is one of the most common tomato diseases. It first attacks older leaves and gradually spreads upward, reducing photosynthesis and fruit production.",
+    "Cause": [
+      "Alternaria solani infection",
+      "High humidity",
+      "Poor crop sanitation",
+      "Continuous tomato cultivation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small brown spots appear on lower leaves.",
+      "Moderate": "Concentric target-like rings develop on lesions.",
+      "Severe": "Leaves die, stems become infected and fruits develop dark lesions.",
+      "Estimated": "Disease develops within 7–14 days under favorable conditions."
+    },
+    "Symptoms": [
+      "Brown circular lesions",
+      "Target-like concentric rings",
+      "Yellowing around lesions",
+      "Lower leaf infection",
+      "Premature defoliation"
+    ],
+    "Treatment": [
+      "Apply chlorothalonil or mancozeb fungicide.",
+      "Remove infected foliage.",
+      "Maintain adequate plant spacing.",
+      "Avoid overhead irrigation."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Neem oil",
+      "Bacillus subtilis biofungicide"
+    ],
+    "Recommended_Chemicals": [
+      "Chlorothalonil",
+      "Mancozeb",
+      "Azoxystrobin"
+    ],
+    "Prevention": [
+      "Rotate crops every season.",
+      "Remove infected debris after harvest.",
+      "Mulch around plants.",
+      "Use healthy seedlings."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Begin preventive fungicide applications early.",
+      "Monitor lower leaves regularly.",
+      "Remove infected leaves immediately.",
+      "Avoid prolonged leaf wetness."
+    ]
+  },
+
+  "Tomato___Late_blight": {
+    "Crop": "Tomato",
+    "Disease": "Late Blight",
+    "Scientific_Name": "Phytophthora infestans",
+    "Pathogen": "Phytophthora infestans",
+    "Pathogen_Type": "Oomycete (Water Mold)",
+    "Category": "Water Mold Disease",
+    "Affected_Part": "Leaves, Stems, Fruits",
+    "Environment": "Cool temperatures (10–22°C), high humidity (>90%) and prolonged rainfall.",
+    "Spread": "Airborne spores spread rapidly by wind, rain splash and infected plants.",
+    "Description": "Late Blight is one of the most destructive tomato diseases. It spreads rapidly during cool, wet weather and can destroy entire fields within a few days if unmanaged.",
+    "Cause": [
+      "Phytophthora infestans infection",
+      "Cool wet weather",
+      "High humidity",
+      "Infected plant material"
+    ],
+    "Age_Cycle": {
+      "Early": "Water-soaked lesions appear on leaves.",
+      "Moderate": "Brown lesions enlarge rapidly with white fungal growth underneath.",
+      "Severe": "Entire plant collapses and fruits rot quickly.",
+      "Estimated": "Disease may spread across a field within 3–7 days under ideal conditions."
+    },
+    "Symptoms": [
+      "Water-soaked leaf spots",
+      "Brown irregular lesions",
+      "White mold beneath leaves",
+      "Dark fruit rot",
+      "Rapid plant collapse"
+    ],
+    "Treatment": [
+      "Immediately remove infected plants.",
+      "Apply systemic fungicides.",
+      "Reduce field humidity where possible.",
+      "Destroy infected crop residues."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Approved biological fungicides"
+    ],
+    "Recommended_Chemicals": [
+      "Metalaxyl",
+      "Cymoxanil",
+      "Mancozeb",
+      "Chlorothalonil"
+    ],
+    "Prevention": [
+      "Use certified healthy seedlings.",
+      "Ensure proper field drainage.",
+      "Avoid overhead irrigation.",
+      "Monitor weather forecasts for blight risk."
+    ],
+    "Severity": "High",
+    "Risk_Level": "Very High",
+    "Recommended_Actions": [
+      "Take immediate action after first symptoms.",
+      "Apply fungicides before disease spreads.",
+      "Inspect neighboring plants daily.",
+      "Remove severely infected plants."
+    ]
+  },
+  
+  "Tomato___Leaf_Mold": {
+    "Crop": "Tomato",
+    "Disease": "Leaf Mold",
+    "Scientific_Name": "Passalora fulva",
+    "Pathogen": "Passalora fulva",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "High humidity (>85%), poor ventilation and temperatures between 20–27°C.",
+    "Spread": "Airborne spores spread through wind, splashing water and contaminated plant material.",
+    "Description": "Leaf Mold mainly affects greenhouse and protected tomato cultivation. It begins on older leaves and can significantly reduce photosynthesis and fruit production.",
+    "Cause": [
+      "Passalora fulva infection",
+      "High humidity",
+      "Poor air circulation",
+      "Dense plant canopy"
+    ],
+    "Age_Cycle": {
+      "Early": "Pale yellow spots appear on the upper leaf surface.",
+      "Moderate": "Olive-green to gray fungal growth develops underneath the leaves.",
+      "Severe": "Leaves curl, dry and fall prematurely.",
+      "Estimated": "Symptoms usually develop within 10–14 days."
+    },
+    "Symptoms": [
+      "Yellow leaf spots",
+      "Olive-green mold underneath leaves",
+      "Leaf curling",
+      "Premature defoliation"
+    ],
+    "Treatment": [
+      "Remove infected leaves.",
+      "Improve greenhouse ventilation.",
+      "Apply recommended fungicides."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Bacillus subtilis biofungicide",
+      "Neem oil (early infection)"
+    ],
+    "Recommended_Chemicals": [
+      "Chlorothalonil",
+      "Mancozeb",
+      "Azoxystrobin"
+    ],
+    "Prevention": [
+      "Reduce humidity.",
+      "Increase plant spacing.",
+      "Avoid wetting foliage.",
+      "Use resistant varieties."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Improve ventilation immediately.",
+      "Remove infected foliage.",
+      "Monitor humidity daily."
+    ]
+  },
+
+  "Tomato___Septoria_leaf_spot": {
+    "Crop": "Tomato",
+    "Disease": "Septoria Leaf Spot",
+    "Scientific_Name": "Septoria lycopersici",
+    "Pathogen": "Septoria lycopersici",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves",
+    "Environment": "Warm (20–25°C), humid weather with frequent rainfall.",
+    "Spread": "Rain splash, irrigation water, contaminated tools and infected crop debris.",
+    "Description": "Septoria Leaf Spot primarily attacks tomato foliage. Although fruits are rarely infected directly, severe defoliation reduces fruit size, quality and yield.",
+    "Cause": [
+      "Septoria lycopersici infection",
+      "Wet foliage",
+      "High humidity",
+      "Poor sanitation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small circular gray spots appear on lower leaves.",
+      "Moderate": "Dark borders form around lesions and tiny black fruiting bodies develop.",
+      "Severe": "Leaves turn yellow, dry and drop prematurely.",
+      "Estimated": "Disease progresses over 7–14 days."
+    },
+    "Symptoms": [
+      "Small gray leaf spots",
+      "Dark brown borders",
+      "Tiny black dots inside lesions",
+      "Yellow leaves",
+      "Leaf drop"
+    ],
+    "Treatment": [
+      "Apply fungicides.",
+      "Remove infected leaves.",
+      "Improve airflow.",
+      "Avoid overhead irrigation."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Neem oil",
+      "Compost tea"
+    ],
+    "Recommended_Chemicals": [
+      "Chlorothalonil",
+      "Mancozeb",
+      "Copper Hydroxide"
+    ],
+    "Prevention": [
+      "Rotate crops.",
+      "Remove infected debris.",
+      "Water at soil level.",
+      "Use disease-free seedlings."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect lower leaves regularly.",
+      "Remove infected foliage.",
+      "Apply fungicides early."
+    ]
+  },
+
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "Crop": "Tomato",
+    "Disease": "Two-Spotted Spider Mite Infestation",
+    "Scientific_Name": "Tetranychus urticae",
+    "Pathogen": "Tetranychus urticae",
+    "Pathogen_Type": "Mite (Arachnid Pest)",
+    "Category": "Pest Infestation",
+    "Affected_Part": "Leaves",
+    "Environment": "Hot, dry weather with low humidity.",
+    "Spread": "Mites move between plants by wind, equipment, workers and infested plant material.",
+    "Description": "Two-spotted spider mites are tiny sap-sucking pests that weaken tomato plants by feeding on leaf tissue, reducing photosynthesis and causing premature leaf loss.",
+    "Cause": [
+      "Spider mite infestation",
+      "Hot dry weather",
+      "Water-stressed plants",
+      "Lack of natural predators"
+    ],
+    "Age_Cycle": {
+      "Early": "Tiny yellow speckles appear on leaves.",
+      "Moderate": "Fine webbing develops and leaves become bronze.",
+      "Severe": "Leaves dry completely and plants become weak.",
+      "Estimated": "Population can increase dramatically within 7–10 days in warm conditions."
+    },
+    "Symptoms": [
+      "Yellow stippling on leaves",
+      "Fine silk webbing",
+      "Bronze discoloration",
+      "Leaf drying",
+      "Reduced plant vigor"
+    ],
+    "Treatment": [
+      "Spray approved miticides.",
+      "Increase humidity where practical.",
+      "Remove heavily infested leaves."
+    ],
+    "Organic_Treatment": [
+      "Neem oil",
+      "Insecticidal soap",
+      "Release predatory mites"
+    ],
+    "Recommended_Chemicals": [
+      "Abamectin",
+      "Spiromesifen",
+      "Bifenazate"
+    ],
+    "Prevention": [
+      "Monitor plants weekly.",
+      "Maintain adequate irrigation.",
+      "Encourage beneficial insects.",
+      "Avoid dusty growing conditions."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect leaf undersides regularly.",
+      "Treat infestations early.",
+      "Maintain healthy plant growth."
+    ]
+  }
+  ,
+  "Tomato___Target_Spot": {
+    "Crop": "Tomato",
+    "Disease": "Target Spot",
+    "Scientific_Name": "Corynespora cassiicola",
+    "Pathogen": "Corynespora cassiicola",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Stems, Fruits",
+    "Environment": "Warm (25–30°C), humid weather with prolonged leaf wetness.",
+    "Spread": "Wind-borne spores, rain splash, infected crop debris and contaminated equipment.",
+    "Description": "Target Spot is a fungal disease that causes circular lesions on tomato leaves and fruits. Severe infection results in premature defoliation and reduced fruit quality.",
+    "Cause": [
+      "Corynespora cassiicola infection",
+      "High humidity",
+      "Poor air circulation",
+      "Infected crop residue"
+    ],
+    "Age_Cycle": {
+      "Early": "Small brown circular spots appear on older leaves.",
+      "Moderate": "Lesions enlarge with concentric rings resembling a target.",
+      "Severe": "Large areas of leaf tissue die, causing heavy defoliation.",
+      "Estimated": "Disease progresses within 7–14 days under favorable conditions."
+    },
+    "Symptoms": [
+      "Brown circular lesions",
+      "Target-like concentric rings",
+      "Yellowing leaves",
+      "Leaf drop",
+      "Fruit spotting"
+    ],
+    "Treatment": [
+      "Remove infected foliage.",
+      "Apply fungicides at the first sign of disease.",
+      "Improve air circulation."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Bacillus subtilis",
+      "Neem oil"
+    ],
+    "Recommended_Chemicals": [
+      "Azoxystrobin",
+      "Chlorothalonil",
+      "Mancozeb"
+    ],
+    "Prevention": [
+      "Rotate crops.",
+      "Remove infected debris.",
+      "Avoid overhead irrigation.",
+      "Maintain proper plant spacing."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect plants weekly.",
+      "Apply preventive fungicides during humid weather.",
+      "Maintain field sanitation."
+    ]
+  },
+
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "Crop": "Tomato",
+    "Disease": "Tomato Yellow Leaf Curl Virus",
+    "Scientific_Name": "Tomato yellow leaf curl virus (TYLCV)",
+    "Pathogen": "Tomato Yellow Leaf Curl Virus",
+    "Pathogen_Type": "Virus",
+    "Category": "Viral Disease",
+    "Affected_Part": "Leaves, Entire Plant",
+    "Environment": "Warm climates with high whitefly populations.",
+    "Spread": "Transmitted primarily by the whitefly (Bemisia tabaci).",
+    "Description": "Tomato Yellow Leaf Curl Virus is a highly destructive viral disease that causes severe stunting, curled leaves and drastically reduced fruit production.",
+    "Cause": [
+      "Tomato Yellow Leaf Curl Virus infection",
+      "Whitefly infestation",
+      "Infected transplants"
+    ],
+    "Age_Cycle": {
+      "Early": "Young leaves begin curling upward.",
+      "Moderate": "Leaves become yellow and plants become stunted.",
+      "Severe": "Flower drop and little or no fruit production.",
+      "Estimated": "Symptoms usually appear 2–3 weeks after infection."
+    },
+    "Symptoms": [
+      "Upward leaf curling",
+      "Yellow leaves",
+      "Stunted growth",
+      "Reduced flowering",
+      "Poor fruit set"
+    ],
+    "Treatment": [
+      "There is no cure for infected plants.",
+      "Remove infected plants immediately.",
+      "Control whitefly populations."
+    ],
+    "Organic_Treatment": [
+      "Neem oil for whitefly suppression",
+      "Yellow sticky traps",
+      "Biological control using natural enemies"
+    ],
+    "Recommended_Chemicals": [
+      "Imidacloprid",
+      "Thiamethoxam",
+      "Acetamiprid"
+    ],
+    "Prevention": [
+      "Use virus-free seedlings.",
+      "Control whiteflies.",
+      "Use insect-proof netting.",
+      "Remove infected plants promptly."
+    ],
+    "Severity": "High",
+    "Risk_Level": "Very High",
+    "Recommended_Actions": [
+      "Monitor whiteflies frequently.",
+      "Destroy infected plants.",
+      "Implement integrated pest management (IPM)."
+    ]
+  },
+
+  "Tomato___Tomato_mosaic_virus": {
+    "Crop": "Tomato",
+    "Disease": "Tomato Mosaic Virus",
+    "Scientific_Name": "Tomato mosaic virus (ToMV)",
+    "Pathogen": "Tomato Mosaic Virus",
+    "Pathogen_Type": "Virus",
+    "Category": "Viral Disease",
+    "Affected_Part": "Leaves, Stems, Fruits",
+    "Environment": "Can occur under a wide range of environmental conditions.",
+    "Spread": "Mechanical transmission through contaminated hands, tools, clothing and infected plant material.",
+    "Description": "Tomato Mosaic Virus causes mosaic patterns, leaf distortion and reduced plant vigor. It spreads easily through handling and contaminated equipment.",
+    "Cause": [
+      "Tomato Mosaic Virus infection",
+      "Contaminated tools",
+      "Mechanical transmission",
+      "Infected seeds"
+    ],
+    "Age_Cycle": {
+      "Early": "Light and dark green mosaic patterns appear on leaves.",
+      "Moderate": "Leaves become distorted and plants grow slowly.",
+      "Severe": "Reduced fruit size and poor yield.",
+      "Estimated": "Symptoms develop within 10–14 days after infection."
+    },
+    "Symptoms": [
+      "Mosaic leaf pattern",
+      "Leaf curling",
+      "Leaf distortion",
+      "Stunted growth",
+      "Reduced fruit quality"
+    ],
+    "Treatment": [
+      "No cure is available.",
+      "Remove infected plants.",
+      "Disinfect tools after use."
+    ],
+    "Organic_Treatment": [
+      "Strict sanitation",
+      "Crop rotation"
+    ],
+    "Recommended_Chemicals": [
+      "None (virus cannot be cured chemically)"
+    ],
+    "Prevention": [
+      "Use certified disease-free seeds.",
+      "Disinfect tools regularly.",
+      "Avoid handling plants after tobacco products.",
+      "Remove infected plants."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Practice strict sanitation.",
+      "Destroy infected plants.",
+      "Avoid spreading sap between plants."
+    ]
+  },
+
+  "Tomato___healthy": {
+    "Crop": "Tomato",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Tomato Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained fertile soil, balanced nutrition, adequate sunlight and proper irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded tomato leaf shows no visible signs of disease or pest infestation. The plant appears healthy.",
+    "Cause": [
+      "No disease detected"
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf development.",
+      "Moderate": "Normal vegetative growth.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth under proper management."
+    },
+    "Symptoms": [
+      "Uniform green leaves",
+      "No visible lesions",
+      "Healthy leaf texture",
+      "Normal growth"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain compost-rich soil.",
+      "Use balanced organic fertilizers."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue regular monitoring.",
+      "Maintain balanced fertilization.",
+      "Water consistently.",
+      "Inspect plants periodically."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue current crop management.",
+      "Inspect plants weekly.",
+      "Maintain preventive care."
+    ]
+  }
+}

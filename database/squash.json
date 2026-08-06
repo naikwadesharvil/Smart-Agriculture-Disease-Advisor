@@ -1,0 +1,69 @@
+{
+  "Squash___Powdery_mildew": {
+    "Crop": "Squash",
+    "Disease": "Powdery Mildew",
+    "Scientific_Name": "Podosphaera xanthii (syn. Sphaerotheca fuliginea) and Erysiphe cichoracearum",
+    "Pathogen": "Powdery Mildew Fungi",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Petioles, Stems",
+    "Environment": "Warm temperatures (20–30°C), moderate to high humidity and poor air circulation. Unlike many fungal diseases, free water on leaves is not required.",
+    "Spread": "Airborne fungal spores spread rapidly by wind and infected plant material.",
+    "Description": "Powdery Mildew is one of the most common diseases affecting squash and other cucurbits. It reduces photosynthesis by covering leaves with a white powdery fungal growth, resulting in lower fruit yield and poor fruit quality.",
+    "Cause": [
+      "Infection by powdery mildew fungi",
+      "Warm days and cool nights",
+      "Dense plant canopy",
+      "Poor air circulation",
+      "Continuous cultivation of cucurbits"
+    ],
+    "Age_Cycle": {
+      "Early": "Small white powdery spots appear on upper leaf surfaces.",
+      "Moderate": "White fungal growth spreads across both sides of leaves causing yellowing.",
+      "Severe": "Leaves become brown, dry and die prematurely, reducing fruit development.",
+      "Estimated": "Symptoms usually become visible within 5–10 days after infection under favorable conditions."
+    },
+    "Symptoms": [
+      "White powdery fungal growth",
+      "Yellowing leaves",
+      "Leaf curling",
+      "Premature leaf drying",
+      "Reduced photosynthesis",
+      "Poor fruit development"
+    ],
+    "Treatment": [
+      "Remove heavily infected leaves.",
+      "Apply fungicides at the first sign of infection.",
+      "Improve air circulation around plants.",
+      "Avoid excessive nitrogen fertilization."
+    ],
+    "Organic_Treatment": [
+      "Sulfur spray",
+      "Potassium bicarbonate",
+      "Neem oil",
+      "Bacillus subtilis biofungicide"
+    ],
+    "Recommended_Chemicals": [
+      "Myclobutanil",
+      "Tebuconazole",
+      "Sulfur",
+      "Azoxystrobin"
+    ],
+    "Prevention": [
+      "Plant resistant squash varieties.",
+      "Maintain proper spacing between plants.",
+      "Remove infected plant debris after harvest.",
+      "Rotate crops regularly.",
+      "Monitor plants weekly during warm weather."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect leaves every week.",
+      "Begin fungicide applications at early infection.",
+      "Remove severely infected foliage.",
+      "Maintain good field ventilation.",
+      "Practice crop rotation."
+    ]
+  }
+}

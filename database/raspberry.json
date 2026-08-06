@@ -1,0 +1,57 @@
+{
+  "Raspberry___healthy": {
+    "Crop": "Raspberry",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Raspberry Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Cool to moderate temperatures (16–25°C), fertile well-drained loamy soil (pH 5.5–6.5), adequate sunlight and consistent moisture.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded raspberry leaf shows no visible symptoms of disease, pest infestation or nutrient deficiency. The plant appears healthy and capable of producing vigorous canes and high-quality fruit under proper cultivation practices.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaves emerge with bright green coloration and normal growth.",
+      "Moderate": "Healthy cane development, flowering and fruit formation.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season under proper management."
+    },
+    "Symptoms": [
+      "Uniform green leaves",
+      "Healthy leaf texture",
+      "No visible spots or lesions",
+      "No wilting or discoloration",
+      "Healthy cane growth",
+      "Normal fruit development"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain soil organic matter using compost.",
+      "Apply balanced organic fertilizers based on soil test recommendations.",
+      "Use organic mulch to conserve soil moisture."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Inspect plants regularly for early disease or pest symptoms.",
+      "Maintain proper irrigation without waterlogging.",
+      "Prune old and damaged canes annually.",
+      "Ensure adequate spacing for good air circulation.",
+      "Keep the growing area free from weeds and plant debris."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue routine crop monitoring.",
+      "Maintain balanced irrigation and nutrition.",
+      "Inspect plants weekly during the growing season.",
+      "Continue current raspberry management practices."
+    ]
+  }
+}

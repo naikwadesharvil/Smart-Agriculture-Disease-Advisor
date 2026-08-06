@@ -1,0 +1,120 @@
+{
+  "Pepper,_bell___Bacterial_spot": {
+    "Crop": "Bell Pepper",
+    "Disease": "Bacterial Spot",
+    "Scientific_Name": "Xanthomonas euvesicatoria",
+    "Pathogen": "Xanthomonas euvesicatoria",
+    "Pathogen_Type": "Bacterium",
+    "Category": "Bacterial Disease",
+    "Affected_Part": "Leaves, Stems, Fruits",
+    "Environment": "Warm temperatures (24–30°C), high humidity, rainfall and overhead irrigation promote disease development.",
+    "Spread": "Spread through infected seeds, transplants, rain splash, irrigation water, contaminated tools and human handling.",
+    "Description": "Bacterial Spot is a serious disease of bell pepper that attacks leaves, stems and fruits. Severe infections cause leaf drop, reduce photosynthesis and lower fruit quality and market value.",
+    "Cause": [
+      "Xanthomonas euvesicatoria infection",
+      "Warm humid weather",
+      "Infected seeds",
+      "Poor field sanitation",
+      "Overhead irrigation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small water-soaked lesions appear on young leaves.",
+      "Moderate": "Dark brown to black spots enlarge and may develop yellow halos.",
+      "Severe": "Leaves fall prematurely and fruits develop raised scabby lesions.",
+      "Estimated": "Symptoms usually appear within 5–10 days after infection."
+    },
+    "Symptoms": [
+      "Small dark leaf spots",
+      "Water-soaked lesions",
+      "Yellow halos",
+      "Premature leaf drop",
+      "Raised scabby fruit lesions",
+      "Reduced fruit quality"
+    ],
+    "Treatment": [
+      "Apply copper-based bactericides.",
+      "Use copper mixed with mancozeb for improved disease management.",
+      "Remove infected leaves and fruits.",
+      "Avoid handling wet plants."
+    ],
+    "Organic_Treatment": [
+      "Copper soap spray",
+      "Neem oil (early infection)",
+      "Compost tea"
+    ],
+    "Recommended_Chemicals": [
+      "Copper Hydroxide",
+      "Copper Oxychloride",
+      "Mancozeb"
+    ],
+    "Prevention": [
+      "Use certified disease-free seeds.",
+      "Practice crop rotation.",
+      "Avoid overhead irrigation.",
+      "Disinfect tools regularly.",
+      "Maintain adequate plant spacing."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect plants every 2–3 days.",
+      "Remove infected leaves immediately.",
+      "Apply preventive copper sprays during humid weather.",
+      "Improve field ventilation."
+    ]
+  },
+
+  "Pepper,_bell___healthy": {
+    "Crop": "Bell Pepper",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Bell Pepper Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained fertile soil, full sunlight (6–8 hours daily), balanced fertilization and consistent irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded bell pepper leaf shows no visible signs of disease, pest infestation or nutrient deficiency. The plant appears healthy and capable of producing high-quality fruits.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence with uniform green coloration.",
+      "Moderate": "Normal vegetative growth and flowering.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "Uniform leaf color",
+      "No visible lesions",
+      "No discoloration",
+      "Healthy plant vigor"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain healthy soil using compost.",
+      "Apply balanced organic fertilizers when necessary."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue regular crop monitoring.",
+      "Maintain balanced irrigation.",
+      "Follow crop rotation practices.",
+      "Maintain field sanitation.",
+      "Inspect plants regularly."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue current crop management.",
+      "Inspect plants weekly.",
+      "Maintain balanced nutrition and irrigation.",
+      "Monitor for early disease symptoms."
+    ]
+  }
+}

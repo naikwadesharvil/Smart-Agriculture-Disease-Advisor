@@ -1,0 +1,175 @@
+{
+  "Potato___Early_blight": {
+    "Crop": "Potato",
+    "Disease": "Early Blight",
+    "Scientific_Name": "Alternaria solani",
+    "Pathogen": "Alternaria solani",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Stems, Tubers",
+    "Environment": "Warm temperatures (24–29°C), high humidity and frequent rainfall favor disease development.",
+    "Spread": "Spores spread through wind, rain splash, contaminated soil, infected plant debris and seed tubers.",
+    "Description": "Early Blight is one of the most common fungal diseases of potato. It usually begins on older leaves and gradually spreads upward, reducing photosynthesis and tuber yield.",
+    "Cause": [
+      "Alternaria solani infection",
+      "High humidity",
+      "Poor crop sanitation",
+      "Continuous potato cultivation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small dark brown spots appear on older leaves.",
+      "Moderate": "Lesions enlarge with concentric rings and yellow halos.",
+      "Severe": "Leaves dry and die, stems weaken and tuber quality decreases.",
+      "Estimated": "Symptoms generally develop within 7–14 days after infection."
+    },
+    "Symptoms": [
+      "Brown circular lesions",
+      "Target-like concentric rings",
+      "Yellowing around lesions",
+      "Leaf drying",
+      "Reduced plant vigor"
+    ],
+    "Treatment": [
+      "Apply fungicides promptly.",
+      "Remove infected leaves.",
+      "Improve field drainage.",
+      "Rotate crops."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Neem oil",
+      "Bacillus subtilis biofungicide"
+    ],
+    "Recommended_Chemicals": [
+      "Mancozeb",
+      "Chlorothalonil",
+      "Azoxystrobin"
+    ],
+    "Prevention": [
+      "Use certified seed potatoes.",
+      "Practice crop rotation.",
+      "Remove infected debris.",
+      "Maintain proper plant spacing."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect lower leaves regularly.",
+      "Apply preventive fungicides during humid weather.",
+      "Destroy infected plant residue after harvest."
+    ]
+  },
+
+  "Potato___Late_blight": {
+    "Crop": "Potato",
+    "Disease": "Late Blight",
+    "Scientific_Name": "Phytophthora infestans",
+    "Pathogen": "Phytophthora infestans",
+    "Pathogen_Type": "Oomycete (Water Mold)",
+    "Category": "Water Mold Disease",
+    "Affected_Part": "Leaves, Stems, Tubers",
+    "Environment": "Cool temperatures (10–22°C), prolonged rainfall and humidity above 90%.",
+    "Spread": "Wind-borne spores, rain splash, infected seed tubers and contaminated equipment.",
+    "Description": "Late Blight is one of the most destructive potato diseases. Under favorable weather conditions it can spread rapidly and destroy an entire crop within days.",
+    "Cause": [
+      "Phytophthora infestans infection",
+      "Cool wet weather",
+      "High humidity",
+      "Infected seed tubers"
+    ],
+    "Age_Cycle": {
+      "Early": "Water-soaked pale green lesions appear on leaves.",
+      "Moderate": "Brown lesions enlarge rapidly and white fungal growth appears underneath leaves.",
+      "Severe": "Leaves collapse, stems rot and tubers develop brown internal rot.",
+      "Estimated": "Disease may spread across a field within 3–7 days during favorable weather."
+    },
+    "Symptoms": [
+      "Water-soaked leaf spots",
+      "Dark brown lesions",
+      "White fungal growth under leaves",
+      "Stem blackening",
+      "Brown tuber rot"
+    ],
+    "Treatment": [
+      "Immediately remove infected plants.",
+      "Apply systemic fungicides.",
+      "Destroy infected crop residues.",
+      "Avoid overhead irrigation."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Approved biological fungicides"
+    ],
+    "Recommended_Chemicals": [
+      "Metalaxyl",
+      "Cymoxanil",
+      "Mancozeb",
+      "Chlorothalonil"
+    ],
+    "Prevention": [
+      "Use certified disease-free seed tubers.",
+      "Improve field drainage.",
+      "Monitor weather conditions.",
+      "Destroy volunteer potato plants."
+    ],
+    "Severity": "High",
+    "Risk_Level": "Very High",
+    "Recommended_Actions": [
+      "Inspect fields daily during cool wet weather.",
+      "Apply fungicides before disease spreads.",
+      "Remove infected plants immediately.",
+      "Monitor neighboring fields."
+    ]
+  },
+
+  "Potato___healthy": {
+    "Crop": "Potato",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Potato Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained fertile soil, balanced nutrition, proper irrigation and adequate sunlight.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded potato leaf shows no visible symptoms of disease or pest infestation. The plant appears healthy.",
+    "Cause": [
+      "No disease detected"
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf development.",
+      "Moderate": "Normal vegetative growth.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth under proper crop management."
+    },
+    "Symptoms": [
+      "Uniform green leaves",
+      "No visible lesions",
+      "Healthy leaf texture",
+      "Normal growth"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain fertile soil using compost.",
+      "Apply balanced organic fertilizers when needed."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue regular crop monitoring.",
+      "Maintain proper irrigation.",
+      "Practice crop rotation.",
+      "Keep the field free of weeds."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue routine field inspection.",
+      "Maintain good agricultural practices.",
+      "Monitor plants weekly for early disease symptoms."
+    ]
+  }
+}

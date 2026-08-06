@@ -1,0 +1,226 @@
+{
+  "Apple___Apple_scab": {
+    "Crop": "Apple",
+    "Disease": "Apple Scab",
+    "Scientific_Name": "Venturia inaequalis",
+    "Pathogen": "Venturia inaequalis",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Fruits, Young Shoots",
+    "Environment": "Cool (16–24°C), humid weather with prolonged leaf wetness and frequent rainfall.",
+    "Spread": "Spores spread through wind, rain splash and infected fallen leaves.",
+    "Description": "Apple Scab is one of the most destructive fungal diseases of apple orchards. It first appears on leaves before spreading to fruits, reducing both yield and fruit quality.",
+    "Cause": [
+      "Venturia inaequalis fungal infection",
+      "High humidity",
+      "Extended leaf wetness",
+      "Poor orchard sanitation"
+    ],
+    "Age_Cycle": {
+      "Early": "Small olive-green spots appear on young leaves.",
+      "Moderate": "Lesions enlarge and darken. Fruits develop rough corky patches.",
+      "Severe": "Premature leaf fall, cracked fruits and major yield reduction.",
+      "Estimated": "Symptoms generally develop within 9–17 days after infection."
+    },
+    "Symptoms": [
+      "Olive-green leaf spots",
+      "Velvety fungal growth",
+      "Dark circular lesions",
+      "Fruit cracking",
+      "Premature leaf drop"
+    ],
+    "Treatment": [
+      "Apply Captan fungicide.",
+      "Apply Mancozeb during early infection.",
+      "Prune dense branches for better airflow.",
+      "Remove infected fruits and leaves."
+    ],
+    "Organic_Treatment": [
+      "Sulfur spray",
+      "Copper-based organic fungicides",
+      "Neem oil (early infection only)"
+    ],
+    "Recommended_Chemicals": [
+      "Captan",
+      "Mancozeb",
+      "Myclobutanil",
+      "Copper Hydroxide"
+    ],
+    "Prevention": [
+      "Collect fallen leaves.",
+      "Use resistant apple cultivars.",
+      "Improve air circulation.",
+      "Avoid prolonged leaf wetness."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Inspect orchard weekly.",
+      "Spray fungicide before rainy periods.",
+      "Destroy infected plant debris.",
+      "Maintain proper pruning schedule."
+    ]
+  },
+
+  "Apple___Black_rot": {
+    "Crop": "Apple",
+    "Disease": "Black Rot",
+    "Scientific_Name": "Botryosphaeria obtusa",
+    "Pathogen": "Botryosphaeria obtusa",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Fruits, Bark, Branches",
+    "Environment": "Warm (24–30°C), humid conditions following rainfall.",
+    "Spread": "Wind, rain splash, infected fruits and pruning wounds.",
+    "Description": "Black Rot affects leaves, branches and fruits, causing fruit rot and cankers that reduce productivity.",
+    "Cause": [
+      "Botryosphaeria obtusa infection",
+      "Dead wood",
+      "High humidity",
+      "Poor sanitation"
+    ],
+    "Age_Cycle": {
+      "Early": "Purple leaf spots appear.",
+      "Moderate": "Dark concentric rings form on fruits.",
+      "Severe": "Fruit mummification and branch cankers develop.",
+      "Estimated": "10–20 days depending on environmental conditions."
+    },
+    "Symptoms": [
+      "Purple leaf spots",
+      "Black fruit rot",
+      "Concentric rings",
+      "Branch cankers",
+      "Mummified fruits"
+    ],
+    "Treatment": [
+      "Prune infected branches.",
+      "Apply fungicides.",
+      "Remove mummified fruits."
+    ],
+    "Organic_Treatment": [
+      "Copper fungicide",
+      "Neem oil"
+    ],
+    "Recommended_Chemicals": [
+      "Captan",
+      "Thiophanate-methyl",
+      "Mancozeb"
+    ],
+    "Prevention": [
+      "Remove dead wood.",
+      "Destroy infected fruits.",
+      "Maintain orchard hygiene."
+    ],
+    "Severity": "High",
+    "Risk_Level": "High",
+    "Recommended_Actions": [
+      "Remove infected branches immediately.",
+      "Apply preventive fungicide after rainfall.",
+      "Inspect trees regularly."
+    ]
+  },
+
+  "Apple___Cedar_apple_rust": {
+    "Crop": "Apple",
+    "Disease": "Cedar Apple Rust",
+    "Scientific_Name": "Gymnosporangium juniperi-virginianae",
+    "Pathogen": "Gymnosporangium juniperi-virginianae",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Fruits",
+    "Environment": "Warm spring with frequent rainfall.",
+    "Spread": "Wind-borne spores from nearby cedar or juniper trees.",
+    "Description": "A fungal disease requiring both apple and cedar/juniper hosts to complete its life cycle.",
+    "Cause": [
+      "Gymnosporangium fungus",
+      "Nearby cedar trees",
+      "Wet spring weather"
+    ],
+    "Age_Cycle": {
+      "Early": "Small yellow leaf spots.",
+      "Moderate": "Orange lesions enlarge.",
+      "Severe": "Leaf drop and reduced fruit quality.",
+      "Estimated": "2–4 weeks after infection."
+    },
+    "Symptoms": [
+      "Yellow-orange leaf spots",
+      "Orange lesions",
+      "Premature leaf drop",
+      "Fruit blemishes"
+    ],
+    "Treatment": [
+      "Apply fungicides during spring.",
+      "Remove nearby infected cedar galls where practical."
+    ],
+    "Organic_Treatment": [
+      "Sulfur spray",
+      "Copper fungicide"
+    ],
+    "Recommended_Chemicals": [
+      "Myclobutanil",
+      "Propiconazole",
+      "Mancozeb"
+    ],
+    "Prevention": [
+      "Plant resistant varieties.",
+      "Avoid planting near infected cedar trees.",
+      "Monitor during spring."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect leaves during spring.",
+      "Begin preventive sprays before infection periods.",
+      "Monitor nearby cedar trees."
+    ]
+  },
+
+  "Apple___healthy": {
+    "Crop": "Apple",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Apple Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Well-drained soil, adequate sunlight, balanced nutrition and proper irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded apple leaf shows no visible symptoms of disease and appears healthy.",
+    "Cause": [
+      "No disease detected"
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf.",
+      "Moderate": "Healthy growth maintained.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy development under proper management."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "No visible lesions",
+      "Normal leaf structure"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain healthy soil with compost."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Continue regular monitoring.",
+      "Maintain balanced fertilization.",
+      "Follow proper irrigation practices.",
+      "Practice orchard sanitation."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue routine monitoring.",
+      "Maintain current crop management practices.",
+      "Inspect leaves periodically for early disease symptoms."
+    ]
+  }
+}

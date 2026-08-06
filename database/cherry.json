@@ -1,0 +1,114 @@
+{
+  "Cherry_(including_sour)___Powdery_mildew": {
+    "Crop": "Cherry",
+    "Disease": "Powdery Mildew",
+    "Scientific_Name": "Podosphaera clandestina",
+    "Pathogen": "Podosphaera clandestina",
+    "Pathogen_Type": "Fungus",
+    "Category": "Fungal Disease",
+    "Affected_Part": "Leaves, Young Shoots, Fruits",
+    "Environment": "Moderate temperatures (18–27°C), high humidity with poor air circulation. Unlike many fungal diseases, powdery mildew does not require free water on leaves.",
+    "Spread": "Wind-borne fungal spores spread rapidly between plants and orchards.",
+    "Description": "Powdery Mildew is a common fungal disease affecting cherry trees. It reduces photosynthesis, weakens plant growth and lowers fruit quality if left untreated.",
+    "Cause": [
+      "Podosphaera clandestina fungal infection",
+      "Poor air circulation",
+      "Dense canopy",
+      "Warm humid conditions"
+    ],
+    "Age_Cycle": {
+      "Early": "Small white powdery patches appear on young leaves.",
+      "Moderate": "Powdery growth spreads across leaves and shoots causing curling.",
+      "Severe": "Leaves become distorted, dry and drop prematurely. Fruit quality declines.",
+      "Estimated": "Symptoms generally develop within 7–14 days after infection."
+    },
+    "Symptoms": [
+      "White powdery coating on leaves",
+      "Leaf curling",
+      "Leaf distortion",
+      "Stunted shoot growth",
+      "Reduced fruit quality"
+    ],
+    "Treatment": [
+      "Remove infected leaves and shoots.",
+      "Apply fungicides at early stages.",
+      "Improve air circulation by pruning."
+    ],
+    "Organic_Treatment": [
+      "Sulfur spray",
+      "Potassium bicarbonate",
+      "Neem oil"
+    ],
+    "Recommended_Chemicals": [
+      "Myclobutanil",
+      "Tebuconazole",
+      "Sulfur",
+      "Copper Hydroxide"
+    ],
+    "Prevention": [
+      "Prune trees regularly.",
+      "Maintain proper spacing.",
+      "Avoid excessive nitrogen fertilizer.",
+      "Monitor orchards frequently."
+    ],
+    "Severity": "Medium",
+    "Risk_Level": "Medium",
+    "Recommended_Actions": [
+      "Inspect young leaves weekly.",
+      "Apply preventive fungicides before disease spreads.",
+      "Remove infected shoots immediately."
+    ]
+  },
+
+  "Cherry_(including_sour)___healthy": {
+    "Crop": "Cherry",
+    "Disease": "Healthy",
+    "Scientific_Name": "Healthy Cherry Plant",
+    "Pathogen": "None",
+    "Pathogen_Type": "None",
+    "Category": "Healthy Plant",
+    "Affected_Part": "Entire Plant",
+    "Environment": "Cool to moderate climate (15–25°C), fertile well-drained soil, adequate sunlight and balanced irrigation.",
+    "Spread": "Not Applicable",
+    "Description": "The uploaded cherry leaf shows no visible symptoms of disease or pest infestation. The plant appears healthy and capable of normal growth and fruit production.",
+    "Cause": [
+      "No disease detected."
+    ],
+    "Age_Cycle": {
+      "Early": "Healthy leaf emergence.",
+      "Moderate": "Normal vegetative growth.",
+      "Severe": "Not applicable.",
+      "Estimated": "Continuous healthy growth throughout the growing season."
+    },
+    "Symptoms": [
+      "Healthy green leaves",
+      "Normal leaf texture",
+      "No visible lesions",
+      "No discoloration",
+      "Healthy plant vigor"
+    ],
+    "Treatment": [
+      "No treatment required."
+    ],
+    "Organic_Treatment": [
+      "Maintain healthy soil using compost.",
+      "Apply balanced organic fertilizers when required."
+    ],
+    "Recommended_Chemicals": [
+      "None"
+    ],
+    "Prevention": [
+      "Monitor plants regularly.",
+      "Maintain proper irrigation.",
+      "Prune dead branches.",
+      "Follow good orchard sanitation."
+    ],
+    "Severity": "Low",
+    "Risk_Level": "Low",
+    "Recommended_Actions": [
+      "Continue current crop management.",
+      "Inspect trees periodically.",
+      "Maintain balanced nutrition and irrigation."
+    ]
+  }
+}
