@@ -1,0 +1,195 @@
+<!-- ==========================================
+     Analytics Dashboard
+========================================== -->
+
+<section class="mb-5">
+
+    <div class="row">
+
+        <!-- ================= LEFT COLUMN ================= -->
+
+        <div class="col-lg-6">
+
+            <!-- Top 5 Predictions -->
+
+            <div class="custom-card dashboard-card mb-4">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h3 class="mb-0">
+
+                        <i class="bi bi-bar-chart-fill text-success"></i>
+
+                        Top Predictions
+
+                    </h3>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>#</th>
+
+                                <th>Disease</th>
+
+                                <th>Confidence</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for disease, score in ranking %}
+
+                            <tr>
+
+                                <td>
+
+                                    {{ loop.index }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ disease }}
+
+                                </td>
+
+                                <td>
+
+                                    <div class="progress">
+
+                                        <div
+                                            class="progress-bar bg-success"
+                                            style="width: {{ score }}%;">
+
+                                            {{ score }}%
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- AI Statistics -->
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="custom-card text-center dashboard-card">
+
+                        <i class="bi bi-cpu-fill display-5 text-success"></i>
+
+                        <h5 class="mt-3">
+
+                            AI Model
+
+                        </h5>
+
+                        <h3>
+
+                            CNN
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="custom-card text-center dashboard-card">
+
+                        <i class="bi bi-diagram-3-fill display-5 text-primary"></i>
+
+                        <h5 class="mt-3">
+
+                            Classes
+
+                        </h5>
+
+                        <h3>
+
+                            38
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= RIGHT COLUMN ================= -->
+
+        <div class="col-lg-6">
+
+            <!-- Prediction Chart -->
+
+            <div class="custom-card dashboard-card mb-4">
+
+                <h3>
+
+                    <i class="bi bi-graph-up-arrow text-success"></i>
+
+                    Prediction Confidence
+
+                </h3>
+
+                <div style="height:350px;">
+
+                    <canvas id="predictionChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <!-- Doughnut Chart -->
+
+            <div class="custom-card dashboard-card">
+
+                <h3>
+
+                    <i class="bi bi-pie-chart-fill text-primary"></i>
+
+                    Confidence Gauge
+
+                </h3>
+
+                <div
+                    class="d-flex justify-content-center"
+                    style="height:300px;">
+
+                    <canvas id="confidenceChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

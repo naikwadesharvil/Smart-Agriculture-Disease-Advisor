@@ -1,81 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
+{% block title %}
+Prediction Result | Smart Agriculture Disease Advisor
+{% endblock %}
 
-<meta charset="UTF-8">
+{% block content %}
 
-<title>Prediction Result</title>
+<!-- ================= Prediction Summary ================= -->
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/style.css') }}">
+{% include "components/prediction_summary.html" %}
 
-</head>
+<!-- ================= Analytics ================= -->
 
-<body>
+{% include "components/analytics.html" %}
 
-<div class="container">
+<!-- ================= Disease Profile ================= -->
 
-<h1>🌿 Prediction Result</h1>
+{% include "components/disease_profile.html" %}
 
-<img src="{{ image_path }}" width="350">
+<!-- ================= Disease Timeline ================= -->
 
-<h2>{{ prediction }}</h2>
+{% include "components/disease_timeline.html" %}
 
-<h3>Confidence : {{ confidence }}</h3>
+<!-- ================= Symptoms & Causes ================= -->
 
-<hr>
+{% include "components/symptoms.html" %}
 
-<h2>Crop</h2>
+<!-- ================= Treatment ================= -->
 
-<p>{{ crop }}</p>
+{% include "components/treatment.html" %}
 
-<h2>Description</h2>
+<!-- ================= Prevention ================= -->
 
-<p>{{ description }}</p>
+{% include "components/prevention.html" %}
 
-<h2>Symptoms</h2>
+<!-- ================= AI Risk Assessment ================= -->
 
-<ul>
+{% include "components/risk_assessment.html" %}
 
-{% for item in symptoms %}
+<!-- ================= Action Buttons ================= -->
 
-<li>{{ item }}</li>
+{% include "components/action_buttons.html" %}
 
-{% endfor %}
+{% endblock %}
 
-</ul>
+{% block scripts %}
 
-<h2>Treatment</h2>
+<script>
 
-<ul>
+const chartData = {{ chart_data | tojson }};
 
-{% for item in treatment %}
+</script>
 
-<li>{{ item }}</li>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
-{% endfor %}
-
-</ul>
-
-<h2>Prevention</h2>
-
-<ul>
-
-{% for item in prevention %}
-
-<li>{{ item }}</li>
-
-{% endfor %}
-
-</ul>
-
-<br>
-
-<a href="/">⬅ Predict Another Image</a>
-
-</div>
-
-</body>
-
-</html>
+{% endblock %}

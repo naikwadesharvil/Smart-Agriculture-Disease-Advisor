@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+
+{% block title %}
+About | Smart Agriculture Disease Advisor
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+     Hero Section
+========================================== -->
+
+<section class="py-5">
+
+    <div class="row align-items-center">
+
+        <div class="col-lg-6" data-aos="fade-right">
+
+            <h1 class="text-success fw-bold">
+
+                About Smart Agriculture Disease Advisor
+
+            </h1>
+
+            <p class="lead mt-4">
+
+                Smart Agriculture Disease Advisor is an Artificial Intelligence
+                powered web application that detects plant diseases from leaf
+                images using a Convolutional Neural Network (CNN). It helps
+                farmers, researchers and students quickly identify diseases and
+                provides treatment and prevention recommendations.
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-6 text-center" data-aos="fade-left">
+
+            <img
+                src="{{ url_for('static', filename='images/about.png') }}"
+                class="img-fluid"
+                style="max-height:400px;"
+                alt="About">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     Project Highlights
+========================================== -->
+
+<section class="py-5">
+
+    <h2 class="text-center text-success mb-5">
+
+        Project Highlights
+
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="custom-card text-center h-100">
+
+                <i class="bi bi-cpu-fill display-4 text-success"></i>
+
+                <h4 class="mt-3">
+
+                    Deep Learning
+
+                </h4>
+
+                <p>
+
+                    Uses a Convolutional Neural Network trained on the
+                    PlantVillage dataset for accurate disease prediction.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="custom-card text-center h-100">
+
+                <i class="bi bi-flower1 display-4 text-warning"></i>
+
+                <h4 class="mt-3">
+
+                    14 Crop Types
+
+                </h4>
+
+                <p>
+
+                    Supports disease detection across multiple crops
+                    including Tomato, Potato, Apple, Corn,
+                    Grape and many more.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="custom-card text-center h-100">
+
+                <i class="bi bi-virus display-4 text-danger"></i>
+
+                <h4 class="mt-3">
+
+                    38 Disease Classes
+
+                </h4>
+
+                <p>
+
+                    Detects healthy plants as well as common fungal,
+                    bacterial and viral diseases.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     Features
+========================================== -->
+
+<section class="py-5">
+
+    <div class="custom-card">
+
+        <h2 class="text-success mb-4">
+
+            Features
+
+        </h2>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <ul class="feature-list">
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        AI-powered disease detection
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Upload JPG, JPEG and PNG images
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Confidence score for predictions
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Top-5 prediction analysis
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <ul class="feature-list">
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Disease symptoms
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Treatment recommendations
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Organic farming solutions
+
+                    </li>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill text-success"></i>
+
+                        Prevention guidelines
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     Technologies
+========================================== -->
+
+<section class="py-5">
+
+    <h2 class="text-center text-success mb-5">
+
+        Technologies Used
+
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="practice-card">
+
+                <i class="bi bi-filetype-py display-4 text-primary"></i>
+
+                <h5 class="mt-3">
+
+                    Python
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="practice-card">
+
+                <i class="bi bi-bootstrap-fill display-4 text-purple"></i>
+
+                <h5 class="mt-3">
+
+                    Bootstrap 5
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="practice-card">
+
+                <i class="bi bi-diagram-3-fill display-4 text-success"></i>
+
+                <h5 class="mt-3">
+
+                    TensorFlow
+
+                </h5>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="practice-card">
+
+                <i class="bi bi-database-fill display-4 text-danger"></i>
+
+                <h5 class="mt-3">
+
+                    JSON Database
+
+                </h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     Developer
+========================================== -->
+
+<section class="py-5">
+
+    <div class="custom-card text-center">
+
+        <i class="bi bi-person-circle display-1 text-success"></i>
+
+        <h2 class="mt-3">
+
+            Developed By
+
+        </h2>
+
+        <h4>
+
+            Sharvil K. Naikwade
+
+        </h4>
+
+        <p>
+
+            B.Tech Artificial Intelligence & Machine Learning
+
+            <br>
+
+            Rajarambapu Institute of Technology
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

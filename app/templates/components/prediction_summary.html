@@ -1,0 +1,252 @@
+<!-- ==========================================
+     Prediction Summary
+========================================== -->
+
+<section class="mb-5">
+
+    <div class="custom-card dashboard-card">
+
+        <div class="row align-items-center">
+
+            <!-- ================= IMAGE ================= -->
+
+            <div class="col-lg-4 text-center">
+
+                <img
+                    src="/{{ image_path }}"
+                    class="img-fluid rounded-4 shadow prediction-image"
+                    alt="Uploaded Leaf">
+
+            </div>
+
+            <!-- ================= DETAILS ================= -->
+
+            <div class="col-lg-8">
+
+                <div class="d-flex justify-content-between align-items-start flex-wrap">
+
+                    <div>
+
+                        <h1 class="text-success mb-2">
+
+                            {{ prediction }}
+
+                        </h1>
+
+                        <p class="mb-3">
+
+                            {{ info.Description }}
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        {% if info.Risk_Level == "Low" %}
+
+                        <span class="badge bg-success">
+
+                            🟢 Low Risk
+
+                        </span>
+
+                        {% elif info.Risk_Level == "Medium" %}
+
+                        <span class="badge bg-warning text-dark">
+
+                            🟡 Medium Risk
+
+                        </span>
+
+                        {% elif info.Risk_Level == "High" %}
+
+                        <span class="badge bg-danger">
+
+                            🔴 High Risk
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-dark">
+
+                            ⚫ Very High Risk
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded-3 p-3 h-100">
+
+                            <small class="text-muted">
+
+                                Crop
+
+                            </small>
+
+                            <h5>
+
+                                {{ info.Crop }}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded-3 p-3 h-100">
+
+                            <small class="text-muted">
+
+                                Scientific Name
+
+                            </small>
+
+                            <h5>
+
+                                <em>
+
+                                    {{ info.Scientific_Name }}
+
+                                </em>
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded-3 p-3 h-100">
+
+                            <small class="text-muted">
+
+                                Confidence
+
+                            </small>
+
+                            <h3 class="text-success">
+
+                                {{ confidence }}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="border rounded-3 p-3 h-100">
+
+                            <small class="text-muted">
+
+                                Pathogen Type
+
+                            </small>
+
+                            <h5>
+
+                                {{ info.Pathogen_Type }}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= QUICK INFO ================= -->
+
+                <div class="row mt-4">
+
+                    <div class="col-md-4">
+
+                        <div class="text-center p-3 bg-light rounded-3">
+
+                            <i class="bi bi-bug-fill display-6 text-danger"></i>
+
+                            <h6 class="mt-2">
+
+                                Pathogen
+
+                            </h6>
+
+                            <strong>
+
+                                {{ info.Pathogen }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="text-center p-3 bg-light rounded-3">
+
+                            <i class="bi bi-tree-fill display-6 text-success"></i>
+
+                            <h6 class="mt-2">
+
+                                Category
+
+                            </h6>
+
+                            <strong>
+
+                                {{ info.Category }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="text-center p-3 bg-light rounded-3">
+
+                            <i class="bi bi-exclamation-triangle-fill display-6 text-warning"></i>
+
+                            <h6 class="mt-2">
+
+                                Severity
+
+                            </h6>
+
+                            <strong>
+
+                                {{ info.Severity }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

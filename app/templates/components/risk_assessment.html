@@ -1,0 +1,199 @@
+<!-- ==========================================
+     AI Risk Assessment
+========================================== -->
+
+<section class="mb-5">
+
+    <div class="custom-card dashboard-card">
+
+        <div class="d-flex align-items-center mb-4">
+
+            <i class="bi bi-speedometer2 display-5 text-danger me-3"></i>
+
+            <div>
+
+                <h2 class="mb-0">
+
+                    AI Risk Assessment
+
+                </h2>
+
+                <p class="mb-0">
+
+                    Overall disease severity estimated by the AI model.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <!-- ================= Risk Meter ================= -->
+
+            <div class="col-lg-4 text-center">
+
+                {% if info.Risk_Level=="Low" %}
+
+                    {% set percent=25 %}
+                    {% set color="success" %}
+
+                {% elif info.Risk_Level=="Medium" %}
+
+                    {% set percent=55 %}
+                    {% set color="warning" %}
+
+                {% elif info.Risk_Level=="High" %}
+
+                    {% set percent=85 %}
+                    {% set color="danger" %}
+
+                {% else %}
+
+                    {% set percent=100 %}
+                    {% set color="dark" %}
+
+                {% endif %}
+
+                <div class="risk-circle border border-5 border-{{ color }}">
+
+                    <h1 class="text-{{ color }}">
+
+                        {{ percent }}%
+
+                    </h1>
+
+                </div>
+
+                <h4 class="mt-4">
+
+                    {{ info.Risk_Level }} Risk
+
+                </h4>
+
+            </div>
+
+            <!-- ================= Progress ================= -->
+
+            <div class="col-lg-8">
+
+                <h5 class="mb-3">
+
+                    Disease Severity
+
+                </h5>
+
+                <div class="progress mb-4">
+
+                    <div
+
+                        class="progress-bar bg-{{ color }}"
+
+                        style="width:{{ percent }}%;">
+
+                        {{ percent }}%
+
+                    </div>
+
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+
+                        <div class="risk-box bg-success-subtle">
+
+                            <h5>
+
+                                Low
+
+                            </h5>
+
+                            <small>
+
+                                Minor infection
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="risk-box bg-warning-subtle">
+
+                            <h5>
+
+                                Medium
+
+                            </h5>
+
+                            <small>
+
+                                Needs treatment
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="risk-box bg-danger-subtle">
+
+                            <h5>
+
+                                High
+
+                            </h5>
+
+                            <small>
+
+                                Immediate action
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <h5>
+
+                    AI Summary
+
+                </h5>
+
+                <p>
+
+                    The model predicts this disease with
+                    <strong>{{ confidence }}</strong>
+                    confidence.
+
+                    Based on the disease profile,
+                    current severity is classified as
+
+                    <strong>
+
+                        {{ info.Risk_Level }}
+
+                    </strong>
+
+                    and immediate recommendations are
+                    provided below to reduce crop damage.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
