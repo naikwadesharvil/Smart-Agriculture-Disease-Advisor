@@ -751,20 +751,14 @@ def predict():
         # ======================================
 
         latest_prediction = {
-
-            "prediction":
-                info.get(
-                    "Disease",
-                    predicted_class
-                ),
-
-            "confidence":
-                f"{confidence:.2f}%",
-
-            "info":
-                info
-
-        }
+          "prediction": info.get(
+             "Disease",
+            predicted_class,
+        ),
+        "confidence": f"{confidence:.2f}%",
+        "info": info,
+    "image_path": filepath,
+}
 
 
         # ======================================
@@ -925,22 +919,12 @@ def download_report():
         # ==================================
 
         generate_pdf(
-
-            output_path=pdf_path,
-
-            info=latest_prediction[
-                "info"
-            ],
-
-            prediction=latest_prediction[
-                "prediction"
-            ],
-
-            confidence=latest_prediction[
-                "confidence"
-            ]
-
-        )
+          output_path=pdf_path,
+          info=latest_prediction["info"],
+          prediction=latest_prediction["prediction"],
+          confidence=latest_prediction["confidence"],
+          image_path=latest_prediction["image_path"],
+)
 
 
         # ==================================

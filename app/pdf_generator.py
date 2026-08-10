@@ -9,8 +9,11 @@ from reportlab.platypus import (
     Spacer,
     Table,
     TableStyle,
-    PageBreak
+    PageBreak,
+    Image as ReportLabImage
 )
+
+from PIL import Image as PILImage
 
 
 # ==========================================
@@ -57,7 +60,8 @@ def generate_pdf(
     output_path,
     info,
     prediction,
-    confidence
+    confidence,
+    image_path=None
 ):
 
     # ==========================================
@@ -168,23 +172,18 @@ def generate_pdf(
 
     story = []
 
-
     # ==========================================
     # Header
     # ==========================================
 
     story.append(
-
         Paragraph(
             "Smart Agriculture Disease Advisor",
             title_style
         )
-
     )
 
-
     story.append(
-
         Paragraph(
             "AI-Powered Plant Disease Analysis Report",
             ParagraphStyle(
@@ -196,949 +195,992 @@ def generate_pdf(
                 )
             )
         )
-
     )
-
 
     story.append(
         Spacer(1, 8)
     )
 
-
     # ==========================================
-    # Prediction Summary
-    # ==========================================
-
-    story.append(
-
-        Paragraph(
-            "Prediction Summary",
-            heading_style
-        )
-
-    )
-
-
-    summary_data = [
-
-        [
-            Paragraph(
-                "<b>Predicted Disease</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    prediction
-                ),
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "<b>Confidence</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    confidence
-                ),
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "<b>Crop</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    info.get("Crop")
-                ),
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "<b>Scientific Name</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    info.get(
-                        "Scientific_Name"
-                    )
-                ),
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "<b>Pathogen Type</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    info.get(
-                        "Pathogen_Type"
-                    )
-                ),
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "<b>Risk Level</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    info.get(
-                        "Risk_Level"
-                    )
-                ),
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "<b>Severity</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                safe_value(
-                    info.get(
-                        "Severity"
-                    )
-                ),
-                normal_style
-            )
-        ]
-
-    ]
-
-
-    summary_table = Table(
-
-        summary_data,
-
-        colWidths=[
-            55 * mm,
-            110 * mm
-        ]
-
-    )
-
-
-    summary_table.setStyle(
-
-        TableStyle([
-
-            (
-                "BACKGROUND",
-                (0, 0),
-                (0, -1),
-                colors.HexColor(
-                    "#eaf7ef"
-                )
-            ),
-
-            (
-                "GRID",
-                (0, 0),
-                (-1, -1),
-                0.5,
-                colors.HexColor(
-                    "#dddddd"
-                )
-            ),
-
-            (
-                "VALIGN",
-                (0, 0),
-                (-1, -1),
-                "TOP"
-            ),
-
-            (
-                "LEFTPADDING",
-                (0, 0),
-                (-1, -1),
-                8
-            ),
-
-            (
-                "RIGHTPADDING",
-                (0, 0),
-                (-1, -1),
-                8
-            ),
-
-            (
-                "TOPPADDING",
-                (0, 0),
-                (-1, -1),
-                6
-            ),
-
-            (
-                "BOTTOMPADDING",
-                (0, 0),
-                (-1, -1),
-                6
-            )
-
-        ])
-
-    )
-
-
-    story.append(
-        summary_table
-    )
-
-
-    # ==========================================
-    # Disease Description
+    # Uploaded Leaf Image
     # ==========================================
 
-    story.append(
+    if image_path:
 
-        Paragraph(
-            "Disease Description",
-            heading_style
-        )
+        try:
+            pil_image = PILImage.open(image_path)
 
-    )
+            image_width, image_height = pil_image.size
 
+            max_width = 90 * mm
+            max_height = 70 * mm
 
-    story.append(
+            scale = min(
+                max_width / image_width,
+                max_height / image_height
+            )
 
-        Paragraph(
-            safe_value(
-                info.get(
-                    "Description"
-                )
-            ),
-            normal_style
-        )
+            display_width = image_width * scale
+            display_height = image_height * scale
 
-    )
-
-
-    # ==========================================
-    # Disease Profile
-    # ==========================================
-
-    story.append(
-
-        Paragraph(
-            "Disease Profile",
-            heading_style
-        )
-
-    )
-
-
-    profile_data = [
-
-        [
-            "<b>Pathogen</b>",
-            safe_value(
-                info.get(
-                    "Pathogen"
+            story.append(
+                Paragraph(
+                    "Uploaded Leaf Image",
+                    heading_style
                 )
             )
-        ],
 
-        [
-            "<b>Category</b>",
-            safe_value(
-                info.get(
-                    "Category"
-                )
+            leaf_image = ReportLabImage(
+                image_path,
+                width=display_width,
+                height=display_height
             )
-        ],
 
-        [
-            "<b>Affected Part</b>",
-            safe_value(
-                info.get(
-                    "Affected_Part"
-                )
+            story.append(leaf_image)
+
+            story.append(
+                Spacer(1, 10)
             )
-        ],
 
-        [
-            "<b>Environment</b>",
-            safe_value(
-                info.get(
-                    "Environment"
-                )
+        except Exception as image_error:
+
+            print(
+                "⚠️ Could not add uploaded image to PDF:",
+                image_error
             )
-        ],
 
-        [
-            "<b>Spread</b>",
-            safe_value(
-                info.get(
-                    "Spread"
-                )
+            # ==========================================
+            # Prediction Summary
+            # ==========================================
+
+            story.append(
+              Paragraph(
+                 "Prediction Summary",
+                 heading_style
+              )
             )
-        ]
-
-    ]
 
 
-    profile_table = Table(
-
-        [
+        summary_data = [
 
             [
                 Paragraph(
-                    row[0],
+                    "<b>Predicted Disease</b>",
                     normal_style
                 ),
 
                 Paragraph(
-                    row[1],
+                    safe_value(
+                        prediction
+                    ),
                     normal_style
                 )
+            ],
 
+            [
+                Paragraph(
+                    "<b>Confidence</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        confidence
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "<b>Crop</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        info.get("Crop")
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "<b>Scientific Name</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        info.get(
+                            "Scientific_Name"
+                        )
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "<b>Pathogen Type</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        info.get(
+                            "Pathogen_Type"
+                        )
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "<b>Risk Level</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        info.get(
+                            "Risk_Level"
+                        )
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "<b>Severity</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        info.get(
+                            "Severity"
+                        )
+                    ),
+                    normal_style
+                )
             ]
 
-            for row in profile_data
-
-        ],
-
-        colWidths=[
-            55 * mm,
-            110 * mm
         ]
 
-    )
 
+        summary_table = Table(
 
-    profile_table.setStyle(
+            summary_data,
 
-        TableStyle([
+            colWidths=[
+                55 * mm,
+                110 * mm
+            ]
 
-            (
-                "BACKGROUND",
-                (0, 0),
-                (0, -1),
-                colors.HexColor(
-                    "#f5f5f5"
-                )
-            ),
-
-            (
-                "GRID",
-                (0, 0),
-                (-1, -1),
-                0.5,
-                colors.HexColor(
-                    "#dddddd"
-                )
-            ),
-
-            (
-                "VALIGN",
-                (0, 0),
-                (-1, -1),
-                "TOP"
-            ),
-
-            (
-                "LEFTPADDING",
-                (0, 0),
-                (-1, -1),
-                8
-            ),
-
-            (
-                "RIGHTPADDING",
-                (0, 0),
-                (-1, -1),
-                8
-            )
-
-        ])
-
-    )
-
-
-    story.append(
-        profile_table
-    )
-
-
-    # ==========================================
-    # Symptoms
-    # ==========================================
-
-    symptoms = safe_list(
-        info.get(
-            "Symptoms"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Symptoms",
-            heading_style
         )
 
-    )
 
+        summary_table.setStyle(
 
-    if symptoms:
+            TableStyle([
 
-        for symptom in symptoms:
+                (
+                    "BACKGROUND",
+                    (0, 0),
+                    (0, -1),
+                    colors.HexColor(
+                        "#eaf7ef"
+                    )
+                ),
 
-            story.append(
+                (
+                    "GRID",
+                    (0, 0),
+                    (-1, -1),
+                    0.5,
+                    colors.HexColor(
+                        "#dddddd"
+                    )
+                ),
 
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        symptom
-                    ),
-                    normal_style
+                (
+                    "VALIGN",
+                    (0, 0),
+                    (-1, -1),
+                    "TOP"
+                ),
+
+                (
+                    "LEFTPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    8
+                ),
+
+                (
+                    "RIGHTPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    8
+                ),
+
+                (
+                    "TOPPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    6
+                ),
+
+                (
+                    "BOTTOMPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    6
                 )
 
-            )
+            ])
 
-    else:
+        )
+
+
+        story.append(
+            summary_table
+        )
+
+
+        # ==========================================
+        # Disease Description
+        # ==========================================
 
         story.append(
 
             Paragraph(
-                "No symptom information available.",
-                normal_style
+                "Disease Description",
+                heading_style
             )
 
         )
 
-
-    # ==========================================
-    # Causes
-    # ==========================================
-
-    causes = safe_list(
-        info.get(
-            "Cause"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Causes",
-            heading_style
-        )
-
-    )
-
-
-    if causes:
-
-        for cause in causes:
-
-            story.append(
-
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        cause
-                    ),
-                    normal_style
-                )
-
-            )
-
-    else:
 
         story.append(
-
-            Paragraph(
-                "No cause information available.",
-                normal_style
-            )
-
-        )
-
-
-    # ==========================================
-    # Treatment
-    # ==========================================
-
-    treatments = safe_list(
-        info.get(
-            "Treatment"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Treatment",
-            heading_style
-        )
-
-    )
-
-
-    if treatments:
-
-        for treatment in treatments:
-
-            story.append(
-
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        treatment
-                    ),
-                    normal_style
-                )
-
-            )
-
-    else:
-
-        story.append(
-
-            Paragraph(
-                "No treatment information available.",
-                normal_style
-            )
-
-        )
-
-
-    # ==========================================
-    # Organic Treatment
-    # ==========================================
-
-    organic_treatments = safe_list(
-        info.get(
-            "Organic_Treatment"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Organic Treatment",
-            heading_style
-        )
-
-    )
-
-
-    if organic_treatments:
-
-        for treatment in organic_treatments:
-
-            story.append(
-
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        treatment
-                    ),
-                    normal_style
-                )
-
-            )
-
-    else:
-
-        story.append(
-
-            Paragraph(
-                "No organic treatment information available.",
-                normal_style
-            )
-
-        )
-
-
-    # ==========================================
-    # Recommended Chemicals
-    # ==========================================
-
-    chemicals = safe_list(
-        info.get(
-            "Recommended_Chemicals"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Recommended Chemicals",
-            heading_style
-        )
-
-    )
-
-
-    if chemicals:
-
-        for chemical in chemicals:
-
-            story.append(
-
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        chemical
-                    ),
-                    normal_style
-                )
-
-            )
-
-    else:
-
-        story.append(
-
-            Paragraph(
-                "No chemical recommendations available.",
-                normal_style
-            )
-
-        )
-
-
-    # ==========================================
-    # Prevention
-    # ==========================================
-
-    prevention = safe_list(
-        info.get(
-            "Prevention"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Prevention",
-            heading_style
-        )
-
-    )
-
-
-    if prevention:
-
-        for item in prevention:
-
-            story.append(
-
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        item
-                    ),
-                    normal_style
-                )
-
-            )
-
-    else:
-
-        story.append(
-
-            Paragraph(
-                "No prevention information available.",
-                normal_style
-            )
-
-        )
-
-
-    # ==========================================
-    # Recommended Actions
-    # ==========================================
-
-    actions = safe_list(
-        info.get(
-            "Recommended_Actions"
-        )
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Recommended Actions",
-            heading_style
-        )
-
-    )
-
-
-    if actions:
-
-        for action in actions:
-
-            story.append(
-
-                Paragraph(
-                    "• "
-                    + safe_value(
-                        action
-                    ),
-                    normal_style
-                )
-
-            )
-
-    else:
-
-        story.append(
-
-            Paragraph(
-                "No specific recommended actions available.",
-                normal_style
-            )
-
-        )
-
-
-    # ==========================================
-    # Disease Progression
-    # ==========================================
-
-    age_cycle = info.get(
-        "Age_Cycle",
-        {}
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "Disease Progression",
-            heading_style
-        )
-
-    )
-
-
-    progression_data = [
-
-        [
-            Paragraph(
-                "<b>Stage</b>",
-                normal_style
-            ),
-
-            Paragraph(
-                "<b>Estimated Information</b>",
-                normal_style
-            )
-        ],
-
-        [
-            Paragraph(
-                "Early",
-                normal_style
-            ),
 
             Paragraph(
                 safe_value(
-                    age_cycle.get(
-                        "Early",
-                        "-"
-                    ),
-                    "-"
+                    info.get(
+                        "Description"
+                    )
                 ),
                 normal_style
             )
-        ],
 
-        [
-            Paragraph(
-                "Moderate",
-                normal_style
-            ),
+        )
+
+
+        # ==========================================
+        # Disease Profile
+        # ==========================================
+
+        story.append(
 
             Paragraph(
+                "Disease Profile",
+                heading_style
+            )
+
+        )
+
+
+        profile_data = [
+
+            [
+                "<b>Pathogen</b>",
                 safe_value(
-                    age_cycle.get(
-                        "Moderate",
-                        "-"
-                    ),
-                    "-"
-                ),
-                normal_style
-            )
-        ],
+                    info.get(
+                        "Pathogen"
+                    )
+                )
+            ],
 
-        [
-            Paragraph(
-                "Severe",
-                normal_style
-            ),
-
-            Paragraph(
+            [
+                "<b>Category</b>",
                 safe_value(
-                    age_cycle.get(
-                        "Severe",
-                        "-"
-                    ),
-                    "-"
-                ),
-                normal_style
-            )
-        ],
+                    info.get(
+                        "Category"
+                    )
+                )
+            ],
 
-        [
-            Paragraph(
-                "Estimated",
-                normal_style
-            ),
-
-            Paragraph(
+            [
+                "<b>Affected Part</b>",
                 safe_value(
-                    age_cycle.get(
-                        "Estimated",
-                        "-"
-                    ),
-                    "-"
-                ),
-                normal_style
-            )
+                    info.get(
+                        "Affected_Part"
+                    )
+                )
+            ],
+
+            [
+                "<b>Environment</b>",
+                safe_value(
+                    info.get(
+                        "Environment"
+                    )
+                )
+            ],
+
+            [
+                "<b>Spread</b>",
+                safe_value(
+                    info.get(
+                        "Spread"
+                    )
+                )
+            ]
+
         ]
 
-    ]
 
+        profile_table = Table(
 
-    progression_table = Table(
+            [
 
-        progression_data,
+                [
+                    Paragraph(
+                        row[0],
+                        normal_style
+                    ),
 
-        colWidths=[
-            45 * mm,
-            120 * mm
-        ]
+                    Paragraph(
+                        row[1],
+                        normal_style
+                    )
 
-    )
+                ]
 
+                for row in profile_data
 
-    progression_table.setStyle(
+            ],
 
-        TableStyle([
+            colWidths=[
+                55 * mm,
+                110 * mm
+            ]
 
-            (
-                "BACKGROUND",
-                (0, 0),
-                (-1, 0),
-                colors.HexColor(
-                    "#198754"
-                )
-            ),
-
-            (
-                "TEXTCOLOR",
-                (0, 0),
-                (-1, 0),
-                colors.white
-            ),
-
-            (
-                "GRID",
-                (0, 0),
-                (-1, -1),
-                0.5,
-                colors.HexColor(
-                    "#dddddd"
-                )
-            ),
-
-            (
-                "VALIGN",
-                (0, 0),
-                (-1, -1),
-                "TOP"
-            ),
-
-            (
-                "LEFTPADDING",
-                (0, 0),
-                (-1, -1),
-                8
-            ),
-
-            (
-                "RIGHTPADDING",
-                (0, 0),
-                (-1, -1),
-                8
-            )
-
-        ])
-
-    )
-
-
-    story.append(
-        progression_table
-    )
-
-
-    # ==========================================
-    # Disclaimer
-    # ==========================================
-
-    story.append(
-        Spacer(1, 15)
-    )
-
-
-    story.append(
-
-        Paragraph(
-            "<b>Disclaimer:</b> "
-            "This report provides AI-based "
-            "decision-support information. "
-            "Disease predictions should be "
-            "verified with appropriate "
-            "agricultural expertise before "
-            "applying treatments or chemicals.",
-            small_style
         )
 
-    )
+
+        profile_table.setStyle(
+
+            TableStyle([
+
+                (
+                    "BACKGROUND",
+                    (0, 0),
+                    (0, -1),
+                    colors.HexColor(
+                        "#f5f5f5"
+                    )
+                ),
+
+                (
+                    "GRID",
+                    (0, 0),
+                    (-1, -1),
+                    0.5,
+                    colors.HexColor(
+                        "#dddddd"
+                    )
+                ),
+
+                (
+                    "VALIGN",
+                    (0, 0),
+                    (-1, -1),
+                    "TOP"
+                ),
+
+                (
+                    "LEFTPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    8
+                ),
+
+                (
+                    "RIGHTPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    8
+                )
+
+            ])
+
+        )
 
 
-    # ==========================================
-    # Build PDF
-    # ==========================================
+        story.append(
+            profile_table
+        )
 
-    document.build(
-        story
-    )
+
+        # ==========================================
+        # Symptoms
+        # ==========================================
+
+        symptoms = safe_list(
+            info.get(
+                "Symptoms"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Symptoms",
+                heading_style
+            )
+
+        )
+
+
+        if symptoms:
+
+            for symptom in symptoms:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            symptom
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No symptom information available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Causes
+        # ==========================================
+
+        causes = safe_list(
+            info.get(
+                "Cause"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Causes",
+                heading_style
+            )
+
+        )
+
+
+        if causes:
+
+            for cause in causes:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            cause
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No cause information available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Treatment
+        # ==========================================
+
+        treatments = safe_list(
+            info.get(
+                "Treatment"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Treatment",
+                heading_style
+            )
+
+        )
+
+
+        if treatments:
+
+            for treatment in treatments:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            treatment
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No treatment information available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Organic Treatment
+        # ==========================================
+
+        organic_treatments = safe_list(
+            info.get(
+                "Organic_Treatment"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Organic Treatment",
+                heading_style
+            )
+
+        )
+
+
+        if organic_treatments:
+
+            for treatment in organic_treatments:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            treatment
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No organic treatment information available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Recommended Chemicals
+        # ==========================================
+
+        chemicals = safe_list(
+            info.get(
+                "Recommended_Chemicals"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Recommended Chemicals",
+                heading_style
+            )
+
+        )
+
+
+        if chemicals:
+
+            for chemical in chemicals:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            chemical
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No chemical recommendations available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Prevention
+        # ==========================================
+
+        prevention = safe_list(
+            info.get(
+                "Prevention"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Prevention",
+                heading_style
+            )
+
+        )
+
+
+        if prevention:
+
+            for item in prevention:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            item
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No prevention information available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Recommended Actions
+        # ==========================================
+
+        actions = safe_list(
+            info.get(
+                "Recommended_Actions"
+            )
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Recommended Actions",
+                heading_style
+            )
+
+        )
+
+
+        if actions:
+
+            for action in actions:
+
+                story.append(
+
+                    Paragraph(
+                        "• "
+                        + safe_value(
+                            action
+                        ),
+                        normal_style
+                    )
+
+                )
+
+        else:
+
+            story.append(
+
+                Paragraph(
+                    "No specific recommended actions available.",
+                    normal_style
+                )
+
+            )
+
+
+        # ==========================================
+        # Disease Progression
+        # ==========================================
+
+        age_cycle = info.get(
+            "Age_Cycle",
+            {}
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "Disease Progression",
+                heading_style
+            )
+
+        )
+
+
+        progression_data = [
+
+            [
+                Paragraph(
+                    "<b>Stage</b>",
+                    normal_style
+                ),
+
+                Paragraph(
+                    "<b>Estimated Information</b>",
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "Early",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        age_cycle.get(
+                            "Early",
+                            "-"
+                        ),
+                        "-"
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "Moderate",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        age_cycle.get(
+                            "Moderate",
+                            "-"
+                        ),
+                        "-"
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "Severe",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        age_cycle.get(
+                            "Severe",
+                            "-"
+                        ),
+                        "-"
+                    ),
+                    normal_style
+                )
+            ],
+
+            [
+                Paragraph(
+                    "Estimated",
+                    normal_style
+                ),
+
+                Paragraph(
+                    safe_value(
+                        age_cycle.get(
+                            "Estimated",
+                            "-"
+                        ),
+                        "-"
+                    ),
+                    normal_style
+                )
+            ]
+
+        ]
+
+
+        progression_table = Table(
+
+            progression_data,
+
+            colWidths=[
+                45 * mm,
+                120 * mm
+            ]
+
+        )
+
+
+        progression_table.setStyle(
+
+            TableStyle([
+
+                (
+                    "BACKGROUND",
+                    (0, 0),
+                    (-1, 0),
+                    colors.HexColor(
+                        "#198754"
+                    )
+                ),
+
+                (
+                    "TEXTCOLOR",
+                    (0, 0),
+                    (-1, 0),
+                    colors.white
+                ),
+
+                (
+                    "GRID",
+                    (0, 0),
+                    (-1, -1),
+                    0.5,
+                    colors.HexColor(
+                        "#dddddd"
+                    )
+                ),
+
+                (
+                    "VALIGN",
+                    (0, 0),
+                    (-1, -1),
+                    "TOP"
+                ),
+
+                (
+                    "LEFTPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    8
+                ),
+
+                (
+                    "RIGHTPADDING",
+                    (0, 0),
+                    (-1, -1),
+                    8
+                )
+
+            ])
+
+        )
+
+
+        story.append(
+            progression_table
+        )
+
+
+        # ==========================================
+        # Disclaimer
+        # ==========================================
+
+        story.append(
+            Spacer(1, 15)
+        )
+
+
+        story.append(
+
+            Paragraph(
+                "<b>Disclaimer:</b> "
+                "This report provides AI-based "
+                "decision-support information. "
+                "Disease predictions should be "
+                "verified with appropriate "
+                "agricultural expertise before "
+                "applying treatments or chemicals.",
+                small_style
+            )
+
+        )
+
+
+        # ==========================================
+        # Build PDF
+        # ==========================================
+
+        document.build(
+            story
+        )
