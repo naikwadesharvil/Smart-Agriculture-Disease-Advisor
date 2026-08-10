@@ -1,187 +1,104 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 Error | Smart Agriculture Disease Advisor
 {% endblock %}
 
+
 {% block content %}
 
-<section class="py-5">
+<!-- ==========================================
+     ERROR PAGE
+     ========================================== -->
 
-    <div class="row justify-content-center">
+<div
+    class="row justify-content-center align-items-center"
+    style="min-height: 65vh;">
 
-        <div class="col-lg-8">
+    <div class="col-lg-7 col-md-9">
 
-            <div class="custom-card text-center" data-aos="zoom-in">
+        <div
+            class="custom-card text-center"
+            data-aos="zoom-in">
 
-                <i class="bi bi-exclamation-triangle-fill text-danger display-1"></i>
 
-                <h1 class="mt-4 text-danger">
+            <!-- ================= ICON ================= -->
 
-                    Oops!
+            <div class="mb-4">
 
-                </h1>
-
-                <h3 class="mb-4">
-
-                    Something went wrong
-
-                </h3>
-
-                <p class="lead">
-
-                    The application encountered an unexpected error while processing your request.
-
-                </p>
-
-                {% if error %}
-
-                <div class="alert alert-danger mt-4 text-start">
-
-                    <strong>Error Details:</strong>
-
-                    <hr>
-
-                    <code>
-
-                        {{ error }}
-
-                    </code>
-
-                </div>
-
-                {% endif %}
-
-                <div class="row mt-5">
-
-                    <div class="col-md-6 mb-3">
-
-                        <a
-                            href="{{ url_for('home') }}"
-                            class="btn btn-success btn-lg w-100">
-
-                            <i class="bi bi-house-fill"></i>
-
-                            Go Home
-
-                        </a>
-
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-
-                        <button
-                            onclick="history.back()"
-                            class="btn btn-outline-secondary btn-lg w-100">
-
-                            <i class="bi bi-arrow-left-circle-fill"></i>
-
-                            Go Back
-
-                        </button>
-
-                    </div>
-
-                </div>
+                <i
+                    class="bi bi-exclamation-triangle-fill text-danger"
+                    style="font-size: 5rem;">
+                </i>
 
             </div>
+
+
+            <!-- ================= TITLE ================= -->
+
+            <h1 class="fw-bold text-danger mb-3">
+
+                Something Went Wrong
+
+            </h1>
+
+
+            <!-- ================= ERROR MESSAGE ================= -->
+
+            <p class="lead text-muted mb-4">
+
+                {{ error }}
+
+            </p>
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div
+                class="d-flex justify-content-center gap-3 flex-wrap">
+
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="btn btn-success btn-lg">
+
+                    <i class="bi bi-house-fill"></i>
+
+                    Back to Home
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('guide') }}"
+                    class="btn btn-outline-success btn-lg">
+
+                    <i class="bi bi-book"></i>
+
+                    View Guide
+
+                </a>
+
+            </div>
+
+
+            <!-- ================= HELP TEXT ================= -->
+
+            <hr class="my-4">
+
+
+            <p class="small text-muted mb-0">
+
+                Please make sure your image is a valid
+                JPG, JPEG, or PNG file and try again.
+
+            </p>
 
         </div>
 
     </div>
 
-</section>
-
-<!-- ================= Common Reasons ================= -->
-
-<section class="pb-5">
-
-    <div class="row">
-
-        <div class="col-lg-10 mx-auto">
-
-            <div class="custom-card">
-
-                <h2 class="text-success mb-4">
-
-                    Possible Reasons
-
-                </h2>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-
-                        <ul class="feature-list">
-
-                            <li>
-
-                                <i class="bi bi-x-circle-fill text-danger"></i>
-
-                                Unsupported image format
-
-                            </li>
-
-                            <li>
-
-                                <i class="bi bi-x-circle-fill text-danger"></i>
-
-                                Corrupted image file
-
-                            </li>
-
-                            <li>
-
-                                <i class="bi bi-x-circle-fill text-danger"></i>
-
-                                Server processing error
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <ul class="feature-list">
-
-                            <li>
-
-                                <i class="bi bi-check-circle-fill text-success"></i>
-
-                                Upload JPG, JPEG or PNG
-
-                            </li>
-
-                            <li>
-
-                                <i class="bi bi-check-circle-fill text-success"></i>
-
-                                Use a clear leaf image
-
-                            </li>
-
-                            <li>
-
-                                <i class="bi bi-check-circle-fill text-success"></i>
-
-                                Try again after refreshing
-
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 {% endblock %}

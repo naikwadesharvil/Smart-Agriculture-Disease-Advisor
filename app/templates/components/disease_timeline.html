@@ -1,26 +1,63 @@
-<!-- ==========================================
-     Disease Timeline
-========================================== -->
+<div class="custom-card dashboard-card mt-4">
 
-<section class="mb-5">
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
-    <div class="custom-card dashboard-card">
+    <div class="mb-4">
 
-        <div class="d-flex align-items-center mb-4">
+        <h2 class="text-success mb-1">
+            Disease Progression Timeline
+        </h2>
 
-            <i class="bi bi-clock-history display-6 text-success me-3"></i>
+        <p class="text-muted mb-0">
+            Estimated progression from early to severe stages
+        </p>
 
-            <div>
+    </div>
 
-                <h2 class="mb-0">
 
-                    Disease Progress Timeline
+    <!-- ==========================================
+         TIMELINE
+         ========================================== -->
 
-                </h2>
+    <div class="row g-4">
 
-                <p class="mb-0">
 
-                    Understand how the disease develops over time.
+        <!-- ======================================
+             EARLY STAGE
+             ====================================== -->
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="border rounded-4 p-4 h-100">
+
+                <div class="text-center mb-3">
+
+                    <div
+                        class="rounded-circle bg-success text-white
+                               d-inline-flex align-items-center
+                               justify-content-center"
+                        style="
+                            width:60px;
+                            height:60px;
+                        ">
+
+                        <i class="bi bi-1-circle-fill fs-3"></i>
+
+                    </div>
+
+                </div>
+
+
+                <h5 class="text-success text-center">
+                    Early Stage
+                </h5>
+
+
+                <p class="small text-muted text-center">
+
+                    {{ info.Age_Cycle.Early }}
 
                 </p>
 
@@ -28,117 +65,127 @@
 
         </div>
 
-        <div class="timeline">
 
-            <!-- Early Stage -->
+        <!-- ======================================
+             MODERATE STAGE
+             ====================================== -->
 
-            <div class="timeline-item">
+        <div class="col-md-6 col-lg-3">
 
-                <div class="timeline-dot bg-success">
+            <div class="border rounded-4 p-4 h-100">
 
-                    <i class="bi bi-1-circle-fill"></i>
+                <div class="text-center mb-3">
 
-                </div>
+                    <div
+                        class="rounded-circle bg-warning text-dark
+                               d-inline-flex align-items-center
+                               justify-content-center"
+                        style="
+                            width:60px;
+                            height:60px;
+                        ">
 
-                <div class="timeline-content">
+                        <i class="bi bi-2-circle-fill fs-3"></i>
 
-                    <h4 class="text-success">
-
-                        Early Stage
-
-                    </h4>
-
-                    <p>
-
-                        {{ info.Age_Cycle.Early }}
-
-                    </p>
+                    </div>
 
                 </div>
+
+
+                <h5 class="text-warning text-center">
+                    Moderate Stage
+                </h5>
+
+
+                <p class="small text-muted text-center">
+
+                    {{ info.Age_Cycle.Moderate }}
+
+                </p>
 
             </div>
 
-            <!-- Moderate Stage -->
+        </div>
 
-            <div class="timeline-item">
 
-                <div class="timeline-dot bg-warning">
+        <!-- ======================================
+             SEVERE STAGE
+             ====================================== -->
 
-                    <i class="bi bi-2-circle-fill"></i>
+        <div class="col-md-6 col-lg-3">
+
+            <div class="border rounded-4 p-4 h-100">
+
+                <div class="text-center mb-3">
+
+                    <div
+                        class="rounded-circle bg-danger text-white
+                               d-inline-flex align-items-center
+                               justify-content-center"
+                        style="
+                            width:60px;
+                            height:60px;
+                        ">
+
+                        <i class="bi bi-3-circle-fill fs-3"></i>
+
+                    </div>
 
                 </div>
 
-                <div class="timeline-content">
 
-                    <h4 class="text-warning">
+                <h5 class="text-danger text-center">
+                    Severe Stage
+                </h5>
 
-                        Moderate Stage
 
-                    </h4>
+                <p class="small text-muted text-center">
 
-                    <p>
+                    {{ info.Age_Cycle.Severe }}
 
-                        {{ info.Age_Cycle.Moderate }}
-
-                    </p>
-
-                </div>
+                </p>
 
             </div>
 
-            <!-- Severe Stage -->
+        </div>
 
-            <div class="timeline-item">
 
-                <div class="timeline-dot bg-danger">
+        <!-- ======================================
+             ESTIMATED TIME
+             ====================================== -->
 
-                    <i class="bi bi-3-circle-fill"></i>
+        <div class="col-md-6 col-lg-3">
 
-                </div>
+            <div class="border rounded-4 p-4 h-100">
 
-                <div class="timeline-content">
+                <div class="text-center mb-3">
 
-                    <h4 class="text-danger">
+                    <div
+                        class="rounded-circle bg-primary text-white
+                               d-inline-flex align-items-center
+                               justify-content-center"
+                        style="
+                            width:60px;
+                            height:60px;
+                        ">
 
-                        Severe Stage
+                        <i class="bi bi-clock-fill fs-3"></i>
 
-                    </h4>
-
-                    <p>
-
-                        {{ info.Age_Cycle.Severe }}
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- Estimated Progress -->
-
-            <div class="timeline-item">
-
-                <div class="timeline-dot bg-primary">
-
-                    <i class="bi bi-calendar-check-fill"></i>
+                    </div>
 
                 </div>
 
-                <div class="timeline-content">
 
-                    <h4 class="text-primary">
+                <h5 class="text-primary text-center">
+                    Estimated
+                </h5>
 
-                        Estimated Disease Duration
 
-                    </h4>
+                <p class="small text-muted text-center">
 
-                    <p>
+                    {{ info.Age_Cycle.Estimated }}
 
-                        {{ info.Age_Cycle.Estimated }}
-
-                    </p>
-
-                </div>
+                </p>
 
             </div>
 
@@ -146,4 +193,21 @@
 
     </div>
 
-</section>
+
+    <!-- ==========================================
+         TIMELINE NOTE
+         ========================================== -->
+
+    <div class="alert alert-info mt-4 mb-0">
+
+        <i class="bi bi-info-circle-fill me-2"></i>
+
+        <strong>Note:</strong>
+
+        Disease progression can vary depending on
+        crop variety, environmental conditions,
+        pathogen pressure and plant health.
+
+    </div>
+
+</div>

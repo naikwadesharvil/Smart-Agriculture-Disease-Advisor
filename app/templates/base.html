@@ -5,8 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>
         {% block title %}
@@ -14,48 +15,74 @@
         {% endblock %}
     </title>
 
-    <!-- Bootstrap -->
+
+    <!-- ==========================================
+         Bootstrap
+         ========================================== -->
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
+
+    <!-- ==========================================
+         Bootstrap Icons
+         ========================================== -->
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         rel="stylesheet">
 
-    <!-- Google Fonts -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <!-- ==========================================
+         Google Fonts
+         ========================================== -->
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- AOS Animation -->
+
+    <!-- ==========================================
+         AOS Animation
+         ========================================== -->
 
     <link
         href="https://unpkg.com/aos@2.3.4/dist/aos.css"
         rel="stylesheet">
 
-    <!-- Chart.js -->
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ==========================================
+         Chart.js
+         ========================================== -->
 
-    <!-- Favicon -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
 
-    <link rel="icon"
-          type="image/png"
-          href="{{ url_for('static', filename='images/logo.png') }}">
 
-    <!-- Custom CSS -->
+    <!-- ==========================================
+         Favicon
+         ========================================== -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo.png') }}">
+
+
+    <!-- ==========================================
+         Custom CSS
+         ========================================== -->
 
     <link
         rel="stylesheet"
@@ -63,194 +90,228 @@
 
 </head>
 
+
 <body>
 
-<!-- ==========================================
-     Loader
-========================================== -->
 
-<div id="loader">
+    <!-- ==========================================
+         NAVBAR
+         ========================================== -->
 
-    <div class="spinner-border text-success"
-         role="status">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
 
-        <span class="visually-hidden">
+        <div class="container">
 
-            Loading...
 
-        </span>
+            <!-- Brand -->
 
-    </div>
+            <a
+                class="navbar-brand fw-bold"
+                href="{{ url_for('home') }}">
 
-</div>
+                🌿 Smart Agriculture
 
-<!-- ==========================================
-     Scroll To Top
-========================================== -->
+            </a>
 
-<button id="topBtn"
-        title="Back to Top">
 
-    <i class="bi bi-arrow-up"></i>
+            <!-- Mobile Toggle -->
 
-</button>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
 
-<!-- ==========================================
-     Navbar
-========================================== -->
+                <span class="navbar-toggler-icon"></span>
 
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top">
+            </button>
 
-    <div class="container">
 
-        <a class="navbar-brand fw-bold"
-           href="{{ url_for('home') }}">
+            <!-- Navigation -->
 
-            🌿 Smart Agriculture
+            <div
+                class="collapse navbar-collapse"
+                id="navbarNav">
 
-        </a>
+                <ul
+                    class="navbar-nav ms-auto align-items-lg-center">
 
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
 
-            <span class="navbar-toggler-icon"></span>
+                    <!-- Home -->
 
-        </button>
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{{ url_for('home') }}">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- About -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{{ url_for('about') }}">
+
+                            About
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Guide -->
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="{{ url_for('guide') }}">
+
+                            Guide
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- Dark Mode -->
+
+                    <li class="nav-item ms-lg-3">
+
+                        <button
+                            class="btn btn-outline-light"
+                            id="themeToggle"
+                            type="button"
+                            aria-label="Toggle dark mode">
+
+                            <i class="bi bi-moon-stars-fill"></i>
+
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==========================================
+         LOADING OVERLAY
+         ========================================== -->
+
+    <div
+        id="loadingSpinner"
+        class="position-fixed top-50 start-50 translate-middle d-none"
+        style="z-index: 2000;">
 
         <div
-            class="collapse navbar-collapse"
-            id="navbarNav">
+            class="spinner-border text-success"
+            role="status">
 
-            <ul class="navbar-nav ms-auto align-items-lg-center">
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="{{ url_for('home') }}">
-
-                        Home
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="{{ url_for('about') }}">
-
-                        About
-
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="{{ url_for('guide') }}">
-
-                        Guide
-
-                    </a>
-
-                </li>
-
-                <!-- Dark Mode -->
-
-                <li class="nav-item ms-lg-3">
-
-                    <button
-                        class="btn btn-outline-light"
-                        id="themeToggle">
-
-                        <i class="bi bi-moon-stars-fill"></i>
-
-                    </button>
-
-                </li>
-
-            </ul>
+            <span class="visually-hidden">
+                Loading...
+            </span>
 
         </div>
 
     </div>
 
-</nav>
 
-<!-- ==========================================
-     Main Content
-========================================== -->
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
 
-<main class="py-5">
+    <main class="py-5">
 
-    <div class="container">
+        <div class="container">
 
-        {% block content %}
+            {% block content %}
 
-        {% endblock %}
+            {% endblock %}
 
-    </div>
+        </div>
 
-</main>
+    </main>
 
-<!-- ==========================================
-     Footer
-========================================== -->
 
-<footer>
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
 
-    <div class="container text-center">
+    <footer class="py-4 mt-5">
 
-        <h4 class="mb-3">
+        <div class="container text-center">
 
-            🌿 Smart Agriculture Disease Advisor
+            <h4 class="mb-3">
+                🌿 Smart Agriculture Disease Advisor
+            </h4>
 
-        </h4>
+            <p>
+                AI Powered Plant Disease Detection
+                using Deep Learning
+            </p>
 
-        <p>
+            <hr>
 
-            AI Powered Plant Disease Detection using Deep Learning
+            <p>
 
-        </p>
+                Developed by
 
-        <hr>
+                <strong>
+                    Sharvil Naikwade
+                </strong>
 
-        <p>
+            </p>
 
-            Developed by
+            <small>
+                © 2026 Smart Agriculture Disease Advisor
+            </small>
 
-            <strong>
+        </div>
 
-                Sharvil Naikwade
+    </footer>
 
-            </strong>
 
-        </p>
+    <!-- ==========================================
+         BACK TO TOP
+         ========================================== -->
 
-        <small>
+    <button
+        id="backToTop"
+        type="button"
+        class="btn btn-success position-fixed bottom-0 end-0 m-4 rounded-circle"
+        aria-label="Back to top">
 
-            © 2026 Smart Agriculture Disease Advisor
+        <i class="bi bi-arrow-up"></i>
 
-        </small>
+    </button>
 
-    </div>
 
-</footer>
-
-<!-- ==========================================
-     Welcome Toast
-========================================== -->
-
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <!-- ==========================================
+         SUCCESS TOAST
+         ========================================== -->
 
     <div
         id="successToast"
-        class="toast align-items-center text-bg-success border-0"
-        role="alert">
+        class="toast align-items-center text-bg-success border-0 position-fixed bottom-0 start-50 translate-middle-x mb-4"
+        role="alert"
+        aria-live="polite"
+        aria-atomic="true">
 
         <div class="d-flex">
 
@@ -263,7 +324,8 @@
             <button
                 type="button"
                 class="btn-close btn-close-white me-2 m-auto"
-                data-bs-dismiss="toast">
+                data-bs-dismiss="toast"
+                aria-label="Close">
 
             </button>
 
@@ -271,45 +333,41 @@
 
     </div>
 
-</div>
 
-<!-- ==========================================
-     Bootstrap JS
-========================================== -->
+    <!-- ==========================================
+         Bootstrap JavaScript
+         ========================================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 
-<!-- ==========================================
-     AOS
-========================================== -->
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- ==========================================
+         AOS JavaScript
+         ========================================== -->
 
-<script>
+    <script
+        src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+    </script>
 
-AOS.init({
 
-    duration:900,
+    <!-- ==========================================
+         Main JavaScript
+         ========================================== -->
 
-    once:true
+    <script
+        src="{{ url_for('static', filename='js/main.js') }}">
+    </script>
 
-});
 
-</script>
+    <!-- ==========================================
+         Page-Specific Scripts
+         ========================================== -->
 
-<!-- ==========================================
-     Main JS
-========================================== -->
+    {% block scripts %}
 
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-<!-- ==========================================
-     Page Specific Scripts
-========================================== -->
-
-{% block scripts %}
-
-{% endblock %}
+    {% endblock %}
 
 </body>
 

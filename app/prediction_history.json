@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "timestamp": "2026-08-10 23:05:16",
+        "prediction": "Bacterial Spot",
+        "confidence": "99.99%",
+        "image_path": "/uploads/Screenshot_2026-08-02_205406.png",
+        "crop": "Peach",
+        "disease": "Bacterial Spot",
+        "scientific_name": "Xanthomonas arboricola pv. pruni",
+        "risk_level": "Medium",
+        "severity": "Medium"
+    }
+]

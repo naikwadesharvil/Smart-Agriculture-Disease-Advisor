@@ -1,971 +1,536 @@
 /* ==========================================
-   Smart Agriculture Disease Advisor
-   Global Styles
-========================================== */
+   GLOBAL
+   ========================================== */
 
-:root{
-
-    --primary:#2E7D32;
-    --primary-dark:#1B5E20;
-    --secondary:#43A047;
-    --accent:#66BB6A;
-
-    --danger:#D32F2F;
-    --warning:#F9A825;
-    --info:#0288D1;
-
-    --background:#F5F7FA;
-    --surface:#FFFFFF;
-
-    --text:#212121;
-    --text-light:#757575;
-
-    --shadow:0 8px 30px rgba(0,0,0,.08);
-
-    --radius:18px;
-
+:root {
+    --primary-green: #198754;
+    --primary-dark: #146c43;
+    --secondary-green: #20c997;
+    --light-green: #eaf7ef;
+    --text-dark: #212529;
+    --text-muted: #6c757d;
+    --card-radius: 18px;
+    --transition: 0.3s ease;
 }
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Poppins", sans-serif;
+
+    color: var(--text-dark);
+
+    background-color: #f7faf8;
+
+    transition:
+        background-color var(--transition),
+        color var(--transition);
+}
+
 
 /* ==========================================
-   Reset
-========================================== */
+   NAVBAR
+   ========================================== */
 
-*{
+.navbar {
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
 
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    position: sticky;
+    top: 0;
 
+    z-index: 1000;
 }
 
-html{
 
-    scroll-behavior:smooth;
+.navbar-brand {
+    font-size: 1.2rem;
 
+    letter-spacing: 0.2px;
 }
 
-body{
 
-    font-family:'Poppins',sans-serif;
-    background:var(--background);
-    color:var(--text);
-
+.navbar .nav-link {
+    transition:
+        color var(--transition),
+        opacity var(--transition);
 }
+
+
+.navbar .nav-link:hover {
+    opacity: 0.8;
+}
+
 
 /* ==========================================
-   Typography
-========================================== */
+   MAIN CONTENT
+   ========================================== */
 
-h1{
-
-    font-size:3rem;
-    font-weight:700;
-
+main {
+    min-height: 70vh;
 }
 
-h2{
 
-    font-size:2rem;
-    font-weight:600;
-
+.container {
+    max-width: 1200px;
 }
 
-h3{
-
-    font-size:1.4rem;
-    font-weight:600;
-
-}
-
-p{
-
-    color:var(--text-light);
-
-    line-height:1.7;
-
-}
 
 /* ==========================================
-   Links
-========================================== */
+   CUSTOM CARDS
+   ========================================== */
 
-a{
+.custom-card {
+    background: #ffffff;
 
-    text-decoration:none;
+    border-radius: var(--card-radius);
 
+    padding: 2rem;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.06);
+
+    border: 1px solid rgba(25, 135, 84, 0.08);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background-color var(--transition);
 }
+
+
+.custom-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.09);
+}
+
+
+.dashboard-card {
+    overflow: hidden;
+}
+
 
 /* ==========================================
-   Buttons
-========================================== */
+   HERO
+   ========================================== */
 
-.btn-custom{
-
-    background:var(--primary);
-
-    color:white;
-
-    padding:12px 28px;
-
-    border-radius:50px;
-
-    border:none;
-
-    transition:.3s;
-
-    font-weight:600;
-
+.hero-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
-.btn-custom:hover{
 
-    background:var(--primary-dark);
-
-    color:white;
-
-    transform:translateY(-3px);
-
+.hero-section img {
+    max-width: 100%;
+    height: auto;
 }
+
 
 /* ==========================================
-   Cards
-========================================== */
+   BUTTONS
+   ========================================== */
 
-.custom-card{
+.btn {
+    border-radius: 10px;
 
-    background:var(--surface);
-
-    border-radius:var(--radius);
-
-    padding:30px;
-
-    box-shadow:var(--shadow);
-
-    transition:.3s;
-
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
 }
 
-.custom-card:hover{
 
-    transform:translateY(-6px);
-
+.btn:hover {
+    transform: translateY(-2px);
 }
+
+
+.btn-success {
+    background-color: var(--primary-green);
+
+    border-color: var(--primary-green);
+}
+
+
+.btn-success:hover {
+    background-color: var(--primary-dark);
+
+    border-color: var(--primary-dark);
+}
+
 
 /* ==========================================
-   Navbar
-========================================== */
+   UPLOAD FORM
+   ========================================== */
 
-.navbar{
+input[type="file"] {
+    border-radius: 10px;
 
-    background:linear-gradient(
+    padding: 0.75rem;
 
-        135deg,
-
-        var(--primary),
-
-        var(--secondary)
-
-    );
-
+    cursor: pointer;
 }
 
-.navbar-brand{
 
-    font-size:1.4rem;
+input[type="file"]:focus {
+    border-color: var(--primary-green);
 
+    box-shadow:
+        0 0 0 0.2rem rgba(25, 135, 84, 0.15);
 }
 
-.nav-link{
-
-    color:white !important;
-
-    font-weight:500;
-
-}
-
-.nav-link:hover{
-
-    opacity:.85;
-
-}
 
 /* ==========================================
-   Footer
-========================================== */
+   PREDICTION IMAGE
+   ========================================== */
 
-footer{
+.prediction-image-wrapper {
+    width: 100%;
 
-    background:#1B1B1B;
+    min-height: 300px;
 
-    color:white;
+    display: flex;
 
-    margin-top:80px;
+    align-items: center;
 
-    padding:40px 0;
+    justify-content: center;
 
+    overflow: hidden;
+
+    border-radius: 18px;
 }
 
-footer p{
 
-    color:#cccccc;
+.prediction-image {
+    display: block;
 
+    width: 100%;
+
+    max-width: 420px;
+
+    height: auto;
+
+    min-height: 250px;
+
+    object-fit: contain;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    border-radius: 18px;
+
+    transition:
+        transform var(--transition);
 }
+
+
+.prediction-image:hover {
+    transform: scale(1.02);
+}
+
 
 /* ==========================================
-   Forms
-========================================== */
+   RESULT INFORMATION
+   ========================================== */
 
-.form-control{
-
-    border-radius:12px;
-
-    padding:14px;
-
+.dashboard-card h1,
+.dashboard-card h2,
+.dashboard-card h3,
+.dashboard-card h4,
+.dashboard-card h5 {
+    font-weight: 600;
 }
 
-.form-control:focus{
 
-    border-color:var(--primary);
-
-    box-shadow:0 0 0 .2rem rgba(46,125,50,.2);
-
+.dashboard-card hr {
+    opacity: 0.12;
 }
+
 
 /* ==========================================
-   Images
-========================================== */
+   BADGES
+   ========================================== */
 
-img{
+.badge {
+    border-radius: 20px;
 
-    max-width:100%;
-
-    border-radius:15px;
-
+    padding: 0.55rem 0.8rem;
 }
 
+
 /* ==========================================
-   Loader
-========================================== */
+   LIST GROUP
+   ========================================== */
 
-#loader{
+.list-group-item {
+    background: transparent;
 
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:white;
-
-    z-index:9999;
-
+    border-color: rgba(0, 0, 0, 0.06);
 }
 
+
 /* ==========================================
-   Scroll Button
-========================================== */
+   ANALYTICS CHART
+   ========================================== */
 
-#topBtn{
+#predictionChart {
+    width: 100% !important;
 
-    position:fixed;
-
-    right:30px;
-
-    bottom:30px;
-
-    width:55px;
-
-    height:55px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:var(--primary);
-
-    color:white;
-
-    display:none;
-
-    box-shadow:var(--shadow);
-
-    z-index:1000;
-
+    max-width: 100%;
 }
 
+
 /* ==========================================
-   Badges
-========================================== */
+   TIMELINE
+   ========================================== */
 
-.badge{
-
-    padding:10px 18px;
-
-    border-radius:50px;
-
+.timeline-item {
+    position: relative;
 }
 
-/* ==========================================
-   Dashboard Cards
-========================================== */
 
-.dashboard-card{
+.timeline-icon {
+    display: inline-flex;
 
-    border:none;
+    align-items: center;
 
-    border-radius:18px;
+    justify-content: center;
 
-    box-shadow:var(--shadow);
+    width: 60px;
 
+    height: 60px;
+
+    border-radius: 50%;
 }
 
+
 /* ==========================================
-   Progress
-========================================== */
+   ALERTS
+   ========================================== */
 
-.progress{
-
-    height:28px;
-
-    border-radius:20px;
-
+.alert {
+    border-radius: 12px;
 }
 
+
 /* ==========================================
-   Responsive
-========================================== */
+   FOOTER
+   ========================================== */
 
-@media(max-width:992px){
+footer {
+    background-color: #ffffff;
 
-    h1{
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 
-        font-size:2.2rem;
+    transition:
+        background-color var(--transition),
+        color var(--transition);
+}
 
+
+/* ==========================================
+   BACK TO TOP
+   ========================================== */
+
+#backToTop {
+    width: 48px;
+
+    height: 48px;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 999;
+}
+
+
+#backToTop.show {
+    display: flex;
+}
+
+
+/* ==========================================
+   LOADING SPINNER
+   ========================================== */
+
+#loadingSpinner {
+    background: rgba(255, 255, 255, 0.9);
+
+    padding: 1rem;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ==========================================
+   TOAST
+   ========================================== */
+
+#successToast {
+    z-index: 1100;
+}
+
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+
+body.dark-mode {
+    color: #f1f3f5;
+
+    background-color: #121916;
+}
+
+
+body.dark-mode .custom-card {
+    background-color: #1b2520;
+
+    color: #f1f3f5;
+
+    border-color: rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+body.dark-mode .custom-card:hover {
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+
+body.dark-mode footer {
+    background-color: #18211c;
+
+    color: #f1f3f5;
+
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+
+body.dark-mode .bg-light {
+    background-color: #243029 !important;
+
+    color: #f1f3f5;
+}
+
+
+body.dark-mode .text-muted {
+    color: #adb5bd !important;
+}
+
+
+body.dark-mode .border {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+
+body.dark-mode .list-group-item {
+    color: #f1f3f5;
+
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+body.dark-mode .alert-light {
+    background-color: #243029;
+
+    color: #f1f3f5;
+
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+body.dark-mode #loadingSpinner {
+    background: rgba(18, 25, 22, 0.95);
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 991.98px) {
+
+    .custom-card {
+        padding: 1.5rem;
     }
 
-    h2{
-
-        font-size:1.7rem;
-
+    .prediction-image-wrapper {
+        min-height: 250px;
     }
 
-}
+    .prediction-image {
+        max-width: 350px;
 
-@media(max-width:768px){
-
-    body{
-
-        overflow-x:hidden;
-
-    }
-
-    h1{
-
-        font-size:1.8rem;
-
-    }
-
-    h2{
-
-        font-size:1.5rem;
-
-    }
-
-    .btn-custom{
-
-        width:100%;
-
-    }
-
-    footer{
-
-        text-align:center;
-
-    }
-
-}
-/* ==========================================
-   Prediction Summary
-========================================== */
-
-.prediction-image{
-
-    max-height:360px;
-
-    object-fit:cover;
-
-    border-radius:20px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-}
-
-.dashboard-card{
-
-    border:none;
-
-    border-radius:20px;
-
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
-
-}
-
-.dashboard-card .border{
-
-    border:1px solid #E5E7EB !important;
-
-    transition:.3s;
-
-}
-
-.dashboard-card .border:hover{
-
-    border-color:#2E7D32 !important;
-
-    transform:translateY(-3px);
-
-}
-
-.badge{
-
-    font-size:0.95rem;
-
-    padding:10px 18px;
-
-    border-radius:50px;
-
-}
-/* ==========================================
-   Analytics
-========================================== */
-
-.table{
-
-    vertical-align:middle;
-
-}
-
-.table th{
-
-    font-weight:600;
-
-}
-
-.progress{
-
-    height:22px;
-
-    border-radius:20px;
-
-    background:#E9ECEF;
-
-}
-
-.progress-bar{
-
-    font-size:.8rem;
-
-    font-weight:600;
-
-}
-
-canvas{
-
-    max-width:100%;
-
-}
-
-.dashboard-card{
-
-    height:100%;
-
-}
-/* ==========================================
-   Disease Profile
-========================================== */
-
-.info-card{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:18px;
-
-    padding:22px;
-
-    border-radius:16px;
-
-    background:#FAFAFA;
-
-    border:1px solid #ECECEC;
-
-    transition:.3s;
-
-    height:100%;
-
-}
-
-.info-card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-.icon-box{
-
-    width:60px;
-
-    height:60px;
-
-    border-radius:15px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:white;
-
-    font-size:24px;
-
-    flex-shrink:0;
-
-}
-
-.info-card h6{
-
-    margin-bottom:8px;
-
-    font-weight:600;
-
-}
-
-.info-card p{
-
-    margin:0;
-
-}
-
-.spread-section{
-
-    background:#F8F9FA;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    border-left:5px solid var(--danger);
-
-}
-/* ==========================================
-   Disease Timeline
-========================================== */
-
-.timeline{
-
-    position:relative;
-
-    margin-top:30px;
-
-    padding-left:30px;
-
-}
-
-.timeline::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:22px;
-
-    top:0;
-
-    bottom:0;
-
-    width:4px;
-
-    background:#E0E0E0;
-
-    border-radius:10px;
-
-}
-
-.timeline-item{
-
-    position:relative;
-
-    display:flex;
-
-    gap:25px;
-
-    margin-bottom:40px;
-
-}
-
-.timeline-dot{
-
-    width:45px;
-
-    height:45px;
-
-    min-width:45px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:white;
-
-    font-size:20px;
-
-    position:relative;
-
-    z-index:2;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-
-}
-
-.timeline-content{
-
-    flex:1;
-
-    background:#FAFAFA;
-
-    border-radius:16px;
-
-    padding:20px;
-
-    border:1px solid #E8E8E8;
-
-    transition:.3s;
-
-}
-
-.timeline-content:hover{
-
-    transform:translateY(-4px);
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-.timeline-content h4{
-
-    margin-bottom:10px;
-
-}
-
-.timeline-content p{
-
-    margin:0;
-
-}
-
-@media(max-width:768px){
-
-    .timeline{
-
-        padding-left:15px;
-
-    }
-
-    .timeline-item{
-
-        gap:15px;
-
-    }
-
-    .timeline-dot{
-
-        width:38px;
-
-        height:38px;
-
-        min-width:38px;
-
-        font-size:16px;
-
+        min-height: 200px;
     }
 
 }
-/* ==========================================
-   Symptoms & Causes
-========================================== */
 
-.feature-list{
 
-    list-style:none;
+@media (max-width: 767.98px) {
 
-    padding:0;
+    .custom-card {
+        padding: 1.25rem;
 
-    margin:0;
+        border-radius: 14px;
+    }
 
-}
+    .prediction-image-wrapper {
+        min-height: 220px;
+    }
 
-.feature-list li{
+    .prediction-image {
+        max-width: 100%;
 
-    display:flex;
+        min-height: 180px;
+    }
 
-    align-items:flex-start;
+    h1 {
+        font-size: 1.8rem;
+    }
 
-    gap:15px;
-
-    padding:14px 16px;
-
-    margin-bottom:12px;
-
-    border-radius:12px;
-
-    background:#FAFAFA;
-
-    border:1px solid #ECECEC;
-
-    transition:.3s;
+    h2 {
+        font-size: 1.5rem;
+    }
 
 }
 
-.feature-list li:hover{
 
-    transform:translateX(6px);
+@media (max-width: 575.98px) {
 
-    border-color:var(--primary);
+    .custom-card {
+        padding: 1rem;
+    }
 
-    background:#F5FFF5;
+    .btn-lg {
+        width: 100%;
+    }
 
-}
-
-.feature-list i{
-
-    font-size:20px;
-
-    margin-top:2px;
-
-    flex-shrink:0;
-
-}
-
-.alert{
-
-    border-radius:12px;
-
-}
-/* ==========================================
-   Treatment Cards
-========================================== */
-
-.dashboard-card{
-
-    transition:all .3s ease;
-
-}
-
-.dashboard-card:hover{
-
-    transform:translateY(-6px);
-
-    box-shadow:0 15px 35px rgba(0,0,0,.10);
-
-}
-
-.dashboard-card h2{
-
-    font-size:1.5rem;
-
-}
-
-.dashboard-card .alert{
-
-    margin-top:15px;
-
-}
-
-.dashboard-card .feature-list li{
-
-    min-height:55px;
-
-}
-/* ==========================================
-   Prevention
-========================================== */
-
-.practice-card{
-
-    background:#F8F9FA;
-
-    border:1px solid #E9ECEF;
-
-    border-radius:16px;
-
-    padding:25px;
-
-    text-align:center;
-
-    height:100%;
-
-    transition:.3s;
-
-}
-
-.practice-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 15px 35px rgba(0,0,0,.10);
-
-    border-color:var(--primary);
-
-}
-
-.practice-card h5{
-
-    margin-top:15px;
-
-    font-weight:600;
-
-}
-
-.practice-card p{
-
-    margin-top:10px;
-
-    font-size:.95rem;
-
-}
-/* ==========================================
-   Risk Assessment
-========================================== */
-
-.risk-circle{
-
-    width:180px;
-
-    height:180px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:white;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-.risk-circle h1{
-
-    margin:0;
-
-    font-size:2.5rem;
-
-    font-weight:700;
-
-}
-
-.risk-box{
-
-    padding:20px;
-
-    border-radius:15px;
-
-    text-align:center;
-
-    transition:.3s;
-
-    height:100%;
-
-}
-
-.risk-box:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 10px 20px rgba(0,0,0,.08);
-
-}
-
-.progress{
-
-    height:28px;
-
-    border-radius:20px;
-
-}
-
-.progress-bar{
-
-    font-weight:600;
-
-}
-/* ==========================================
-   Action Buttons
-========================================== */
-
-.future-card{
-
-    padding:30px;
-
-    border-radius:18px;
-
-    background:#FAFAFA;
-
-    border:1px solid #E8E8E8;
-
-    transition:.3s;
-
-    height:100%;
-
-}
-
-.future-card:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 15px 35px rgba(0,0,0,.10);
-
-    border-color:var(--primary);
-
-}
-
-.future-card h5{
-
-    margin-top:18px;
-
-    font-weight:600;
-
-}
-
-.future-card p{
-
-    margin-top:12px;
-
-    font-size:.95rem;
-
-}
-
-.btn-lg{
-
-    border-radius:12px;
-
-    font-weight:600;
+    .prediction-image {
+        min-height: 150px;
+    }
 
 }

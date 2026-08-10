@@ -1,0 +1,106 @@
+<div class="custom-card dashboard-card mt-4">
+
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
+
+    <div class="mb-4">
+
+        <h2 class="text-success mb-1">
+            Recommended Actions
+        </h2>
+
+        <p class="text-muted mb-0">
+            Suggested actions based on the detected disease
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         RECOMMENDED ACTIONS
+         ========================================== -->
+
+    {% if info.Recommended_Actions %}
+
+    <div class="row g-4">
+
+        {% for action in info.Recommended_Actions %}
+
+        <div class="col-md-6">
+
+            <div class="border rounded-4 p-4 h-100">
+
+                <div class="d-flex align-items-start">
+
+                    <div class="me-3">
+
+                        <div
+                            class="rounded-circle bg-success text-white
+                                   d-flex align-items-center
+                                   justify-content-center"
+                            style="
+                                width:45px;
+                                height:45px;
+                                min-width:45px;
+                            ">
+
+                            <i class="bi bi-lightbulb-fill"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h5 class="mb-2">
+                            Action {{ loop.index }}
+                        </h5>
+
+                        <p class="mb-0 text-muted">
+                            {{ action }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-secondary mb-0">
+
+        <i class="bi bi-info-circle-fill me-2"></i>
+
+        No specific recommended actions are
+        available for this disease.
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         GENERAL RECOMMENDATION
+         ========================================== -->
+
+    <div class="alert alert-success mt-4 mb-0">
+
+        <i class="bi bi-check-circle-fill me-2"></i>
+
+        <strong>Recommendation:</strong>
+
+        Monitor the plant regularly and follow the
+        disease-specific treatment and prevention
+        guidance provided above.
+
+    </div>
+
+</div>

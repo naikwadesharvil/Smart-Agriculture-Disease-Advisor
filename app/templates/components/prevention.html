@@ -1,251 +1,115 @@
-<!-- ==========================================
-     Prevention & Recommended Actions
-========================================== -->
+<div class="custom-card dashboard-card mt-4">
 
-<section class="mb-5">
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
-    <div class="row">
+    <div class="mb-4">
 
-        <!-- ================= Prevention ================= -->
+        <h2 class="text-success mb-1">
+            Prevention
+        </h2>
 
-        <div class="col-lg-6">
+        <p class="text-muted mb-0">
+            Recommended practices to reduce disease spread
+            and future infection
+        </p>
 
-            <div class="custom-card dashboard-card h-100">
+    </div>
 
-                <div class="d-flex align-items-center mb-4">
 
-                    <i class="bi bi-shield-check display-5 text-success me-3"></i>
+    <!-- ==========================================
+         PREVENTION METHODS
+         ========================================== -->
+
+    {% if info.Prevention %}
+
+    <div class="row g-4">
+
+        {% for prevention in info.Prevention %}
+
+        <div class="col-md-6">
+
+            <div class="border rounded-4 p-4 h-100">
+
+                <div class="d-flex align-items-start">
+
+                    <div class="me-3">
+
+                        <div
+                            class="rounded-circle bg-success text-white
+                                   d-flex align-items-center
+                                   justify-content-center"
+                            style="
+                                width:45px;
+                                height:45px;
+                                min-width:45px;
+                            ">
+
+                            <i class="bi bi-shield-check fs-5"></i>
+
+                        </div>
+
+                    </div>
 
                     <div>
 
-                        <h2 class="mb-0">
+                        <h5 class="mb-2">
+                            Prevention {{ loop.index }}
+                        </h5>
 
-                            Prevention
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Prevent future infections using these methods.
-
+                        <p class="mb-0 text-muted">
+                            {{ prevention }}
                         </p>
 
                     </div>
 
                 </div>
 
-                {% if info.Prevention %}
-
-                <ul class="feature-list">
-
-                    {% for item in info.Prevention %}
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        {{ item }}
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
-
-                {% else %}
-
-                <div class="alert alert-secondary">
-
-                    No prevention information available.
-
-                </div>
-
-                {% endif %}
-
             </div>
 
         </div>
 
-        <!-- ================= Recommended Actions ================= -->
-
-        <div class="col-lg-6">
-
-            <div class="custom-card dashboard-card h-100">
-
-                <div class="d-flex align-items-center mb-4">
-
-                    <i class="bi bi-lightbulb-fill display-5 text-warning me-3"></i>
-
-                    <div>
-
-                        <h2 class="mb-0">
-
-                            Recommended Actions
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Immediate actions suggested by the AI advisor.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                {% if info.Recommended_Actions %}
-
-                <ul class="feature-list">
-
-                    {% for item in info.Recommended_Actions %}
-
-                    <li>
-
-                        <i class="bi bi-arrow-right-circle-fill text-warning"></i>
-
-                        {{ item }}
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
-
-                {% else %}
-
-                <div class="alert alert-secondary">
-
-                    No recommendations available.
-
-                </div>
-
-                {% endif %}
-
-            </div>
-
-        </div>
+        {% endfor %}
 
     </div>
 
-    <!-- ================= Best Farming Practices ================= -->
+    {% else %}
 
-    <div class="custom-card dashboard-card mt-4">
+    <!-- ==========================================
+         NO PREVENTION INFORMATION
+         ========================================== -->
 
-        <div class="d-flex align-items-center mb-4">
+    <div class="alert alert-secondary mb-0">
 
-            <i class="bi bi-tree-fill display-5 text-primary me-3"></i>
+        <i class="bi bi-info-circle-fill me-2"></i>
 
-            <div>
-
-                <h2 class="mb-0">
-
-                    Best Farming Practices
-
-                </h2>
-
-                <p class="mb-0">
-
-                    General recommendations for maintaining healthy crops.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-3 mb-3">
-
-                <div class="practice-card">
-
-                    <i class="bi bi-droplet-half display-5 text-info"></i>
-
-                    <h5 class="mt-3">
-
-                        Water Management
-
-                    </h5>
-
-                    <p>
-
-                        Avoid excessive watering and ensure proper drainage.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3 mb-3">
-
-                <div class="practice-card">
-
-                    <i class="bi bi-brightness-high-fill display-5 text-warning"></i>
-
-                    <h5 class="mt-3">
-
-                        Sunlight
-
-                    </h5>
-
-                    <p>
-
-                        Provide sufficient sunlight and good air circulation.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3 mb-3">
-
-                <div class="practice-card">
-
-                    <i class="bi bi-flower1 display-5 text-success"></i>
-
-                    <h5 class="mt-3">
-
-                        Crop Care
-
-                    </h5>
-
-                    <p>
-
-                        Remove infected leaves and sanitize garden tools regularly.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3 mb-3">
-
-                <div class="practice-card">
-
-                    <i class="bi bi-shield-check display-5 text-primary"></i>
-
-                    <h5 class="mt-3">
-
-                        Regular Inspection
-
-                    </h5>
-
-                    <p>
-
-                        Inspect plants weekly to detect diseases at an early stage.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
+        Prevention information is not available
+        for this disease.
 
     </div>
 
-</section>
+    {% endif %}
+
+
+    <!-- ==========================================
+         GENERAL PREVENTION NOTE
+         ========================================== -->
+
+    {% if info.Prevention %}
+
+    <div class="alert alert-success mt-4 mb-0">
+
+        <i class="bi bi-shield-fill-check me-2"></i>
+
+        <strong>Prevention Tip:</strong>
+
+        Following proper crop hygiene and monitoring
+        practices can help reduce the risk of disease
+        development and spread.
+
+    </div>
+
+    {% endif %}
+
+</div>

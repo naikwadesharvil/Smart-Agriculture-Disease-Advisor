@@ -1,243 +1,304 @@
-<!-- ==========================================
-     Prediction Summary
-========================================== -->
+<div class="custom-card dashboard-card">
 
-<section class="mb-5">
+    <div class="row align-items-center g-4">
 
-    <div class="custom-card dashboard-card">
+        <!-- ==========================================
+             UPLOADED IMAGE
+             ========================================== -->
 
-        <div class="row align-items-center">
+        <div class="col-lg-4 text-center">
 
-            <!-- ================= IMAGE ================= -->
-
-            <div class="col-lg-4 text-center">
+            <div class="prediction-image-wrapper">
 
                 <img
-                    src="/{{ image_path }}"
+                    src="{{ image_path }}"
                     class="img-fluid rounded-4 shadow prediction-image"
-                    alt="Uploaded Leaf">
+                    alt="Uploaded Plant Leaf"
+                    loading="eager">
 
             </div>
 
-            <!-- ================= DETAILS ================= -->
+        </div>
 
-            <div class="col-lg-8">
 
-                <div class="d-flex justify-content-between align-items-start flex-wrap">
+        <!-- ==========================================
+             PREDICTION DETAILS
+             ========================================== -->
 
-                    <div>
+        <div class="col-lg-8">
 
-                        <h1 class="text-success mb-2">
+            <div class="d-flex justify-content-between
+                        align-items-start
+                        flex-wrap
+                        gap-3">
 
-                            {{ prediction }}
+                <div>
 
-                        </h1>
+                    <span class="text-muted small">
+                        AI Prediction
+                    </span>
 
-                        <p class="mb-3">
+                    <h1 class="text-success mb-2">
 
-                            {{ info.Description }}
+                        {{ prediction }}
 
-                        </p>
+                    </h1>
 
-                    </div>
+                    <p class="mb-3">
 
-                    <div>
+                        {{ info.Description }}
 
-                        {% if info.Risk_Level == "Low" %}
+                    </p>
 
-                        <span class="badge bg-success">
+                </div>
 
-                            🟢 Low Risk
 
-                        </span>
+                <!-- ==================================
+                     RISK BADGE
+                     ================================== -->
 
-                        {% elif info.Risk_Level == "Medium" %}
+                <div>
 
-                        <span class="badge bg-warning text-dark">
+                    {% if info.Risk_Level == "Low" %}
 
-                            🟡 Medium Risk
+                    <span class="badge bg-success fs-6">
 
-                        </span>
+                        🟢 Low Risk
 
-                        {% elif info.Risk_Level == "High" %}
+                    </span>
 
-                        <span class="badge bg-danger">
+                    {% elif info.Risk_Level == "Medium" %}
 
-                            🔴 High Risk
+                    <span class="badge bg-warning text-dark fs-6">
 
-                        </span>
+                        🟡 Medium Risk
 
-                        {% else %}
+                    </span>
 
-                        <span class="badge bg-dark">
+                    {% elif info.Risk_Level == "High" %}
 
-                            ⚫ Very High Risk
+                    <span class="badge bg-danger fs-6">
 
-                        </span>
+                        🔴 High Risk
 
-                        {% endif %}
+                    </span>
+
+                    {% elif info.Risk_Level == "Very High" %}
+
+                    <span class="badge bg-danger fs-6">
+
+                        🔴 Very High Risk
+
+                    </span>
+
+                    {% else %}
+
+                    <span class="badge bg-secondary fs-6">
+
+                        ⚫ {{ info.Risk_Level }}
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <!-- ==========================================
+                 MAIN INFORMATION
+                 ========================================== -->
+
+            <div class="row g-3">
+
+
+                <!-- Crop -->
+
+                <div class="col-md-6">
+
+                    <div class="border rounded-3 p-3 h-100">
+
+                        <small class="text-muted d-block mb-1">
+
+                            Crop
+
+                        </small>
+
+                        <h5 class="mb-0">
+
+                            {{ info.Crop }}
+
+                        </h5>
 
                     </div>
 
                 </div>
 
-                <hr>
 
-                <div class="row g-3">
+                <!-- Scientific Name -->
 
-                    <div class="col-md-6">
+                <div class="col-md-6">
 
-                        <div class="border rounded-3 p-3 h-100">
+                    <div class="border rounded-3 p-3 h-100">
 
-                            <small class="text-muted">
+                        <small class="text-muted d-block mb-1">
 
-                                Crop
+                            Scientific Name
 
-                            </small>
+                        </small>
 
-                            <h5>
+                        <h5 class="mb-0">
 
-                                {{ info.Crop }}
+                            <em>
 
-                            </h5>
+                                {{ info.Scientific_Name }}
 
-                        </div>
+                            </em>
 
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="border rounded-3 p-3 h-100">
-
-                            <small class="text-muted">
-
-                                Scientific Name
-
-                            </small>
-
-                            <h5>
-
-                                <em>
-
-                                    {{ info.Scientific_Name }}
-
-                                </em>
-
-                            </h5>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="border rounded-3 p-3 h-100">
-
-                            <small class="text-muted">
-
-                                Confidence
-
-                            </small>
-
-                            <h3 class="text-success">
-
-                                {{ confidence }}
-
-                            </h3>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="border rounded-3 p-3 h-100">
-
-                            <small class="text-muted">
-
-                                Pathogen Type
-
-                            </small>
-
-                            <h5>
-
-                                {{ info.Pathogen_Type }}
-
-                            </h5>
-
-                        </div>
+                        </h5>
 
                     </div>
 
                 </div>
 
-                <!-- ================= QUICK INFO ================= -->
 
-                <div class="row mt-4">
+                <!-- Confidence -->
 
-                    <div class="col-md-4">
+                <div class="col-md-6">
 
-                        <div class="text-center p-3 bg-light rounded-3">
+                    <div class="border rounded-3 p-3 h-100">
 
-                            <i class="bi bi-bug-fill display-6 text-danger"></i>
+                        <small class="text-muted d-block mb-1">
 
-                            <h6 class="mt-2">
+                            Confidence
 
-                                Pathogen
+                        </small>
 
-                            </h6>
+                        <h3 class="text-success mb-0">
 
-                            <strong>
+                            {{ confidence }}
 
-                                {{ info.Pathogen }}
-
-                            </strong>
-
-                        </div>
+                        </h3>
 
                     </div>
 
-                    <div class="col-md-4">
+                </div>
 
-                        <div class="text-center p-3 bg-light rounded-3">
 
-                            <i class="bi bi-tree-fill display-6 text-success"></i>
+                <!-- Pathogen Type -->
 
-                            <h6 class="mt-2">
+                <div class="col-md-6">
 
-                                Category
+                    <div class="border rounded-3 p-3 h-100">
 
-                            </h6>
+                        <small class="text-muted d-block mb-1">
 
-                            <strong>
+                            Pathogen Type
 
-                                {{ info.Category }}
+                        </small>
 
-                            </strong>
+                        <h5 class="mb-0">
 
-                        </div>
+                            {{ info.Pathogen_Type }}
+
+                        </h5>
 
                     </div>
 
-                    <div class="col-md-4">
+                </div>
 
-                        <div class="text-center p-3 bg-light rounded-3">
+            </div>
 
-                            <i class="bi bi-exclamation-triangle-fill display-6 text-warning"></i>
 
-                            <h6 class="mt-2">
+            <!-- ==========================================
+                 QUICK INFORMATION
+                 ========================================== -->
 
-                                Severity
+            <div class="row g-3 mt-3">
 
-                            </h6>
 
-                            <strong>
+                <!-- Pathogen -->
 
-                                {{ info.Severity }}
+                <div class="col-md-4">
 
-                            </strong>
+                    <div
+                        class="text-center p-3 bg-light rounded-3 h-100">
 
-                        </div>
+                        <i
+                            class="bi bi-bug-fill display-6 text-danger">
+                        </i>
+
+                        <h6 class="mt-2">
+
+                            Pathogen
+
+                        </h6>
+
+                        <strong>
+
+                            {{ info.Pathogen }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="col-md-4">
+
+                    <div
+                        class="text-center p-3 bg-light rounded-3 h-100">
+
+                        <i
+                            class="bi bi-tree-fill display-6 text-success">
+                        </i>
+
+                        <h6 class="mt-2">
+
+                            Category
+
+                        </h6>
+
+                        <strong>
+
+                            {{ info.Category }}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Severity -->
+
+                <div class="col-md-4">
+
+                    <div
+                        class="text-center p-3 bg-light rounded-3 h-100">
+
+                        <i
+                            class="bi bi-exclamation-triangle-fill display-6 text-warning">
+                        </i>
+
+                        <h6 class="mt-2">
+
+                            Severity
+
+                        </h6>
+
+                        <strong>
+
+                            {{ info.Severity }}
+
+                        </strong>
 
                     </div>
 
@@ -249,4 +310,4 @@
 
     </div>
 
-</section>
+</div>

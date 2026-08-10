@@ -1,190 +1,96 @@
-<!-- ==========================================
-     Analytics Dashboard
-========================================== -->
+<div class="custom-card dashboard-card mt-4">
 
-<section class="mb-5">
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
-    <div class="row">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
 
-        <!-- ================= LEFT COLUMN ================= -->
+        <div>
 
-        <div class="col-lg-6">
+            <h2 class="text-success mb-1">
+                Prediction Analytics
+            </h2>
 
-            <!-- Top 5 Predictions -->
+            <p class="text-muted mb-0">
+                Top-5 CNN prediction confidence analysis
+            </p>
 
-            <div class="custom-card dashboard-card mb-4">
+        </div>
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="badge bg-success">
+            AI Confidence
+        </span>
 
-                    <h3 class="mb-0">
+    </div>
 
-                        <i class="bi bi-bar-chart-fill text-success"></i>
 
-                        Top Predictions
+    <!-- ==========================================
+         CHART
+         ========================================== -->
 
-                    </h3>
+    <div class="row align-items-center">
 
-                </div>
 
-                <div class="table-responsive">
+        <!-- Chart -->
 
-                    <table class="table align-middle">
+        <div class="col-lg-7">
 
-                        <thead>
+            <div
+                style="
+                    position: relative;
+                    height: 350px;
+                    width: 100%;
+                ">
 
-                            <tr>
-
-                                <th>#</th>
-
-                                <th>Disease</th>
-
-                                <th>Confidence</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            {% for disease, score in ranking %}
-
-                            <tr>
-
-                                <td>
-
-                                    {{ loop.index }}
-
-                                </td>
-
-                                <td>
-
-                                    {{ disease }}
-
-                                </td>
-
-                                <td>
-
-                                    <div class="progress">
-
-                                        <div
-                                            class="progress-bar bg-success"
-                                            style="width: {{ score }}%;">
-
-                                            {{ score }}%
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-                            {% endfor %}
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-            <!-- AI Statistics -->
-
-            <div class="row">
-
-                <div class="col-md-6">
-
-                    <div class="custom-card text-center dashboard-card">
-
-                        <i class="bi bi-cpu-fill display-5 text-success"></i>
-
-                        <h5 class="mt-3">
-
-                            AI Model
-
-                        </h5>
-
-                        <h3>
-
-                            CNN
-
-                        </h3>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="custom-card text-center dashboard-card">
-
-                        <i class="bi bi-diagram-3-fill display-5 text-primary"></i>
-
-                        <h5 class="mt-3">
-
-                            Classes
-
-                        </h5>
-
-                        <h3>
-
-                            38
-
-                        </h3>
-
-                    </div>
-
-                </div>
+                <canvas id="predictionChart"></canvas>
 
             </div>
 
         </div>
 
-        <!-- ================= RIGHT COLUMN ================= -->
 
-        <div class="col-lg-6">
+        <!-- Ranking -->
 
-            <!-- Prediction Chart -->
+        <div class="col-lg-5 mt-4 mt-lg-0">
 
-            <div class="custom-card dashboard-card mb-4">
+            <h5 class="mb-3">
+                Top Predictions
+            </h5>
 
-                <h3>
 
-                    <i class="bi bi-graph-up-arrow text-success"></i>
+            <div class="list-group">
 
-                    Prediction Confidence
 
-                </h3>
-
-                <div style="height:350px;">
-
-                    <canvas id="predictionChart"></canvas>
-
-                </div>
-
-            </div>
-
-            <!-- Doughnut Chart -->
-
-            <div class="custom-card dashboard-card">
-
-                <h3>
-
-                    <i class="bi bi-pie-chart-fill text-primary"></i>
-
-                    Confidence Gauge
-
-                </h3>
+                {% for label, value in ranking %}
 
                 <div
-                    class="d-flex justify-content-center"
-                    style="height:300px;">
+                    class="list-group-item
+                           d-flex
+                           justify-content-between
+                           align-items-center">
 
-                    <canvas id="confidenceChart"></canvas>
+                    <div class="me-3">
+
+                        <strong>
+                            {{ loop.index }}.
+                        </strong>
+
+                        {{ label }}
+
+                    </div>
+
+
+                    <span class="badge bg-success rounded-pill">
+
+                        {{ "%.2f"|format(value) }}%
+
+                    </span>
 
                 </div>
+
+                {% endfor %}
+
 
             </div>
 
@@ -192,4 +98,4 @@
 
     </div>
 
-</section>
+</div>

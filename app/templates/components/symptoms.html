@@ -1,48 +1,50 @@
-<!-- ==========================================
-     Symptoms & Causes
-========================================== -->
+<div class="custom-card dashboard-card mt-4">
 
-<section class="mb-5">
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
-    <div class="row">
+    <div class="mb-4">
 
-        <!-- ================= Symptoms ================= -->
+        <h2 class="text-success mb-1">
+            Symptoms & Causes
+        </h2>
+
+        <p class="text-muted mb-0">
+            Common symptoms and possible causes of the detected disease
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         SYMPTOMS
+         ========================================== -->
+
+    <div class="row g-4">
 
         <div class="col-lg-6">
 
-            <div class="custom-card dashboard-card h-100">
+            <div class="border rounded-4 p-4 h-100">
 
-                <div class="d-flex align-items-center mb-4">
+                <h4 class="text-danger mb-3">
 
-                    <i class="bi bi-heart-pulse-fill display-6 text-danger me-3"></i>
+                    <i class="bi bi-heart-pulse-fill me-2"></i>
 
-                    <div>
+                    Symptoms
 
-                        <h2 class="mb-0">
+                </h4>
 
-                            Symptoms
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Common symptoms observed on infected plants.
-
-                        </p>
-
-                    </div>
-
-                </div>
 
                 {% if info.Symptoms %}
 
-                <ul class="feature-list">
+                <ul class="list-group list-group-flush">
 
                     {% for symptom in info.Symptoms %}
 
-                    <li>
+                    <li class="list-group-item px-0">
 
-                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <i class="bi bi-check-circle-fill text-danger me-2"></i>
 
                         {{ symptom }}
 
@@ -54,11 +56,11 @@
 
                 {% else %}
 
-                <div class="alert alert-secondary">
+                <p class="text-muted mb-0">
 
-                    No symptom information available.
+                    Symptom information is not available.
 
-                </div>
+                </p>
 
                 {% endif %}
 
@@ -66,43 +68,33 @@
 
         </div>
 
-        <!-- ================= Causes ================= -->
+
+        <!-- ==========================================
+             CAUSES
+             ========================================== -->
 
         <div class="col-lg-6">
 
-            <div class="custom-card dashboard-card h-100">
+            <div class="border rounded-4 p-4 h-100">
 
-                <div class="d-flex align-items-center mb-4">
+                <h4 class="text-warning mb-3">
 
-                    <i class="bi bi-exclamation-triangle-fill display-6 text-warning me-3"></i>
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
 
-                    <div>
+                    Causes
 
-                        <h2 class="mb-0">
+                </h4>
 
-                            Causes
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Factors responsible for disease development.
-
-                        </p>
-
-                    </div>
-
-                </div>
 
                 {% if info.Cause %}
 
-                <ul class="feature-list">
+                <ul class="list-group list-group-flush">
 
                     {% for cause in info.Cause %}
 
-                    <li>
+                    <li class="list-group-item px-0">
 
-                        <i class="bi bi-arrow-right-circle-fill text-warning"></i>
+                        <i class="bi bi-arrow-right-circle-fill text-warning me-2"></i>
 
                         {{ cause }}
 
@@ -114,11 +106,11 @@
 
                 {% else %}
 
-                <div class="alert alert-secondary">
+                <p class="text-muted mb-0">
 
-                    No cause information available.
+                    Cause information is not available.
 
-                </div>
+                </p>
 
                 {% endif %}
 
@@ -128,4 +120,33 @@
 
     </div>
 
-</section>
+
+    <!-- ==========================================
+         AFFECTED PART
+         ========================================== -->
+
+    <div class="alert alert-light border mt-4 mb-0">
+
+        <div class="d-flex align-items-center">
+
+            <i class="bi bi-leaf-fill text-success fs-4 me-3"></i>
+
+            <div>
+
+                <strong>
+                    Affected Part
+                </strong>
+
+                <div class="text-muted">
+
+                    {{ info.Affected_Part }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

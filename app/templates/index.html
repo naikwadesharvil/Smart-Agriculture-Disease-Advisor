@@ -1,394 +1,488 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 Home | Smart Agriculture Disease Advisor
 {% endblock %}
 
+
 {% block content %}
 
-<!-- ================= HERO ================= -->
 
-<section class="py-5">
+<!-- ==========================================
+     HERO SECTION
+     ========================================== -->
 
-    <div class="row align-items-center">
+<div
+    class="row align-items-center mb-5"
+    data-aos="fade-up">
 
-        <div class="col-lg-6" data-aos="fade-right">
+    <div
+        class="col-lg-6"
+        data-aos="fade-right">
 
-            <h1 class="fw-bold text-success">
+        <h1 class="fw-bold text-success">
 
-                AI Powered Plant Disease Detection
+            AI Powered Plant Disease Detection
 
-            </h1>
+        </h1>
 
-            <p class="lead mt-4">
 
-                Upload a plant leaf image and let our Deep Learning CNN
-                identify diseases instantly with confidence analysis,
-                symptoms, treatments, prevention methods, and AI recommendations.
+        <p class="lead mt-4">
 
-            </p>
-
-            <a href="#upload" class="btn btn-success btn-lg mt-3">
-
-                <i class="bi bi-upload"></i>
-
-                Start Diagnosis
-
-            </a>
-
-        </div>
-
-        <div class="col-lg-6 text-center" data-aos="fade-left">
-
-            <img
-                src="{{ url_for('static', filename='images/hero.png') }}"
-                class="img-fluid"
-                style="max-height:450px;"
-                alt="Hero">
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= FEATURES ================= -->
-
-<section class="py-5">
-
-    <div class="row g-4">
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center h-100" data-aos="zoom-in">
-
-                <i class="bi bi-cpu-fill display-3 text-success"></i>
-
-                <h3 class="mt-3">
-
-                    AI Detection
-
-                </h3>
-
-                <p>
-
-                    Deep CNN model trained to recognize 38 plant diseases
-                    across multiple crops.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center h-100" data-aos="zoom-in" data-aos-delay="100">
-
-                <i class="bi bi-graph-up-arrow display-3 text-primary"></i>
-
-                <h3 class="mt-3">
-
-                    Confidence Analysis
-
-                </h3>
-
-                <p>
-
-                    View Top-5 predictions with confidence scores
-                    using interactive charts.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center h-100" data-aos="zoom-in" data-aos-delay="200">
-
-                <i class="bi bi-shield-check display-3 text-warning"></i>
-
-                <h3 class="mt-3">
-
-                    Disease Management
-
-                </h3>
-
-                <p>
-
-                    Get treatment, organic solutions,
-                    prevention methods and recommendations.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= UPLOAD ================= -->
-
-<section id="upload" class="py-5">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-8">
-
-            <div class="custom-card text-center" data-aos="fade-up">
-
-                <h2 class="text-success">
-
-                    Upload Plant Leaf
-
-                </h2>
-
-                <p>
-
-                    Supported formats:
-                    JPG • JPEG • PNG
-
-                </p>
-
-                <form
-                    action="/predict"
-                    method="POST"
-                    enctype="multipart/form-data">
-
-                    <input
-                        class="form-control mb-4"
-                        type="file"
-                        name="image"
-                        accept=".jpg,.jpeg,.png"
-                        required>
-
-                    <button
-                        class="btn btn-success btn-lg">
-
-                        <i class="bi bi-search"></i>
-
-                        Analyze Plant
-
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= STATISTICS ================= -->
-
-<section class="py-5">
-
-    <div class="row text-center g-4">
-
-        <div class="col-md-3">
-
-            <div class="custom-card">
-
-                <h2 class="text-success">
-
-                    38
-
-                </h2>
-
-                <p>
-
-                    Disease Classes
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="custom-card">
-
-                <h2 class="text-primary">
-
-                    14
-
-                </h2>
-
-                <p>
-
-                    Crop Types
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="custom-card">
-
-                <h2 class="text-warning">
-
-                    CNN
-
-                </h2>
-
-                <p>
-
-                    Deep Learning
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="custom-card">
-
-                <h2 class="text-danger">
-
-                    AI
-
-                </h2>
-
-                <p>
-
-                    Powered Diagnosis
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= HOW IT WORKS ================= -->
-
-<section class="py-5">
-
-    <div class="text-center mb-5">
-
-        <h2 class="text-success">
-
-            How It Works
-
-        </h2>
-
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center">
-
-                <i class="bi bi-cloud-upload display-4 text-success"></i>
-
-                <h4 class="mt-3">
-
-                    Upload
-
-                </h4>
-
-                <p>
-
-                    Upload a clear image of a plant leaf.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center">
-
-                <i class="bi bi-cpu display-4 text-primary"></i>
-
-                <h4 class="mt-3">
-
-                    AI Analysis
-
-                </h4>
-
-                <p>
-
-                    CNN model analyzes the uploaded image.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center">
-
-                <i class="bi bi-file-earmark-medical display-4 text-danger"></i>
-
-                <h4 class="mt-3">
-
-                    Get Report
-
-                </h4>
-
-                <p>
-
-                    Receive diagnosis, confidence, treatments,
-                    prevention and recommendations.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= CTA ================= -->
-
-<section class="py-5 text-center">
-
-    <div class="custom-card" data-aos="zoom-in">
-
-        <h2>
-
-            Ready to Diagnose Your Plant?
-
-        </h2>
-
-        <p>
-
-            Start using AI-powered disease detection today.
+            Upload a plant leaf image and let our
+            Deep Learning CNN identify diseases
+            instantly with confidence analysis,
+            symptoms, treatments, prevention
+            methods, and AI recommendations.
 
         </p>
 
-        <a href="#upload"
-           class="btn btn-success btn-lg">
 
-            Analyze Now
+        <a
+            href="#upload"
+            class="btn btn-success btn-lg mt-3">
+
+            <i class="bi bi-upload"></i>
+
+            Start Diagnosis
 
         </a>
 
     </div>
 
-</section>
+
+    <div
+        class="col-lg-6 text-center"
+        data-aos="fade-left">
+
+        <img
+            src="{{ url_for('static', filename='images/hero.png') }}"
+            class="img-fluid"
+            style="max-height:450px;"
+            alt="Smart Agriculture Disease Detection">
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     FEATURES
+     ========================================== -->
+
+<div class="row g-4 mb-5">
+
+
+    <!-- AI Detection -->
+
+    <div class="col-md-4">
+
+        <div
+            class="custom-card text-center h-100"
+            data-aos="zoom-in">
+
+            <i
+                class="bi bi-cpu-fill display-3 text-success">
+            </i>
+
+
+            <h3 class="mt-3">
+
+                AI Detection
+
+            </h3>
+
+
+            <p>
+
+                Deep CNN model trained to recognize
+                38 plant disease classes across
+                multiple crops.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Confidence -->
+
+    <div class="col-md-4">
+
+        <div
+            class="custom-card text-center h-100"
+            data-aos="zoom-in"
+            data-aos-delay="100">
+
+            <i
+                class="bi bi-graph-up-arrow display-3 text-primary">
+            </i>
+
+
+            <h3 class="mt-3">
+
+                Confidence Analysis
+
+            </h3>
+
+
+            <p>
+
+                View Top-5 predictions with
+                confidence scores using
+                interactive charts.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Disease Management -->
+
+    <div class="col-md-4">
+
+        <div
+            class="custom-card text-center h-100"
+            data-aos="zoom-in"
+            data-aos-delay="200">
+
+            <i
+                class="bi bi-shield-check display-3 text-warning">
+            </i>
+
+
+            <h3 class="mt-3">
+
+                Disease Management
+
+            </h3>
+
+
+            <p>
+
+                Get treatment, organic solutions,
+                prevention methods and
+                recommendations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     UPLOAD SECTION
+     ========================================== -->
+
+<div class="row justify-content-center" id="upload">
+
+    <div class="col-lg-8">
+
+        <div
+            class="custom-card text-center"
+            data-aos="fade-up">
+
+            <h2 class="text-success">
+                Upload Plant Leaf
+            </h2>
+
+            <p class="text-muted">
+                Supported formats: JPG • JPEG • PNG
+            </p>
+
+
+            <form
+                action="{{ url_for('predict') }}"
+                method="POST"
+                enctype="multipart/form-data"
+                id="uploadForm">
+
+
+                <!-- ==============================
+                     IMAGE INPUT
+                     ============================== -->
+
+                <label for="image" class="form-label">Select Plant Leaf Image</label>
+
+                <input
+                    class="form-control mb-4"
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+                    required>
+
+
+                <!-- ==============================
+                     SUBMIT BUTTON
+                     ============================== -->
+
+                <button
+                    type="submit"
+                    class="btn btn-success btn-lg"
+                    id="analyzeButton">
+
+                    <i class="bi bi-search me-2"></i>
+
+                    Analyze Plant
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     PROJECT STATISTICS
+     ========================================== -->
+
+<div class="row text-center g-4 mb-5">
+
+
+    <div class="col-md-3">
+
+        <div class="custom-card">
+
+            <h2 class="text-success">
+
+                38
+
+            </h2>
+
+
+            <p>
+
+                Disease Classes
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="custom-card">
+
+            <h2 class="text-primary">
+
+                14
+
+            </h2>
+
+
+            <p>
+
+                Crop Types
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="custom-card">
+
+            <h2 class="text-warning">
+
+                CNN
+
+            </h2>
+
+
+            <p>
+
+                Deep Learning
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+        <div class="custom-card">
+
+            <h2 class="text-danger">
+
+                AI
+
+            </h2>
+
+
+            <p>
+
+                Powered Diagnosis
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     HOW IT WORKS
+     ========================================== -->
+
+<div class="text-center mb-5">
+
+    <h2 class="text-success">
+
+        How It Works
+
+    </h2>
+
+</div>
+
+
+<div class="row g-4 mb-5">
+
+
+    <!-- Upload -->
+
+    <div class="col-md-4">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-cloud-upload display-4 text-success">
+            </i>
+
+
+            <h4 class="mt-3">
+
+                Upload
+
+            </h4>
+
+
+            <p>
+
+                Upload a clear image of a
+                plant leaf.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI Analysis -->
+
+    <div class="col-md-4">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-cpu display-4 text-primary">
+            </i>
+
+
+            <h4 class="mt-3">
+
+                AI Analysis
+
+            </h4>
+
+
+            <p>
+
+                CNN model analyzes the
+                uploaded image.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Report -->
+
+    <div class="col-md-4">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-file-earmark-medical display-4 text-danger">
+            </i>
+
+
+            <h4 class="mt-3">
+
+                Get Report
+
+            </h4>
+
+
+            <p>
+
+                Receive diagnosis, confidence,
+                treatments, prevention and
+                recommendations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     CALL TO ACTION
+     ========================================== -->
+
+<div
+    class="custom-card text-center mb-4"
+    data-aos="zoom-in">
+
+    <h2>
+
+        Ready to Diagnose Your Plant?
+
+    </h2>
+
+
+    <p>
+
+        Start using AI-powered disease
+        detection today.
+
+    </p>
+
+
+    <a
+        href="#upload"
+        class="btn btn-success btn-lg">
+
+        Analyze Now
+
+    </a>
+
+</div>
+
 
 {% endblock %}

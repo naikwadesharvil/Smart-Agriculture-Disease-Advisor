@@ -7,353 +7,517 @@ About | Smart Agriculture Disease Advisor
 {% block content %}
 
 <!-- ==========================================
-     Hero Section
-========================================== -->
+     PAGE HEADER
+     ========================================== -->
 
-<section class="py-5">
+<div
+    class="text-center mb-5"
+    data-aos="fade-up">
 
-    <div class="row align-items-center">
+    <h1 class="fw-bold text-success">
+        About Smart Agriculture Disease Advisor
+    </h1>
 
-        <div class="col-lg-6" data-aos="fade-right">
+    <p class="lead text-muted">
+        AI-powered plant disease detection and decision support
+    </p>
 
-            <h1 class="text-success fw-bold">
+</div>
 
-                About Smart Agriculture Disease Advisor
 
-            </h1>
+<!-- ==========================================
+     ABOUT PROJECT
+     ========================================== -->
 
-            <p class="lead mt-4">
+<div
+    class="row align-items-center g-5 mb-5"
+    data-aos="fade-right">
 
-                Smart Agriculture Disease Advisor is an Artificial Intelligence
-                powered web application that detects plant diseases from leaf
-                images using a Convolutional Neural Network (CNN). It helps
-                farmers, researchers and students quickly identify diseases and
-                provides treatment and prevention recommendations.
+    <div class="col-lg-6">
 
+        <img
+            src="{{ url_for('static', filename='images/about.png') }}"
+            class="img-fluid rounded-4 shadow"
+            alt="Smart Agriculture">
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+        <div class="custom-card">
+
+            <h2 class="text-success mb-3">
+                Our Project
+            </h2>
+
+            <p>
+                Smart Agriculture Disease Advisor is an
+                AI-powered plant disease detection system
+                designed to analyze plant leaf images and
+                identify common diseases.
+            </p>
+
+            <p>
+                The system uses a trained Convolutional
+                Neural Network (CNN) to analyze the uploaded
+                image and predict the most likely disease
+                class.
+            </p>
+
+            <p class="mb-0">
+                Along with the prediction, the system provides
+                disease information, symptoms, treatment,
+                prevention methods, risk assessment and
+                recommended actions.
             </p>
 
         </div>
 
-        <div class="col-lg-6 text-center" data-aos="fade-left">
-
-            <img
-                src="{{ url_for('static', filename='images/about.png') }}"
-                class="img-fluid"
-                style="max-height:400px;"
-                alt="About">
-
-        </div>
-
     </div>
 
-</section>
+</div>
+
 
 <!-- ==========================================
-     Project Highlights
-========================================== -->
+     HOW AI WORKS
+     ========================================== -->
 
-<section class="py-5">
+<div
+    class="custom-card mb-5"
+    data-aos="zoom-in">
 
-    <h2 class="text-center text-success mb-5">
+    <div class="text-center mb-4">
 
-        Project Highlights
-
-    </h2>
-
-    <div class="row g-4">
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center h-100">
-
-                <i class="bi bi-cpu-fill display-4 text-success"></i>
-
-                <h4 class="mt-3">
-
-                    Deep Learning
-
-                </h4>
-
-                <p>
-
-                    Uses a Convolutional Neural Network trained on the
-                    PlantVillage dataset for accurate disease prediction.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center h-100">
-
-                <i class="bi bi-flower1 display-4 text-warning"></i>
-
-                <h4 class="mt-3">
-
-                    14 Crop Types
-
-                </h4>
-
-                <p>
-
-                    Supports disease detection across multiple crops
-                    including Tomato, Potato, Apple, Corn,
-                    Grape and many more.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="custom-card text-center h-100">
-
-                <i class="bi bi-virus display-4 text-danger"></i>
-
-                <h4 class="mt-3">
-
-                    38 Disease Classes
-
-                </h4>
-
-                <p>
-
-                    Detects healthy plants as well as common fungal,
-                    bacterial and viral diseases.
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     Features
-========================================== -->
-
-<section class="py-5">
-
-    <div class="custom-card">
-
-        <h2 class="text-success mb-4">
-
-            Features
-
+        <h2 class="text-success">
+            How the System Works
         </h2>
 
-        <div class="row">
-
-            <div class="col-lg-6">
-
-                <ul class="feature-list">
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        AI-powered disease detection
-
-                    </li>
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Upload JPG, JPEG and PNG images
-
-                    </li>
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Confidence score for predictions
-
-                    </li>
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Top-5 prediction analysis
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <div class="col-lg-6">
-
-                <ul class="feature-list">
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Disease symptoms
-
-                    </li>
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Treatment recommendations
-
-                    </li>
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Organic farming solutions
-
-                    </li>
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-success"></i>
-
-                        Prevention guidelines
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     Technologies
-========================================== -->
-
-<section class="py-5">
-
-    <h2 class="text-center text-success mb-5">
-
-        Technologies Used
-
-    </h2>
-
-    <div class="row g-4">
-
-        <div class="col-md-3">
-
-            <div class="practice-card">
-
-                <i class="bi bi-filetype-py display-4 text-primary"></i>
-
-                <h5 class="mt-3">
-
-                    Python
-
-                </h5>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="practice-card">
-
-                <i class="bi bi-bootstrap-fill display-4 text-purple"></i>
-
-                <h5 class="mt-3">
-
-                    Bootstrap 5
-
-                </h5>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="practice-card">
-
-                <i class="bi bi-diagram-3-fill display-4 text-success"></i>
-
-                <h5 class="mt-3">
-
-                    TensorFlow
-
-                </h5>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="practice-card">
-
-                <i class="bi bi-database-fill display-4 text-danger"></i>
-
-                <h5 class="mt-3">
-
-                    JSON Database
-
-                </h5>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     Developer
-========================================== -->
-
-<section class="py-5">
-
-    <div class="custom-card text-center">
-
-        <i class="bi bi-person-circle display-1 text-success"></i>
-
-        <h2 class="mt-3">
-
-            Developed By
-
-        </h2>
-
-        <h4>
-
-            Sharvil K. Naikwade
-
-        </h4>
-
-        <p>
-
-            B.Tech Artificial Intelligence & Machine Learning
-
-            <br>
-
-            Rajarambapu Institute of Technology
-
+        <p class="text-muted">
+            From image upload to disease information
         </p>
 
     </div>
 
-</section>
+
+    <div class="row g-4">
+
+
+        <!-- Image -->
+
+        <div class="col-md-3">
+
+            <div class="text-center">
+
+                <i
+                    class="bi bi-image-fill display-4 text-primary">
+                </i>
+
+                <h5 class="mt-3">
+                    1. Image
+                </h5>
+
+                <p class="text-muted">
+                    A plant leaf image is uploaded
+                    through the application.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Preprocessing -->
+
+        <div class="col-md-3">
+
+            <div class="text-center">
+
+                <i
+                    class="bi bi-aspect-ratio-fill display-4 text-warning">
+                </i>
+
+                <h5 class="mt-3">
+                    2. Preprocessing
+                </h5>
+
+                <p class="text-muted">
+                    The image is converted, resized
+                    and normalized before prediction.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CNN -->
+
+        <div class="col-md-3">
+
+            <div class="text-center">
+
+                <i
+                    class="bi bi-cpu-fill display-4 text-success">
+                </i>
+
+                <h5 class="mt-3">
+                    3. CNN Analysis
+                </h5>
+
+                <p class="text-muted">
+                    The trained CNN analyzes visual
+                    features of the leaf.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Result -->
+
+        <div class="col-md-3">
+
+            <div class="text-center">
+
+                <i
+                    class="bi bi-clipboard2-check-fill display-4 text-danger">
+                </i>
+
+                <h5 class="mt-3">
+                    4. Result
+                </h5>
+
+                <p class="text-muted">
+                    The predicted disease and
+                    supporting information are displayed.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     KEY FEATURES
+     ========================================== -->
+
+<div
+    class="text-center mb-4"
+    data-aos="fade-up">
+
+    <h2 class="text-success">
+        Key Features
+    </h2>
+
+</div>
+
+
+<div class="row g-4 mb-5">
+
+
+    <!-- AI Detection -->
+
+    <div
+        class="col-md-6 col-lg-4"
+        data-aos="zoom-in">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-robot display-4 text-success">
+            </i>
+
+            <h4 class="mt-3">
+                AI Disease Detection
+            </h4>
+
+            <p class="text-muted">
+                Uses a CNN-based deep learning model
+                to classify plant leaf diseases.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Confidence -->
+
+    <div
+        class="col-md-6 col-lg-4"
+        data-aos="zoom-in"
+        data-aos-delay="100">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-graph-up-arrow display-4 text-primary">
+            </i>
+
+            <h4 class="mt-3">
+                Confidence Analysis
+            </h4>
+
+            <p class="text-muted">
+                Displays prediction confidence and
+                Top-5 model predictions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Disease Information -->
+
+    <div
+        class="col-md-6 col-lg-4"
+        data-aos="zoom-in"
+        data-aos-delay="200">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-database-check display-4 text-warning">
+            </i>
+
+            <h4 class="mt-3">
+                Disease Database
+            </h4>
+
+            <p class="text-muted">
+                Provides structured information about
+                detected plant diseases.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Treatment -->
+
+    <div
+        class="col-md-6 col-lg-4"
+        data-aos="zoom-in">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-bandaid-fill display-4 text-danger">
+            </i>
+
+            <h4 class="mt-3">
+                Treatment Guidance
+            </h4>
+
+            <p class="text-muted">
+                Provides available treatment and
+                organic treatment information.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Prevention -->
+
+    <div
+        class="col-md-6 col-lg-4"
+        data-aos="zoom-in"
+        data-aos-delay="100">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-shield-check display-4 text-success">
+            </i>
+
+            <h4 class="mt-3">
+                Prevention
+            </h4>
+
+            <p class="text-muted">
+                Provides prevention practices and
+                recommended actions.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- PDF -->
+
+    <div
+        class="col-md-6 col-lg-4"
+        data-aos="zoom-in"
+        data-aos-delay="200">
+
+        <div class="custom-card text-center h-100">
+
+            <i
+                class="bi bi-file-earmark-pdf-fill display-4 text-danger">
+            </i>
+
+            <h4 class="mt-3">
+                PDF Report
+            </h4>
+
+            <p class="text-muted">
+                Generate a downloadable report
+                containing the disease analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     TECHNOLOGY STACK
+     ========================================== -->
+
+<div
+    class="custom-card mb-5"
+    data-aos="fade-up">
+
+    <div class="text-center mb-4">
+
+        <h2 class="text-success">
+            Technology Stack
+        </h2>
+
+    </div>
+
+
+    <div class="row g-3 text-center">
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="border rounded-3 p-3">
+
+                <i class="bi bi-filetype-py fs-2 text-primary"></i>
+
+                <h6 class="mt-2 mb-0">
+                    Python
+                </h6>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="border rounded-3 p-3">
+
+                <i class="bi bi-window-stack fs-2 text-success"></i>
+
+                <h6 class="mt-2 mb-0">
+                    Flask
+                </h6>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="border rounded-3 p-3">
+
+                <i class="bi bi-diagram-3-fill fs-2 text-danger"></i>
+
+                <h6 class="mt-2 mb-0">
+                    TensorFlow
+                </h6>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+
+            <div class="border rounded-3 p-3">
+
+                <i class="bi bi-bootstrap-fill fs-2 text-primary"></i>
+
+                <h6 class="mt-2 mb-0">
+                    Bootstrap
+                </h6>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     PROJECT DEVELOPER
+     ========================================== -->
+
+<div
+    class="custom-card text-center mb-5"
+    data-aos="zoom-in">
+
+    <i
+        class="bi bi-person-circle display-3 text-success">
+    </i>
+
+    <h2 class="mt-3">
+        Developed by
+    </h2>
+
+    <h4 class="text-success">
+        Sharvil Naikwade
+    </h4>
+
+    <p class="text-muted mb-0">
+        Smart Agriculture Disease Advisor
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     DISCLAIMER
+     ========================================== -->
+
+<div
+    class="alert alert-warning mb-5"
+    role="alert">
+
+    <h5 class="alert-heading">
+
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+        Important Disclaimer
+
+    </h5>
+
+    <p class="mb-0">
+        This application provides AI-based decision-support
+        information. Predictions may not always be accurate
+        and should be verified with an agricultural expert,
+        particularly before applying chemical treatments.
+    </p>
+
+</div>
+
 
 {% endblock %}

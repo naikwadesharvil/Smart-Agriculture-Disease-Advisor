@@ -1,247 +1,434 @@
 {% extends "base.html" %}
 
 {% block title %}
-User Guide | Smart Agriculture Disease Advisor
+Guide | Smart Agriculture Disease Advisor
 {% endblock %}
 
 {% block content %}
 
 <!-- ==========================================
-     Hero Section
-========================================== -->
+     PAGE HEADER
+     ========================================== -->
 
-<section class="py-5">
+<div
+    class="text-center mb-5"
+    data-aos="fade-up">
 
-    <div class="row align-items-center">
+    <h1 class="fw-bold text-success">
+        Plant Disease Detection Guide
+    </h1>
 
-        <div class="col-lg-6" data-aos="fade-right">
+    <p class="lead text-muted">
+        Follow these steps for the best AI-based prediction
+    </p>
 
-            <h1 class="fw-bold text-success">
+</div>
 
-                User Guide
 
-            </h1>
+<!-- ==========================================
+     STEP 1 — CAPTURE IMAGE
+     ========================================== -->
 
-            <p class="lead mt-4">
+<div
+    class="row align-items-center g-5 mb-5"
+    data-aos="fade-right">
 
-                Follow these simple steps to diagnose plant diseases using our
-                AI-powered Smart Agriculture Disease Advisor.
+    <div class="col-lg-6">
 
+        <img
+            src="{{ url_for('static', filename='images/guide.png') }}"
+            class="img-fluid rounded-4 shadow"
+            alt="Plant disease detection guide">
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+        <div class="custom-card">
+
+            <span class="badge bg-success mb-3">
+                Step 1
+            </span>
+
+            <h2 class="text-success">
+                Capture a Clear Leaf Image
+            </h2>
+
+            <p>
+                Take a clear photograph of the plant leaf
+                showing the visible symptoms.
+            </p>
+
+            <ul>
+
+                <li>
+                    Use good lighting.
+                </li>
+
+                <li>
+                    Keep the leaf clearly visible.
+                </li>
+
+                <li>
+                    Avoid excessive blur.
+                </li>
+
+                <li>
+                    Avoid images with unnecessary objects
+                    covering the leaf.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     STEP 2 — UPLOAD
+     ========================================== -->
+
+<div
+    class="row align-items-center g-5 mb-5"
+    data-aos="fade-left">
+
+    <div class="col-lg-6 order-lg-2">
+
+        <div class="custom-card">
+
+            <span class="badge bg-primary mb-3">
+                Step 2
+            </span>
+
+            <h2 class="text-primary">
+                Upload the Image
+            </h2>
+
+            <p>
+                Go to the Home page and upload the
+                plant leaf image.
+            </p>
+
+            <ul>
+
+                <li>
+                    Supported format: JPG
+                </li>
+
+                <li>
+                    Supported format: JPEG
+                </li>
+
+                <li>
+                    Supported format: PNG
+                </li>
+
+            </ul>
+
+            <a
+                href="{{ url_for('home') }}#upload"
+                class="btn btn-primary">
+
+                <i class="bi bi-upload"></i>
+
+                Upload Image
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-lg-6 order-lg-1 text-center">
+
+        <i
+            class="bi bi-cloud-arrow-up display-1 text-primary">
+        </i>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     STEP 3 — AI ANALYSIS
+     ========================================== -->
+
+<div
+    class="row align-items-center g-5 mb-5"
+    data-aos="fade-right">
+
+    <div class="col-lg-6">
+
+        <div class="custom-card text-center">
+
+            <i
+                class="bi bi-cpu-fill display-1 text-success">
+            </i>
+
+            <h3 class="mt-3">
+                CNN Deep Learning
+            </h3>
+
+            <p>
+                The uploaded image is resized and
+                normalized before being processed
+                by the trained CNN model.
             </p>
 
         </div>
 
-        <div class="col-lg-6 text-center" data-aos="fade-left">
+    </div>
 
-            <img
-                src="{{ url_for('static', filename='images/guide.png') }}"
-                class="img-fluid"
-                style="max-height:380px;"
-                alt="Guide">
+
+    <div class="col-lg-6">
+
+        <div class="custom-card">
+
+            <span class="badge bg-success mb-3">
+                Step 3
+            </span>
+
+            <h2 class="text-success">
+                AI Analysis
+            </h2>
+
+            <p>
+                The CNN analyzes the visual features
+                of the leaf and predicts the most
+                likely disease class.
+            </p>
+
+            <p>
+                The system also calculates a confidence
+                score and displays the Top-5 predictions.
+            </p>
 
         </div>
 
     </div>
 
-</section>
+</div>
+
 
 <!-- ==========================================
-     Step by Step Guide
-========================================== -->
+     STEP 4 — UNDERSTAND RESULT
+     ========================================== -->
 
-<section class="py-5">
+<div
+    class="row align-items-center g-5 mb-5"
+    data-aos="fade-left">
 
-    <h2 class="text-center text-success mb-5">
+    <div class="col-lg-6 order-lg-2">
 
-        How to Use the Application
+        <div class="custom-card">
 
-    </h2>
+            <span class="badge bg-warning text-dark mb-3">
+                Step 4
+            </span>
 
-    <div class="timeline">
+            <h2 class="text-warning">
+                Understand the Result
+            </h2>
 
-        <div class="timeline-item">
+            <p>
+                After analysis, the result page provides
+                detailed information about the predicted
+                disease.
+            </p>
 
-            <div class="timeline-dot bg-success">
+            <ul>
 
-                <i class="bi bi-1-circle-fill"></i>
+                <li>
+                    Disease name
+                </li>
 
-            </div>
+                <li>
+                    Crop information
+                </li>
 
-            <div class="timeline-content">
+                <li>
+                    Scientific name
+                </li>
 
-                <h4>
+                <li>
+                    Pathogen information
+                </li>
 
-                    Open the Home Page
+                <li>
+                    Symptoms and causes
+                </li>
 
-                </h4>
+                <li>
+                    Treatment options
+                </li>
 
-                <p>
+                <li>
+                    Prevention methods
+                </li>
 
-                    Launch the Smart Agriculture Disease Advisor in your web browser.
+                <li>
+                    Risk and severity information
+                </li>
 
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot bg-primary">
-
-                <i class="bi bi-2-circle-fill"></i>
-
-            </div>
-
-            <div class="timeline-content">
-
-                <h4>
-
-                    Upload a Leaf Image
-
-                </h4>
-
-                <p>
-
-                    Choose a clear image of a plant leaf in JPG, JPEG or PNG format.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot bg-warning">
-
-                <i class="bi bi-3-circle-fill"></i>
-
-            </div>
-
-            <div class="timeline-content">
-
-                <h4>
-
-                    Click "Analyze Plant"
-
-                </h4>
-
-                <p>
-
-                    The AI model processes the uploaded image and predicts the disease.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="timeline-item">
-
-            <div class="timeline-dot bg-danger">
-
-                <i class="bi bi-4-circle-fill"></i>
-
-            </div>
-
-            <div class="timeline-content">
-
-                <h4>
-
-                    View Detailed Results
-
-                </h4>
-
-                <p>
-
-                    Review confidence score, symptoms, treatments,
-                    prevention methods and disease timeline.
-
-                </p>
-
-            </div>
+            </ul>
 
         </div>
 
     </div>
 
-</section>
+
+    <div class="col-lg-6 order-lg-1 text-center">
+
+        <i
+            class="bi bi-clipboard2-pulse display-1 text-warning">
+        </i>
+
+    </div>
+
+</div>
+
 
 <!-- ==========================================
-     Best Practices
-========================================== -->
+     STEP 5 — REPORT
+     ========================================== -->
 
-<section class="py-5">
+<div
+    class="row align-items-center g-5 mb-5"
+    data-aos="fade-right">
 
-    <h2 class="text-center text-success mb-5">
+    <div class="col-lg-6">
 
-        Best Practices
+        <div class="custom-card text-center">
 
-    </h2>
+            <i
+                class="bi bi-file-earmark-pdf display-1 text-danger">
+            </i>
+
+            <h3 class="mt-3">
+                Disease Report
+            </h3>
+
+            <p>
+                Generate a PDF report containing
+                the prediction and available disease
+                information.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-lg-6">
+
+        <div class="custom-card">
+
+            <span class="badge bg-danger mb-3">
+                Step 5
+            </span>
+
+            <h2 class="text-danger">
+                Download Your Report
+            </h2>
+
+            <p>
+                After receiving the prediction, use
+                the Download Report option to generate
+                a PDF report.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     BEST PRACTICES
+     ========================================== -->
+
+<div
+    class="custom-card mb-5"
+    data-aos="zoom-in">
+
+    <div class="text-center mb-4">
+
+        <h2 class="text-success">
+            Tips for Better Predictions
+        </h2>
+
+    </div>
+
 
     <div class="row g-4">
 
+
         <div class="col-md-4">
 
-            <div class="practice-card">
+            <div class="text-center">
 
-                <i class="bi bi-camera-fill display-4 text-success"></i>
+                <i
+                    class="bi bi-brightness-high display-5 text-warning">
+                </i>
 
                 <h5 class="mt-3">
-
                     Good Lighting
-
                 </h5>
 
                 <p>
-
-                    Capture leaf images in natural daylight for better accuracy.
-
+                    Use a well-lit image so that
+                    leaf symptoms are clearly visible.
                 </p>
 
             </div>
 
         </div>
+
 
         <div class="col-md-4">
 
-            <div class="practice-card">
+            <div class="text-center">
 
-                <i class="bi bi-image-fill display-4 text-primary"></i>
+                <i
+                    class="bi bi-camera display-5 text-primary">
+                </i>
 
                 <h5 class="mt-3">
-
-                    High Quality Image
-
+                    Clear Image
                 </h5>
 
                 <p>
-
-                    Use sharp, focused images without blur or excessive shadows.
-
+                    Avoid blurry or extremely
+                    low-quality images.
                 </p>
 
             </div>
 
         </div>
+
 
         <div class="col-md-4">
 
-            <div class="practice-card">
+            <div class="text-center">
 
-                <i class="bi bi-flower1 display-4 text-warning"></i>
+                <i
+                    class="bi bi-leaf display-5 text-success">
+                </i>
 
                 <h5 class="mt-3">
-
-                    Single Leaf
-
+                    Focus on the Leaf
                 </h5>
 
                 <p>
-
-                    Upload one leaf at a time with the affected area clearly visible.
-
+                    Keep the affected leaf clearly
+                    visible in the photograph.
                 </p>
 
             </div>
@@ -250,169 +437,29 @@ User Guide | Smart Agriculture Disease Advisor
 
     </div>
 
-</section>
+</div>
+
 
 <!-- ==========================================
-     Supported Crops
-========================================== -->
+     DISCLAIMER
+     ========================================== -->
 
-<section class="py-5">
+<div
+    class="alert alert-warning"
+    role="alert">
 
-    <div class="custom-card">
+    <h5 class="alert-heading">
+        Important
+    </h5>
 
-        <h2 class="text-success mb-4">
+    <p class="mb-0">
+        AI predictions are intended as decision-support
+        information. For serious crop disease problems,
+        confirm the diagnosis with a qualified agricultural
+        professional before applying treatments or chemicals.
+    </p>
 
-            Supported Crops
+</div>
 
-        </h2>
-
-        <div class="row">
-
-            <div class="col-md-6">
-
-                <ul class="feature-list">
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Apple</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Blueberry</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Cherry</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Corn</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Grape</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Orange</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Peach</li>
-
-                </ul>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <ul class="feature-list">
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Pepper</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Potato</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Raspberry</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Soybean</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Squash</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Strawberry</li>
-
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Tomato</li>
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     Tips
-========================================== -->
-
-<section class="py-5">
-
-    <div class="custom-card">
-
-        <h2 class="text-success mb-4">
-
-            Tips for Better Predictions
-
-        </h2>
-
-        <ul class="feature-list">
-
-            <li>
-
-                <i class="bi bi-lightbulb-fill text-warning"></i>
-
-                Capture only the affected leaf whenever possible.
-
-            </li>
-
-            <li>
-
-                <i class="bi bi-lightbulb-fill text-warning"></i>
-
-                Avoid blurry or low-resolution images.
-
-            </li>
-
-            <li>
-
-                <i class="bi bi-lightbulb-fill text-warning"></i>
-
-                Ensure the leaf occupies most of the image.
-
-            </li>
-
-            <li>
-
-                <i class="bi bi-lightbulb-fill text-warning"></i>
-
-                Avoid complex or distracting backgrounds.
-
-            </li>
-
-            <li>
-
-                <i class="bi bi-lightbulb-fill text-warning"></i>
-
-                Use the provided recommendations as guidance and consult agricultural experts for severe infections.
-
-            </li>
-
-        </ul>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-     CTA
-========================================== -->
-
-<section class="py-5 text-center">
-
-    <div class="custom-card">
-
-        <i class="bi bi-robot display-2 text-success"></i>
-
-        <h2 class="mt-3">
-
-            Ready to Analyze Your Plant?
-
-        </h2>
-
-        <p>
-
-            Upload a plant leaf image and receive an AI-powered disease diagnosis.
-
-        </p>
-
-        <a href="{{ url_for('home') }}"
-           class="btn btn-success btn-lg">
-
-            <i class="bi bi-upload"></i>
-
-            Analyze Now
-
-        </a>
-
-    </div>
-
-</section>
 
 {% endblock %}

@@ -2,7 +2,9 @@ from flask import (
     Flask,
     render_template,
     request,
-    send_file
+    send_file,
+    url_for,
+    send_from_directory,
 )
 
 import os
@@ -18,11 +20,15 @@ from werkzeug.utils import secure_filename
 
 from pdf_generator import generate_pdf
 
+from history import add_prediction
+
+
 # ==========================================
 # Flask Application
 # ==========================================
 
 app = Flask(__name__)
+
 
 # ==========================================
 # Store Latest Prediction
@@ -30,14 +36,26 @@ app = Flask(__name__)
 
 latest_prediction = {}
 
+
+# ==========================================
+# Base Directory
+# ==========================================
+
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+
 # ==========================================
 # Upload Configuration
 # ==========================================
 
 UPLOAD_FOLDER = os.path.join(
+    BASE_DIR,
     "static",
     "uploads"
 )
+
 
 ALLOWED_EXTENSIONS = {
     "png",
@@ -45,39 +63,76 @@ ALLOWED_EXTENSIONS = {
     "jpeg"
 }
 
+
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
 
 os.makedirs(
     UPLOAD_FOLDER,
     exist_ok=True
 )
 
+
 # ==========================================
-# Helper Function
+# Helper Functions
 # ==========================================
 
 def allowed_file(filename):
 
     return (
         "." in filename
-        and filename.rsplit(".", 1)[1].lower()
+        and
+        filename.rsplit(
+            ".",
+            1
+        )[1].lower()
         in ALLOWED_EXTENSIONS
     )
+
+
+def normalize_key(value):
+
+    if not isinstance(value, str):
+        return ""
+
+    return (
+        value
+        .strip()
+        .lower()
+        .replace(" ", "_")
+    )
+
+
+# ==========================================
+# Uploaded Image Route
+# ==========================================
+
+@app.route("/uploads/<filename>")
+def uploaded_file(filename):
+
+    return send_from_directory(
+        app.config["UPLOAD_FOLDER"],
+        filename
+    )
+
 
 # ==========================================
 # Load CNN Model
 # ==========================================
 
 MODEL_PATH = os.path.join(
+    BASE_DIR,
     "..",
     "models",
     "plant_disease_cnn.keras"
 )
 
+
 MODEL = tf.keras.models.load_model(
     MODEL_PATH,
     compile=False
 )
+
 
 MODEL.compile(
     optimizer="adam",
@@ -85,23 +140,43 @@ MODEL.compile(
     metrics=["accuracy"]
 )
 
-print("✅ CNN Model Loaded Successfully")
+
+print(
+    "✅ CNN Model Loaded Successfully"
+)
+
 
 # ==========================================
 # Load Disease Database
 # ==========================================
 
 DATABASE_PATH = os.path.join(
+    BASE_DIR,
     "..",
     "database",
     "disease_database.json"
 )
 
-with open(DATABASE_PATH, "r") as file:
+
+with open(
+    DATABASE_PATH,
+    "r",
+    encoding="utf-8"
+) as file:
 
     disease_database = json.load(file)
 
-print("✅ Disease Database Loaded")
+
+print(
+    "✅ Disease Database Loaded"
+)
+
+
+print(
+    "Database Entries:",
+    len(disease_database)
+)
+
 
 # ==========================================
 # Class Names
@@ -163,47 +238,87 @@ CLASS_NAMES = [
 
 ]
 
+
 # ==========================================
-# Home Route
+# Validate Model / Classes
+# ==========================================
+
+try:
+
+    model_output_size = MODEL.output_shape[-1]
+
+    if model_output_size != len(CLASS_NAMES):
+
+        raise ValueError(
+            f"Model output has {model_output_size} classes "
+            f"but CLASS_NAMES contains {len(CLASS_NAMES)}."
+        )
+
+except Exception as e:
+
+    print(
+        "⚠️ Model/Class validation:",
+        str(e)
+    )
+
+
+# ==========================================
+# Home
 # ==========================================
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    return render_template(
+        "index.html"
+    )
 
 
 # ==========================================
-# About Route
+# About
 # ==========================================
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+
+    return render_template(
+        "about.html"
+    )
 
 
 # ==========================================
-# Guide Route
+# Guide
 # ==========================================
 
 @app.route("/guide")
 def guide():
-    return render_template("guide.html")
+
+    return render_template(
+        "guide.html"
+    )
 
 
 # ==========================================
-# Prediction Route
+# Prediction
 # ==========================================
 
-@app.route("/predict", methods=["POST"])
+@app.route(
+    "/predict",
+    methods=["POST"]
+)
 def predict():
 
     global latest_prediction
 
     try:
-
-        # ----------------------------------
-        # Check Uploaded Image
-        # ----------------------------------
+        print("\n========== UPLOAD DEBUG ==========")
+        print("request.files:", request.files)
+        print("request.form:", request.form)
+        print(
+            "image in request.files:",
+            "image" in request.files
+        )
+        print("==================================\n")
 
         if "image" not in request.files:
 
@@ -212,7 +327,20 @@ def predict():
                 error="No image uploaded."
             )
 
+        # ======================================
+        # Check Image
+        # ======================================
+
+        if "image" not in request.files:
+
+            return render_template(
+                "error.html",
+                error="No image uploaded."
+            )
+
+
         file = request.files["image"]
+
 
         if file.filename == "":
 
@@ -221,196 +349,462 @@ def predict():
                 error="No file selected."
             )
 
-        if not allowed_file(file.filename):
+
+        if not allowed_file(
+            file.filename
+        ):
 
             return render_template(
                 "error.html",
-                error="Unsupported file type. Please upload JPG, JPEG or PNG."
+                error=(
+                    "Unsupported file type. "
+                    "Please upload JPG, JPEG or PNG."
+                )
             )
 
-        # ----------------------------------
-        # Save Uploaded Image
-        # ----------------------------------
 
-        filename = secure_filename(file.filename)
+        # ======================================
+        # Save Image
+        # ======================================
+
+        filename = secure_filename(
+            file.filename
+        )
+
 
         filepath = os.path.join(
             app.config["UPLOAD_FOLDER"],
             filename
         )
 
-        file.save(filepath)
 
-        image_path = filepath.replace("\\", "/")
+        file.save(
+            filepath
+        )
 
-        # ----------------------------------
+
+        # ======================================
+        # URL For Uploaded Image
+        # ======================================
+
+        image_path = url_for(
+            "uploaded_file",
+            filename=filename
+        )
+
+
+        # ======================================
         # Image Preprocessing
-        # ----------------------------------
+        # ======================================
 
-        img = Image.open(filepath).convert("RGB")
+        img = Image.open(
+            filepath
+        ).convert("RGB")
 
-        img = img.resize((128, 128))
+
+        img = img.resize(
+            (128, 128)
+        )
+
 
         img_array = np.array(
             img,
             dtype=np.float32
         )
 
+
         img_array /= 255.0
+
 
         img_array = np.expand_dims(
             img_array,
             axis=0
         )
 
-        # ----------------------------------
+
+        # ======================================
         # CNN Prediction
-        # ----------------------------------
+        # ======================================
 
         predictions = MODEL.predict(
             img_array,
             verbose=0
         )
 
+
         probabilities = predictions[0]
 
+
+        # ======================================
+        # Validate Output
+        # ======================================
+
+        if len(probabilities) != len(
+            CLASS_NAMES
+        ):
+
+            raise ValueError(
+                "CNN output does not contain "
+                f"{len(CLASS_NAMES)} classes. "
+                f"Model returned "
+                f"{len(probabilities)}."
+            )
+
+
+        # ======================================
+        # Predicted Class
+        # ======================================
+
         predicted_index = int(
-            np.argmax(probabilities)
+            np.argmax(
+                probabilities
+            )
         )
 
-        predicted_class = CLASS_NAMES[
+
+        predicted_class = (
+            CLASS_NAMES[
+                predicted_index
+            ]
+        )
+
+
+        confidence = (
+            float(
+                probabilities[
+                    predicted_index
+                ]
+            )
+            * 100
+        )
+
+
+        # ======================================
+        # Debug
+        # ======================================
+
+        print()
+        print("=" * 55)
+        print("PREDICTION DEBUG")
+        print("=" * 55)
+
+        print(
+            "Predicted Index :",
             predicted_index
-        ]
+        )
 
-        confidence = float(
-            probabilities[predicted_index]
-        ) * 100
-                # ==========================================
+        print(
+            "Predicted Class :",
+            predicted_class
+        )
+
+        print(
+            "Confidence      :",
+            f"{confidence:.2f}%"
+        )
+
+        print(
+            "Exact DB Match  :",
+            predicted_class in disease_database
+        )
+
+        print("=" * 55)
+
+
+        # ======================================
         # Top 5 Predictions
-        # ==========================================
+        # ======================================
 
-        top5_indices = np.argsort(probabilities)[-5:][::-1]
+        top5_indices = np.argsort(
+            probabilities
+        )[-5:][::-1]
+
 
         chart_labels = []
+
         chart_values = []
+
 
         for index in top5_indices:
 
+            label = CLASS_NAMES[
+                int(index)
+            ]
+
+
             chart_labels.append(
-                CLASS_NAMES[index].replace("_", " ")
+                label.replace(
+                    "_",
+                    " "
+                )
             )
+
 
             chart_values.append(
                 round(
-                    float(probabilities[index]) * 100,
+                    float(
+                        probabilities[
+                            index
+                        ]
+                    ) * 100,
                     2
                 )
             )
 
+
+        # ======================================
+        # Chart Data
+        # ======================================
+
         chart_data = {
 
-            "labels": chart_labels,
+            "labels":
+                chart_labels,
 
-            "values": chart_values
+            "values":
+                chart_values
 
         }
 
-        ranking = list(
 
+        # ======================================
+        # Ranking
+        # ======================================
+
+        ranking = list(
             zip(
                 chart_labels,
                 chart_values
             )
-
         )
 
-        # ==========================================
-        # Default Disease Information
-        # ==========================================
 
-        default_info = {
-
-            "Crop": "Unknown",
-
-            "Disease": predicted_class,
-
-            "Scientific_Name": "Unknown",
-
-            "Pathogen": "Unknown",
-
-            "Pathogen_Type": "Unknown",
-
-            "Category": "Unknown",
-
-            "Affected_Part": "Unknown",
-
-            "Environment": "Unknown",
-
-            "Spread": "Unknown",
-
-            "Description": "Information not available.",
-
-            "Cause": [],
-
-            "Age_Cycle": {
-
-                "Early": "-",
-
-                "Moderate": "-",
-
-                "Severe": "-",
-
-                "Estimated": "-"
-
-            },
-
-            "Symptoms": [],
-
-            "Treatment": [],
-
-            "Organic_Treatment": [],
-
-            "Recommended_Chemicals": [],
-
-            "Prevention": [],
-
-            "Risk_Level": "Low",
-
-            "Severity": "Low",
-
-            "Recommended_Actions": []
-
-        }
-
-        # ==========================================
-        # Get Disease Information
-        # ==========================================
+        # ======================================
+        # Database Matching
+        # ======================================
 
         info = disease_database.get(
-
-            predicted_class,
-
-            default_info
-
+            predicted_class
         )
 
-        # ==========================================
+
+        # ======================================
+        # Normalized Matching
+        # ======================================
+
+        if info is None:
+
+            normalized_prediction = (
+                normalize_key(
+                    predicted_class
+                )
+            )
+
+
+            print(
+                "⚠️ Exact database match failed."
+            )
+
+
+            print(
+                "Trying normalized matching..."
+            )
+
+
+            for (
+                database_key,
+                database_info
+            ) in disease_database.items():
+
+                if (
+                    normalize_key(
+                        database_key
+                    )
+                    ==
+                    normalized_prediction
+                ):
+
+                    info = database_info
+
+
+                    print(
+                        "✅ Normalized match found:"
+                    )
+
+
+                    print(
+                        predicted_class,
+                        "->",
+                        database_key
+                    )
+
+
+                    break
+
+
+        # ======================================
+        # Final Fallback
+        # ======================================
+
+        if info is None:
+
+            print(
+                "❌ Disease information not found:",
+                predicted_class
+            )
+
+
+            info = {
+
+                "Crop": "Unknown",
+
+                "Disease":
+                    predicted_class,
+
+                "Scientific_Name":
+                    "Unknown",
+
+                "Pathogen":
+                    "Unknown",
+
+                "Pathogen_Type":
+                    "Unknown",
+
+                "Category":
+                    "Unknown",
+
+                "Affected_Part":
+                    "Unknown",
+
+                "Environment":
+                    "Information not available.",
+
+                "Spread":
+                    "Information not available.",
+
+                "Description":
+                    "Information not available.",
+
+                "Cause": [],
+
+                "Age_Cycle": {
+
+                    "Early": "-",
+
+                    "Moderate": "-",
+
+                    "Severe": "-",
+
+                    "Estimated": "-"
+
+                },
+
+                "Symptoms": [],
+
+                "Treatment": [],
+
+                "Organic_Treatment": [],
+
+                "Recommended_Chemicals": [],
+
+                "Prevention": [],
+
+                "Risk_Level":
+                    "Unknown",
+
+                "Severity":
+                    "Unknown",
+
+                "Recommended_Actions": []
+
+            }
+
+
+        # ======================================
+        # Disease Debug
+        # ======================================
+
+        print(
+            "Disease Information:",
+            info.get(
+                "Disease",
+                "Unknown"
+            )
+        )
+
+
+        print(
+            "Crop:",
+            info.get(
+                "Crop",
+                "Unknown"
+            )
+        )
+
+
+        print("=" * 55)
+        print()
+
+
+        # ======================================
         # Store Latest Prediction
-        # ==========================================
+        # ======================================
 
         latest_prediction = {
 
-            "prediction": info["Disease"],
+            "prediction":
+                info.get(
+                    "Disease",
+                    predicted_class
+                ),
 
-            "confidence": f"{confidence:.2f}%",
+            "confidence":
+                f"{confidence:.2f}%",
 
-            "info": info
+            "info":
+                info
 
         }
 
-        # ==========================================
+
+        # ======================================
+        # Save To History
+        # ======================================
+
+        try:
+
+            add_prediction(
+
+                prediction=info.get(
+                    "Disease",
+                    predicted_class
+                ),
+
+                confidence=(
+                    f"{confidence:.2f}%"
+                ),
+
+                info=info,
+
+                image_path=image_path
+
+            )
+
+            print(
+                "✅ Prediction saved to history."
+            )
+
+        except Exception as history_error:
+
+            print(
+                "⚠️ History save failed:",
+                history_error
+            )
+
+
+        # ======================================
         # Render Result
-        # ==========================================
+        # ======================================
 
         return render_template(
 
@@ -418,9 +812,39 @@ def predict():
 
             image_path=image_path,
 
-            prediction=info["Disease"],
+            prediction=info.get(
+                "Disease",
+                predicted_class
+            ),
 
-            confidence=f"{confidence:.2f}%",
+            confidence=(
+                f"{confidence:.2f}%"
+            ),
+
+            crop=info.get(
+                "Crop",
+                "Unknown"
+            ),
+
+            description=info.get(
+                "Description",
+                "Information not available."
+            ),
+
+            symptoms=info.get(
+                "Symptoms",
+                []
+            ),
+
+            treatment=info.get(
+                "Treatment",
+                []
+            ),
+
+            prevention=info.get(
+                "Prevention",
+                []
+            ),
 
             info=info,
 
@@ -430,6 +854,7 @@ def predict():
 
         )
 
+
     # ==========================================
     # Error Handling
     # ==========================================
@@ -438,6 +863,7 @@ def predict():
 
         traceback.print_exc()
 
+
         return render_template(
 
             "error.html",
@@ -445,42 +871,81 @@ def predict():
             error=str(e)
 
         )
-        # ==========================================
+
+
+# ==========================================
 # Download PDF Report
 # ==========================================
 
-@app.route("/download_report")
+@app.route(
+    "/download_report"
+)
 def download_report():
 
     global latest_prediction
 
+
+    # ======================================
+    # Check Prediction
+    # ======================================
+
     if not latest_prediction:
 
         return render_template(
+
             "error.html",
-            error="No prediction available. Please analyze an image first."
+
+            error=(
+                "No prediction available. "
+                "Please analyze an image first."
+            )
+
         )
 
+
     try:
+        
+
+        # ==================================
+        # Temporary PDF
+        # ==================================
 
         with tempfile.NamedTemporaryFile(
             delete=False,
             suffix=".pdf"
         ) as temp_file:
 
-            pdf_path = temp_file.name
+            pdf_path = (
+                temp_file.name
+            )
+
+
+        # ==================================
+        # Generate PDF
+        # ==================================
 
         generate_pdf(
 
             output_path=pdf_path,
 
-            info=latest_prediction["info"],
+            info=latest_prediction[
+                "info"
+            ],
 
-            prediction=latest_prediction["prediction"],
+            prediction=latest_prediction[
+                "prediction"
+            ],
 
-            confidence=latest_prediction["confidence"]
+            confidence=latest_prediction[
+                "confidence"
+            ]
 
         )
+
+
+        # ==================================
+        # Send PDF
+        # ==================================
 
         return send_file(
 
@@ -488,29 +953,40 @@ def download_report():
 
             as_attachment=True,
 
-            download_name="Plant_Disease_Report.pdf",
+            download_name=(
+                "Plant_Disease_Report.pdf"
+            ),
 
-            mimetype="application/pdf"
+            mimetype=(
+                "application/pdf"
+            )
 
         )
+
 
     except Exception as e:
 
         traceback.print_exc()
 
+
         return render_template(
 
             "error.html",
 
-            error=f"Failed to generate PDF: {str(e)}"
+            error=(
+                "Failed to generate PDF: "
+                + str(e)
+            )
 
         )
 
 
 # ==========================================
-# Run Flask App
+# Run Flask Application
 # ==========================================
 
 if __name__ == "__main__":
 
-    app.run(debug=True)
+    app.run(
+        debug=True
+    )

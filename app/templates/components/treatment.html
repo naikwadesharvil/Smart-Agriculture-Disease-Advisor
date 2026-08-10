@@ -1,191 +1,114 @@
-<!-- ==========================================
-     Treatment Section
-========================================== -->
+<div class="custom-card dashboard-card mt-4">
 
-<section class="mb-5">
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
-    <div class="row">
+    <div class="mb-4">
 
-        <!-- ================= Treatment ================= -->
+        <h2 class="text-success mb-1">
+            Treatment
+        </h2>
 
-        <div class="col-lg-4">
-
-            <div class="custom-card dashboard-card h-100">
-
-                <div class="d-flex align-items-center mb-4">
-
-                    <i class="bi bi-capsule-pill display-6 text-primary me-3"></i>
-
-                    <div>
-
-                        <h2 class="mb-0">
-
-                            Treatment
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Recommended treatment methods.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                {% if info.Treatment %}
-
-                <ul class="feature-list">
-
-                    {% for item in info.Treatment %}
-
-                    <li>
-
-                        <i class="bi bi-check-circle-fill text-primary"></i>
-
-                        {{ item }}
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
-
-                {% else %}
-
-                <div class="alert alert-secondary">
-
-                    No treatment available.
-
-                </div>
-
-                {% endif %}
-
-            </div>
-
-        </div>
-
-        <!-- ================= Organic Treatment ================= -->
-
-        <div class="col-lg-4">
-
-            <div class="custom-card dashboard-card h-100">
-
-                <div class="d-flex align-items-center mb-4">
-
-                    <i class="bi bi-flower1 display-6 text-success me-3"></i>
-
-                    <div>
-
-                        <h2 class="mb-0">
-
-                            Organic Treatment
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Eco-friendly disease management.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                {% if info.Organic_Treatment %}
-
-                <ul class="feature-list">
-
-                    {% for item in info.Organic_Treatment %}
-
-                    <li>
-
-                        <i class="bi bi-leaf-fill text-success"></i>
-
-                        {{ item }}
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
-
-                {% else %}
-
-                <div class="alert alert-secondary">
-
-                    No organic treatment available.
-
-                </div>
-
-                {% endif %}
-
-            </div>
-
-        </div>
-
-        <!-- ================= Chemicals ================= -->
-
-        <div class="col-lg-4">
-
-            <div class="custom-card dashboard-card h-100">
-
-                <div class="d-flex align-items-center mb-4">
-
-                    <i class="bi bi-eyedropper display-6 text-danger me-3"></i>
-
-                    <div>
-
-                        <h2 class="mb-0">
-
-                            Recommended Chemicals
-
-                        </h2>
-
-                        <p class="mb-0">
-
-                            Approved chemical solutions.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                {% if info.Recommended_Chemicals %}
-
-                <ul class="feature-list">
-
-                    {% for item in info.Recommended_Chemicals %}
-
-                    <li>
-
-                        <i class="bi bi-droplet-fill text-danger"></i>
-
-                        {{ item }}
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
-
-                {% else %}
-
-                <div class="alert alert-secondary">
-
-                    No chemical recommendation available.
-
-                </div>
-
-                {% endif %}
-
-            </div>
-
-        </div>
+        <p class="text-muted mb-0">
+            Recommended treatment methods for the detected disease
+        </p>
 
     </div>
 
-</section>
+
+    <!-- ==========================================
+         TREATMENT METHODS
+         ========================================== -->
+
+    {% if info.Treatment %}
+
+    <div class="row g-4">
+
+        {% for treatment in info.Treatment %}
+
+        <div class="col-md-6">
+
+            <div class="border rounded-4 p-4 h-100">
+
+                <div class="d-flex align-items-start">
+
+                    <div class="me-3">
+
+                        <div
+                            class="rounded-circle bg-success text-white
+                                   d-flex align-items-center
+                                   justify-content-center"
+                            style="
+                                width:45px;
+                                height:45px;
+                                min-width:45px;
+                            ">
+
+                            <i class="bi bi-check-lg fs-5"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h5 class="mb-2">
+                            Treatment {{ loop.index }}
+                        </h5>
+
+                        <p class="mb-0 text-muted">
+                            {{ treatment }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <!-- ==========================================
+         NO TREATMENT INFORMATION
+         ========================================== -->
+
+    <div class="alert alert-secondary mb-0">
+
+        <i class="bi bi-info-circle-fill me-2"></i>
+
+        Treatment information is not available
+        for this disease.
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         TREATMENT NOTE
+         ========================================== -->
+
+    {% if info.Treatment %}
+
+    <div class="alert alert-warning mt-4 mb-0">
+
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+
+        <strong>Important:</strong>
+
+        Follow the recommended treatment carefully
+        and consider consulting an agricultural
+        professional for severe infections.
+
+    </div>
+
+    {% endif %}
+
+</div>

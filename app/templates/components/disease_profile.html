@@ -1,207 +1,222 @@
-<!-- ==========================================
-     Disease Profile
-========================================== -->
+<div class="custom-card dashboard-card mt-4">
 
-<section class="mb-5">
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
 
-    <div class="custom-card dashboard-card">
+    <div class="mb-4">
 
-        <div class="d-flex align-items-center mb-4">
+        <h2 class="text-success mb-1">
+            Disease Profile
+        </h2>
 
-            <i class="bi bi-virus2 display-6 text-success me-3"></i>
-
-            <div>
-
-                <h2 class="mb-0">
-
-                    Disease Profile
-
-                </h2>
-
-                <p class="mb-0">
-
-                    Scientific and biological information about the detected disease.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="row g-4">
-
-            <!-- Scientific Name -->
-
-            <div class="col-md-6">
-
-                <div class="info-card">
-
-                    <div class="icon-box bg-success">
-
-                        <i class="bi bi-book"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h6>Scientific Name</h6>
-
-                        <p>
-
-                            <em>{{ info.Scientific_Name }}</em>
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Pathogen -->
-
-            <div class="col-md-6">
-
-                <div class="info-card">
-
-                    <div class="icon-box bg-danger">
-
-                        <i class="bi bi-bug-fill"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h6>Pathogen</h6>
-
-                        <p>{{ info.Pathogen }}</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Pathogen Type -->
-
-            <div class="col-md-6">
-
-                <div class="info-card">
-
-                    <div class="icon-box bg-warning">
-
-                        <i class="bi bi-shield-fill"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h6>Pathogen Type</h6>
-
-                        <p>{{ info.Pathogen_Type }}</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Category -->
-
-            <div class="col-md-6">
-
-                <div class="info-card">
-
-                    <div class="icon-box bg-primary">
-
-                        <i class="bi bi-tree-fill"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h6>Category</h6>
-
-                        <p>{{ info.Category }}</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Affected Part -->
-
-            <div class="col-md-6">
-
-                <div class="info-card">
-
-                    <div class="icon-box bg-success">
-
-                        <i class="bi bi-flower1"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h6>Affected Part</h6>
-
-                        <p>{{ info.Affected_Part }}</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Environment -->
-
-            <div class="col-md-6">
-
-                <div class="info-card">
-
-                    <div class="icon-box bg-info">
-
-                        <i class="bi bi-cloud-sun-fill"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h6>Favorable Environment</h6>
-
-                        <p>{{ info.Environment }}</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Spread -->
-
-        <hr class="my-5">
-
-        <div class="spread-section">
-
-            <h3>
-
-                <i class="bi bi-arrow-repeat text-danger"></i>
-
-                Disease Spread
-
-            </h3>
-
-            <p class="mt-3">
-
-                {{ info.Spread }}
-
-            </p>
-
-        </div>
+        <p class="text-muted mb-0">
+            Detailed information about the predicted condition
+        </p>
 
     </div>
 
-</section>
+
+    <!-- ==========================================
+         DESCRIPTION
+         ========================================== -->
+
+    <div class="alert alert-light border mb-4">
+
+        <h5 class="text-success">
+            <i class="bi bi-info-circle-fill"></i>
+            Description
+        </h5>
+
+        <p class="mb-0">
+            {{ info.Description }}
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         DISEASE INFORMATION
+         ========================================== -->
+
+    <div class="row g-3">
+
+
+        <!-- Crop -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Crop
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Crop }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Disease -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Disease
+                </small>
+
+                <h5 class="mb-0 text-success">
+                    {{ info.Disease }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Scientific Name -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Scientific Name
+                </small>
+
+                <h5 class="mb-0">
+
+                    <em>
+                        {{ info.Scientific_Name }}
+                    </em>
+
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pathogen -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Pathogen
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Pathogen }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Pathogen Type -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Pathogen Type
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Pathogen_Type }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Category -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Category
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Category }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Affected Part -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Affected Part
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Affected_Part }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Environment -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Environment
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Environment }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+        <!-- Spread -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="border rounded-3 p-3 h-100">
+
+                <small class="text-muted d-block mb-1">
+                    Spread
+                </small>
+
+                <h5 class="mb-0">
+                    {{ info.Spread }}
+                </h5>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

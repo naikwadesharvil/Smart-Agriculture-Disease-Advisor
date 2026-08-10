@@ -1,57 +1,134 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 Prediction Result | Smart Agriculture Disease Advisor
 {% endblock %}
 
+
 {% block content %}
 
-<!-- ================= Prediction Summary ================= -->
+
+<!-- ==========================================
+     PAGE HEADER
+     ========================================== -->
+
+<div
+    class="text-center mb-4"
+    data-aos="fade-up">
+
+    <h1 class="fw-bold text-success">
+
+        Disease Analysis Result
+
+    </h1>
+
+    <p class="text-muted">
+
+        AI-powered analysis of your uploaded plant leaf
+
+    </p>
+
+</div>
+
+
+<!-- ==========================================
+     Prediction Summary
+     ========================================== -->
 
 {% include "components/prediction_summary.html" %}
 
-<!-- ================= Analytics ================= -->
+
+<!-- ==========================================
+     Analytics
+     ========================================== -->
 
 {% include "components/analytics.html" %}
 
-<!-- ================= Disease Profile ================= -->
+
+<!-- ==========================================
+     Disease Profile
+     ========================================== -->
 
 {% include "components/disease_profile.html" %}
 
-<!-- ================= Disease Timeline ================= -->
+
+<!-- ==========================================
+     Disease Timeline
+     ========================================== -->
 
 {% include "components/disease_timeline.html" %}
 
-<!-- ================= Symptoms & Causes ================= -->
+
+<!-- ==========================================
+     Symptoms & Causes
+     ========================================== -->
 
 {% include "components/symptoms.html" %}
 
-<!-- ================= Treatment ================= -->
+
+<!-- ==========================================
+     Treatment
+     ========================================== -->
 
 {% include "components/treatment.html" %}
 
-<!-- ================= Prevention ================= -->
+
+<!-- ==========================================
+     Prevention
+     ========================================== -->
 
 {% include "components/prevention.html" %}
 
-<!-- ================= AI Risk Assessment ================= -->
+
+<!-- ==========================================
+     AI Risk Assessment
+     ========================================== -->
 
 {% include "components/risk_assessment.html" %}
 
-<!-- ================= Action Buttons ================= -->
+
+<!-- ==========================================
+     Recommendations
+     ========================================== -->
+
+{% include "components/recommendations.html" %}
+
+
+<!-- ==========================================
+     Organic Treatment
+     ========================================== -->
+
+{% include "components/organic_treatment.html" %}
+
+
+<!-- ==========================================
+     Recommended Chemicals
+     ========================================== -->
+
+{% include "components/chemicals.html" %}
+
+
+<!-- ==========================================
+     Action Buttons
+     ========================================== -->
 
 {% include "components/action_buttons.html" %}
 
+
 {% endblock %}
+
 
 {% block scripts %}
 
 <script>
-
-const chartData = {{ chart_data | tojson }};
-
+    const chartData = JSON.parse('{{ chart_data | tojson | safe }}');
+    const ranking = JSON.parse('{{ ranking | tojson | safe }}');
 </script>
 
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<script
+    src="{{ url_for('static', filename='js/dashboard.js') }}">
+</script>
 
 {% endblock %}
