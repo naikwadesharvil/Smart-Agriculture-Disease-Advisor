@@ -956,14 +956,15 @@ def predict():
         # ======================================
 
         latest_prediction = {
-          "prediction": info.get(
-             "Disease",
-            predicted_class,
-        ),
-        "confidence": f"{confidence:.2f}%",
-        "info": info,
-    "image_path": filepath,
-}
+            "prediction": info.get(
+                "Disease",
+                predicted_class
+            ),
+            "raw_class": predicted_class,
+            "confidence": f"{confidence:.2f}%",
+            "info": info,
+            "image_path": filepath,
+        }
 
 
         # ======================================
@@ -973,20 +974,16 @@ def predict():
         try:
 
             add_prediction(
-
                 prediction=info.get(
                     "Disease",
                     predicted_class
                 ),
-
                 confidence=(
                     f"{confidence:.2f}%"
                 ),
-
                 info=info,
-
-                image_path=image_path
-
+                image_path=image_path,
+                raw_class=predicted_class
             )
 
             print(
@@ -1084,18 +1081,31 @@ def download_report():
     # Check Prediction
     # ======================================
 
-    if not latest_prediction or not isinstance(latest_prediction, dict):
+    if not latest_prediction or not isinstance(latest_prediction, dict) or not latest_prediction.get("info"):
         history = get_history()
         if history and isinstance(history, list) and len(history) > 0:
             last_item = history[-1]
-            predicted_class_name = last_item.get("prediction", "")
-            matched_info = disease_database.get(predicted_class_name)
-            if not matched_info:
-                for k, v in disease_database.items():
-                    if normalize_key(k) == normalize_key(predicted_class_name):
-                        matched_info = v
-                        break
-            if not matched_info:
+            matched_info = last_item.get("info")
+            if not matched_info or not isinstance(matched_info, dict) or not matched_info.get("Crop"):
+                raw_key = last_item.get("raw_class", "")
+                if raw_key and raw_key in disease_database:
+                    matched_info = disease_database[raw_key]
+                else:
+                    pred_name = last_item.get("prediction", "")
+                    if pred_name in disease_database:
+                        matched_info = disease_database[pred_name]
+                    else:
+                        norm_pred = normalize_key(pred_name)
+                        for k, v in disease_database.items():
+                            if normalize_key(k) == norm_pred or normalize_key(v.get("Disease", "")) == norm_pred:
+                                matched_info = v
+                                break
+                            clean_k = k.replace("___", " ").replace("_", " ").lower()
+                            clean_pred = pred_name.replace("___", " ").replace("_", " ").lower()
+                            if clean_k == clean_pred or clean_pred in clean_k:
+                                matched_info = v
+                                break
+            if not matched_info or not isinstance(matched_info, dict):
                 matched_info = {}
 
             img_rel = last_item.get("image_path", "")
@@ -1104,6 +1114,7 @@ def download_report():
 
             latest_prediction = {
                 "prediction": last_item.get("prediction", "Unknown"),
+                "raw_class": last_item.get("raw_class", ""),
                 "confidence": last_item.get("confidence", "N/A"),
                 "info": matched_info,
                 "image_path": img_abs if (img_abs and os.path.exists(img_abs)) else None

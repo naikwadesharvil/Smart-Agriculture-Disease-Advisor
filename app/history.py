@@ -93,7 +93,8 @@ def add_prediction(
     prediction,
     confidence,
     info=None,
-    image_path=None
+    image_path=None,
+    raw_class=None
 ):
 
     if not isinstance(info, dict):
@@ -116,6 +117,8 @@ def add_prediction(
             ),
 
         "prediction": str(prediction or "Unknown"),
+
+        "raw_class": str(raw_class or ""),
 
         "confidence": str(confidence or "N/A"),
 
@@ -144,7 +147,9 @@ def add_prediction(
         "severity": info.get(
             "Severity",
             "Unknown"
-        )
+        ),
+
+        "info": info
 
     }
 
