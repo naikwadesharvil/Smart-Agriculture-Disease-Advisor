@@ -180,23 +180,25 @@ MODEL_PATH = os.path.join(
     "plant_disease_cnn.keras"
 )
 
+try:
+    tf.config.threading.set_inter_op_parallelism_threads(1)
+    tf.config.threading.set_intra_op_parallelism_threads(2)
+except Exception:
+    pass
 
-MODEL = tf.keras.models.load_model(
-    MODEL_PATH,
-    compile=False
-)
+MODEL = None
 
-
-MODEL.compile(
-    optimizer="adam",
-    loss="sparse_categorical_crossentropy",
-    metrics=["accuracy"]
-)
-
-
-print(
-    "✅ CNN Model Loaded Successfully"
-)
+try:
+    if os.path.exists(MODEL_PATH):
+        MODEL = tf.keras.models.load_model(
+            MODEL_PATH,
+            compile=False
+        )
+        print("✅ CNN Model Loaded Successfully")
+    else:
+        print(f"⚠️ Model file not found at: {MODEL_PATH}")
+except Exception as model_err:
+    print(f"⚠️ Error loading CNN model: {model_err}")
 
 
 # ==========================================
@@ -526,9 +528,8 @@ def predict():
             with Image.open(filepath) as test_img:
                 test_img.verify()
 
-            img = Image.open(
-                filepath
-            ).convert("RGB")
+            with Image.open(filepath) as raw_img:
+                img = raw_img.convert("RGB")
 
         except Exception as img_err:
 
@@ -588,10 +589,11 @@ def predict():
                 axis=0
             )
 
-            predictions = MODEL.predict(
+            # Direct tensor execution (minimal RAM allocation vs model.predict dataset pipeline)
+            predictions = MODEL(
                 img_array,
-                verbose=0
-            )
+                training=False
+            ).numpy()
 
             probabilities = predictions[0]
 
