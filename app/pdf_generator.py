@@ -119,8 +119,8 @@ def generate_pdf(
         pagesize=A4,
         rightMargin=18 * mm,
         leftMargin=18 * mm,
-        topMargin=18 * mm,
-        bottomMargin=20 * mm
+        topMargin=16 * mm,
+        bottomMargin=18 * mm
     )
 
     styles = getSampleStyleSheet()
@@ -134,7 +134,7 @@ def generate_pdf(
         fontSize=18,
         leading=22,
         textColor=colors.HexColor("#198754"),
-        spaceAfter=4
+        spaceAfter=2
     )
 
     subtitle_style = ParagraphStyle(
@@ -142,21 +142,21 @@ def generate_pdf(
         parent=styles["Normal"],
         alignment=TA_CENTER,
         fontName="Helvetica",
-        fontSize=10,
-        leading=13,
+        fontSize=9.5,
+        leading=12,
         textColor=colors.HexColor("#555555"),
-        spaceAfter=12
+        spaceAfter=10
     )
 
     heading_style = ParagraphStyle(
         "ReportHeading",
         parent=styles["Heading2"],
         fontName="Helvetica-Bold",
-        fontSize=12,
-        leading=16,
+        fontSize=11.5,
+        leading=15,
         textColor=colors.HexColor("#198754"),
-        spaceBefore=10,
-        spaceAfter=6,
+        spaceBefore=8,
+        spaceAfter=5,
         keepWithNext=True
     )
 
@@ -164,10 +164,10 @@ def generate_pdf(
         "ReportBody",
         parent=styles["BodyText"],
         fontName="Helvetica",
-        fontSize=9,
-        leading=13,
+        fontSize=8.5,
+        leading=12,
         textColor=colors.HexColor("#212529"),
-        spaceAfter=4,
+        spaceAfter=3,
         alignment=TA_JUSTIFY
     )
 
@@ -175,19 +175,19 @@ def generate_pdf(
         "ReportBullet",
         parent=styles["BodyText"],
         fontName="Helvetica",
-        fontSize=9,
-        leading=13,
+        fontSize=8.5,
+        leading=12,
         textColor=colors.HexColor("#212529"),
-        leftIndent=12,
-        spaceAfter=3
+        leftIndent=10,
+        spaceAfter=2.5
     )
 
     table_header_style = ParagraphStyle(
         "TableHeader",
         parent=styles["Normal"],
         fontName="Helvetica-Bold",
-        fontSize=9,
-        leading=12,
+        fontSize=8.5,
+        leading=11.5,
         textColor=colors.HexColor("#198754")
     )
 
@@ -195,17 +195,26 @@ def generate_pdf(
         "TableCell",
         parent=styles["Normal"],
         fontName="Helvetica",
+        fontSize=8.5,
+        leading=11.5,
+        textColor=colors.HexColor("#212529")
+    )
+
+    callout_title_style = ParagraphStyle(
+        "CalloutTitle",
+        parent=styles["Normal"],
+        fontName="Helvetica-Bold",
         fontSize=9,
         leading=12,
-        textColor=colors.HexColor("#212529")
+        textColor=colors.HexColor("#198754")
     )
 
     disclaimer_style = ParagraphStyle(
         "ReportDisclaimer",
         parent=styles["Normal"],
         fontName="Helvetica-Oblique",
-        fontSize=8,
-        leading=11,
+        fontSize=7.5,
+        leading=10.5,
         textColor=colors.HexColor("#6c757d")
     )
 
@@ -214,26 +223,26 @@ def generate_pdf(
     # 1. Header (Title & Subtitle)
     story.append(Paragraph("Smart Agriculture Disease Advisor", title_style))
     story.append(Paragraph("AI-Powered Plant Disease Analysis Report", subtitle_style))
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 2))
 
     # 2. Uploaded Leaf Image (Preserve Aspect Ratio & Constrain Dimensions)
     if image_path and os.path.exists(image_path):
         try:
             with PILImage.open(image_path) as pil_image:
                 img_w, img_h = pil_image.size
-                max_w = 80 * mm
-                max_h = 55 * mm
+                max_w = 75 * mm
+                max_h = 50 * mm
                 scale = min(max_w / img_w, max_h / img_h)
                 disp_w = img_w * scale
                 disp_h = img_h * scale
 
-            story.append(Paragraph("Uploaded Leaf Image", heading_style))
+            story.append(Paragraph("Uploaded Leaf Sample", heading_style))
             leaf_img = ReportLabImage(image_path, width=disp_w, height=disp_h)
             leaf_img.hAlign = "CENTER"
             story.append(leaf_img)
-            story.append(Spacer(1, 6))
+            story.append(Spacer(1, 4))
         except Exception as img_err:
-            print("⚠️ Note: Could not render image in PDF:", img_err)
+            print("Note: Could not render image in PDF:", img_err)
 
     # 3. Prediction Summary Table
     story.append(Paragraph("Prediction Summary", heading_style))
@@ -247,25 +256,25 @@ def generate_pdf(
         [Paragraph("<b>Severity</b>", table_header_style), Paragraph(safe_value(info.get("Severity")), table_cell_style)]
     ]
 
-    summary_table = Table(summary_rows, colWidths=[52 * mm, 122 * mm])
+    summary_table = Table(summary_rows, colWidths=[50 * mm, 124 * mm])
     summary_table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#eaf7ef")),
         ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#dcdcdc")),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 6),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4)
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 3.5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)
     ]))
     story.append(summary_table)
-    story.append(Spacer(1, 6))
+    story.append(Spacer(1, 4))
 
     # 4. Disease Description
     story.append(Paragraph("Disease Description", heading_style))
     story.append(Paragraph(safe_value(info.get("Description")), body_style))
     story.append(Spacer(1, 4))
 
-    # 5. Disease Profile
+    # 5. Disease Profile Table
     story.append(Paragraph("Disease Profile", heading_style))
     profile_rows = [
         [Paragraph("<b>Pathogen</b>", table_header_style), Paragraph(safe_value(info.get("Pathogen")), table_cell_style)],
@@ -275,20 +284,20 @@ def generate_pdf(
         [Paragraph("<b>Spread</b>", table_header_style), Paragraph(safe_value(info.get("Spread")), table_cell_style)]
     ]
 
-    profile_table = Table(profile_rows, colWidths=[52 * mm, 122 * mm])
+    profile_table = Table(profile_rows, colWidths=[50 * mm, 124 * mm])
     profile_table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#f8f9fa")),
         ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#dcdcdc")),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 6),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4)
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 3.5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)
     ]))
     story.append(profile_table)
-    story.append(Spacer(1, 6))
+    story.append(Spacer(1, 5))
 
-    # Helper function to append structured bullet point sections
+    # Helper function for bullet sections
     def append_bullet_section(title, items, empty_msg="Not available"):
         story.append(Paragraph(title, heading_style))
         if items:
@@ -296,7 +305,7 @@ def generate_pdf(
                 story.append(Paragraph(f"• {safe_value(item)}", bullet_style))
         else:
             story.append(Paragraph(empty_msg, body_style))
-        story.append(Spacer(1, 4))
+        story.append(Spacer(1, 3.5))
 
     # 6. Symptoms
     append_bullet_section("Symptoms", safe_list(info.get("Symptoms")), "No specific symptoms reported.")
@@ -316,10 +325,7 @@ def generate_pdf(
     # 11. Prevention
     append_bullet_section("Prevention", safe_list(info.get("Prevention")), "No prevention guidelines recorded.")
 
-    # 12. Recommended Actions
-    append_bullet_section("Recommended Actions", safe_list(info.get("Recommended_Actions")), "No immediate actions recorded.")
-
-    # 13. Disease Progression Table
+    # 12. Disease Progression Table
     age_cycle = info.get("Age_Cycle") if isinstance(info.get("Age_Cycle"), dict) else {}
     story.append(Paragraph("Disease Progression", heading_style))
     progression_rows = [
@@ -333,27 +339,71 @@ def generate_pdf(
         [Paragraph("<b>Estimated Duration</b>", table_cell_style), Paragraph(safe_value(age_cycle.get("Estimated")), table_cell_style)]
     ]
 
-    progression_table = Table(progression_rows, colWidths=[45 * mm, 129 * mm])
+    progression_table = Table(progression_rows, colWidths=[46 * mm, 128 * mm])
     progression_table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#198754")),
         ("BACKGROUND", (0, 1), (0, -1), colors.HexColor("#f8f9fa")),
         ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#dcdcdc")),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 6),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4)
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 3.5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)
     ]))
     story.append(progression_table)
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 5))
 
-    # 14. Disclaimer
+    # 13. Risk & Advisory Summary
+    story.append(Paragraph("Risk & Advisory Summary", heading_style))
+    risk_val = safe_value(info.get("Risk_Level"), "Moderate")
+    severity_val = safe_value(info.get("Severity"), "Moderate")
+    crop_val = safe_value(info.get("Crop"), "Plant")
+    disease_val = safe_value(prediction or info.get("Disease"), "Diagnosis")
+
+    risk_summary_rows = [
+        [Paragraph("<b>Diagnostic Target</b>", callout_title_style), Paragraph(f"{crop_val} — {disease_val}", table_cell_style)],
+        [Paragraph("<b>AI Model Confidence</b>", callout_title_style), Paragraph(safe_value(confidence, "N/A"), table_cell_style)],
+        [Paragraph("<b>Pathology Risk Level</b>", callout_title_style), Paragraph(f"<b>{risk_val}</b>", table_cell_style)],
+        [Paragraph("<b>Clinical Severity Rating</b>", callout_title_style), Paragraph(f"<b>{severity_val}</b>", table_cell_style)],
+        [Paragraph("<b>Monitoring Urgency</b>", callout_title_style), Paragraph(
+            "High priority intervention required; inspect neighboring foliage immediately." if risk_val.lower() == "high"
+            else "Standard seasonal monitoring and preventative management advised.",
+            table_cell_style
+        )]
+    ]
+
+    risk_table = Table(risk_summary_rows, colWidths=[50 * mm, 124 * mm])
+    risk_table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (0, -1), colors.HexColor("#eaf7ef")),
+        ("BACKGROUND", (1, 0), (1, -1), colors.HexColor("#ffffff")),
+        ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#dcdcdc")),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 3.5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 3.5)
+    ]))
+    story.append(risk_table)
+    story.append(Spacer(1, 5))
+
+    # 14. Key Recommendations (From authoritative database actions & prevention)
+    rec_actions = safe_list(info.get("Recommended_Actions"))
+    if not rec_actions:
+        rec_actions = safe_list(info.get("Prevention"))[:3]
+
+    story.append(Paragraph("Key Recommendations (Recommended Actions)", heading_style))
+    if rec_actions:
+        for idx, act in enumerate(rec_actions, 1):
+            story.append(Paragraph(f"<b>{idx}.</b> {safe_value(act)}", bullet_style))
+    else:
+        story.append(Paragraph("Consult a local agricultural extension specialist for personalized crop treatment.", body_style))
+    story.append(Spacer(1, 8))
+
+    # 15. Disclaimer
     story.append(Paragraph(
-        "<b>Disclaimer:</b> This report provides AI-generated plant pathology decision-support guidance. "
-        "Diagnostic predictions and chemical recommendations should be confirmed by a certified agronomist or extension officer "
-        "before large-scale field application.",
+        "<b>Disclaimer:</b> This diagnostic report provides AI-generated agronomic decision-support guidance based on computer vision models trained on leaf pathology datasets. "
+        "Diagnostic findings and chemical recommendations should be corroborated with visual field inspections and validated by a certified plant pathologist or agricultural extension officer prior to extensive chemical application.",
         disclaimer_style
     ))
 
-    # Build PDF with dynamic page numbering
     document.build(story, canvasmaker=NumberedCanvas)
