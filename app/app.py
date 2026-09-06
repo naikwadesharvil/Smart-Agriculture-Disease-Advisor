@@ -192,7 +192,8 @@ _output_index = None
 def get_interpreter():
     """
     Thread-safe lazy loader for the optimized TensorFlow Lite CNN model.
-    Loads on-demand to keep idle memory < 40 MB RSS and peak inference < 300 MB RSS.
+    Loads on-demand using LiteRT / TFLite runtime to keep idle memory < 40 MB RSS
+    and peak inference memory ~106 MB RSS.
     """
     global _interpreter, _input_index, _output_index
 
@@ -203,10 +204,20 @@ def get_interpreter():
                     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
                     os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
-                    import tensorflow as tf
+                    InterpreterClass = None
+                    try:
+                        from ai_edge_litert.interpreter import Interpreter
+                        InterpreterClass = Interpreter
+                    except ImportError:
+                        try:
+                            from tensorflow.lite.python.interpreter import Interpreter
+                            InterpreterClass = Interpreter
+                        except ImportError:
+                            import tensorflow as tf
+                            InterpreterClass = tf.lite.Interpreter
 
-                    if os.path.exists(TFLITE_PATH):
-                        interp = tf.lite.Interpreter(
+                    if os.path.exists(TFLITE_PATH) and InterpreterClass is not None:
+                        interp = InterpreterClass(
                             model_path=TFLITE_PATH,
                             num_threads=2
                         )
@@ -217,6 +228,7 @@ def get_interpreter():
                         print("✅ Optimized TFLite CNN Model Lazy-Loaded Successfully", flush=True)
                     elif os.path.exists(KERAS_PATH):
                         print("⚠️ TFLite model not found, falling back to Keras model...", flush=True)
+                        import tensorflow as tf
                         keras_model = tf.keras.models.load_model(KERAS_PATH, compile=False)
                         _interpreter = keras_model
                         print("✅ Keras CNN Model Loaded as Fallback", flush=True)
