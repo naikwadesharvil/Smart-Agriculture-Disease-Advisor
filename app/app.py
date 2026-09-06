@@ -6,6 +6,7 @@ from flask import (
     url_for,
     send_from_directory,
     redirect,
+    jsonify,
 )
 
 import os
@@ -15,6 +16,10 @@ import tempfile
 import traceback
 import uuid
 from datetime import datetime
+
+# Configure TensorFlow memory & logging flags before importing TF
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 # Ensure app directory is on path for modules
 BASE_DIR = os.path.dirname(
@@ -308,6 +313,18 @@ except Exception as e:
         "⚠️ Model/Class validation:",
         str(e)
     )
+
+
+# ==========================================
+# Health Check Endpoint
+# ==========================================
+
+@app.route("/health")
+def health():
+
+    return jsonify({
+        "status": "healthy"
+    }), 200
 
 
 # ==========================================

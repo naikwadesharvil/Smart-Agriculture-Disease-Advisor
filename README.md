@@ -147,8 +147,10 @@ Open your browser and navigate to `http://127.0.0.1:5000/`.
 
 **Production Mode (WSGI on Linux / Cloud Container):**
 ```bash
-gunicorn -w 4 -b 0.0.0.0:5000 app.app:app
+gunicorn --workers 1 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT app.app:app
 ```
+> **Note for 512 MB RAM Instances (e.g. Render Free Tier):**
+> Use `--workers 1 --threads 2` to ensure only a single TensorFlow model instance is loaded into memory (~360–380 MB RSS), avoiding container memory crashes (HTTP 502 / OOM).
 
 **Production Mode on Windows:**
 ```bash
@@ -172,8 +174,9 @@ waitress-serve --listen=0.0.0.0:5000 app.app:app
 ## 🌐 Deployment Architecture & Guidelines
 
 ### Recommended Deployment Platforms
-- **Render / Railway / Fly.io**: Deploy as a Web Service running Python 3.10+ with Gunicorn.
-- **Docker-based Hosting (AWS ECS / GCP Cloud Run / Azure Container Apps)**: Containerize the Flask application with Python base image.
+- **Render / Railway / Fly.io**: Deploy as a Web Service running Python 3.12 with Gunicorn (`--workers 1 --threads 2 --timeout 120`).
+- **Health Check Endpoint**: `GET /health` returns `{"status": "healthy"}` with HTTP 200.
+- **Docker-based Hosting (AWS ECS / GCP Cloud Run / Azure Container Apps)**: Containerize the Flask application with Python 3.12 base image.
 
 ### ⚠️ Storage & Persistence Considerations
 - **Ephemeral Filesystem**: Platforms such as Render Free Tier and Cloud Run use ephemeral disk storage. Any uploaded images in `app/static/uploads/` and history in `prediction_history.json` will reset upon container restart.
