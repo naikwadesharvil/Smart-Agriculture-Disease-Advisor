@@ -166,64 +166,66 @@ def uploaded_file(filename):
 
 
 # ==========================================
-# Lazy CNN Model Loading & Thread Safety
+# Optimized TFLite CNN Model & Thread Safety
 # ==========================================
 
-MODEL_PATH = os.path.join(
+TFLITE_PATH = os.path.join(
+    BASE_DIR,
+    "..",
+    "models",
+    "plant_disease_cnn.tflite"
+)
+
+KERAS_PATH = os.path.join(
     BASE_DIR,
     "..",
     "models",
     "plant_disease_cnn.keras"
 )
 
-MODEL = None
-_model_lock = threading.Lock()
+_interpreter = None
+_interpreter_lock = threading.Lock()
+_input_index = None
+_output_index = None
 
 
-def get_model():
+def get_interpreter():
     """
-    Thread-safe lazy loader for the CNN model.
-    TensorFlow and the CNN model weights are loaded on-demand during
-    the first prediction request to optimize WSGI startup time and RAM.
+    Thread-safe lazy loader for the optimized TensorFlow Lite CNN model.
+    Loads on-demand to keep idle memory < 40 MB RSS and peak inference < 300 MB RSS.
     """
-    global MODEL
+    global _interpreter, _input_index, _output_index
 
-    if MODEL is None:
-        with _model_lock:
-            if MODEL is None:
+    if _interpreter is None:
+        with _interpreter_lock:
+            if _interpreter is None:
                 try:
-                    # Configure TensorFlow environment before importing
                     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
                     os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
                     import tensorflow as tf
 
-                    try:
-                        tf.config.threading.set_inter_op_parallelism_threads(1)
-                        tf.config.threading.set_intra_op_parallelism_threads(2)
-                    except Exception:
-                        pass
-
-                    if os.path.exists(MODEL_PATH):
-                        loaded = tf.keras.models.load_model(
-                            MODEL_PATH,
-                            compile=False
+                    if os.path.exists(TFLITE_PATH):
+                        interp = tf.lite.Interpreter(
+                            model_path=TFLITE_PATH,
+                            num_threads=2
                         )
-                        output_size = loaded.output_shape[-1]
-                        if output_size != len(CLASS_NAMES):
-                            print(
-                                f"⚠️ Warning: Model output has {output_size} classes "
-                                f"but CLASS_NAMES contains {len(CLASS_NAMES)}.",
-                                flush=True
-                            )
-                        MODEL = loaded
-                        print("✅ CNN Model Lazy-Loaded Successfully", flush=True)
+                        interp.allocate_tensors()
+                        _input_index = interp.get_input_details()[0]["index"]
+                        _output_index = interp.get_output_details()[0]["index"]
+                        _interpreter = interp
+                        print("✅ Optimized TFLite CNN Model Lazy-Loaded Successfully", flush=True)
+                    elif os.path.exists(KERAS_PATH):
+                        print("⚠️ TFLite model not found, falling back to Keras model...", flush=True)
+                        keras_model = tf.keras.models.load_model(KERAS_PATH, compile=False)
+                        _interpreter = keras_model
+                        print("✅ Keras CNN Model Loaded as Fallback", flush=True)
                     else:
-                        print(f"⚠️ Model file not found at: {MODEL_PATH}", flush=True)
+                        print(f"⚠️ Neither TFLite ({TFLITE_PATH}) nor Keras ({KERAS_PATH}) model was found.", flush=True)
                 except Exception as model_err:
-                    print(f"⚠️ Error lazy-loading CNN model: {model_err}", flush=True)
+                    print(f"⚠️ Error lazy-loading prediction model: {model_err}", flush=True)
 
-    return MODEL
+    return _interpreter
 
 
 # ==========================================
@@ -564,11 +566,11 @@ def predict():
         # Model Availability Check (Lazy Load)
         # ======================================
 
-        model = get_model()
+        model = get_interpreter()
 
         if model is None:
 
-            print("⚠️ CNN Model is not available.", flush=True)
+            print("⚠️ Prediction model is not available.", flush=True)
 
             return render_template(
                 "error.html",
@@ -598,13 +600,20 @@ def predict():
                 axis=0
             )
 
-            # Direct tensor execution (minimal RAM allocation vs model.predict dataset pipeline)
-            predictions = model(
-                img_array,
-                training=False
-            ).numpy()
-
-            probabilities = predictions[0]
+            # Thread-safe inference execution
+            with _interpreter_lock:
+                if hasattr(model, "set_tensor"):
+                    # TFLite Interpreter execution
+                    model.set_tensor(_input_index, img_array)
+                    model.invoke()
+                    probabilities = model.get_tensor(_output_index)[0]
+                else:
+                    # Keras Model callable execution (fallback)
+                    predictions = model(
+                        img_array,
+                        training=False
+                    ).numpy()
+                    probabilities = predictions[0]
 
         except Exception as pred_err:
 

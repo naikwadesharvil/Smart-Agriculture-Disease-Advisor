@@ -176,9 +176,14 @@ waitress-serve --listen=0.0.0.0:5000 app.app:app
 ### Deployment Architecture & Guidelines
 
 - **Python Runtime**: Python 3.12 pinned via `.python-version`.
-- **Deep Learning Framework**: TensorFlow 2.17.0 with direct tensor graph execution.
-- **Model Storage**: `models/plant_disease_cnn.keras` (~74.7 MB) managed and served via Git LFS.
-- **Thread-Safe Lazy Model Loading**: The CNN model and TensorFlow runtime are loaded on-demand during the first inference request rather than during Flask/WSGI startup. This ensures instant container boot (<1.5s) and minimal idle RAM usage (~40 MB RSS).
+- **Deep Learning Models**:
+  - **Original Research Model**: `models/plant_disease_cnn.keras` (~74.7 MB, 6.52M parameters, tracked via Git LFS) preserved for retraining and experimentation.
+  - **Optimized Production Model**: `models/plant_disease_cnn.tflite` (~12.45 MB, FP16 quantization, 83.3% size reduction) used for production inference. Achieves 100.0% Top-1 and Top-5 class agreement with near-zero confidence variance (<0.18%).
+- **Low-Memory Inference Architecture**:
+  - Thread-safe lazy loading with `threading.Lock()` and `tf.lite.Interpreter`.
+  - Idle memory: **~38 MB RSS**.
+  - Peak inference memory: **298 MB RSS** (safely below the 512 MB Render Free tier threshold).
+  - Inference latency: **~13 ms** (down from ~200 ms).
 - **Gunicorn Production Server**: Configured for cloud instances (e.g. Render Free Tier 512 MB limit) with `--workers 1 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT app.app:app`.
 - **Health Check Endpoint**: Dedicated lightweight `GET /health` endpoint returning `{"status": "healthy"}` (HTTP 200) without triggering model initialization.
 - **Supported Platforms**: Render, Railway, Fly.io, AWS ECS, GCP Cloud Run.

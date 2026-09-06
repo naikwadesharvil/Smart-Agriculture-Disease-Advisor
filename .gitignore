@@ -15,10 +15,12 @@ env/
 
 .vscode/
 .pytest_cache/
+scratch/
 
 *.h5
 *.pdf
 !models/plant_disease_cnn.keras
+!models/plant_disease_cnn.tflite
 
 static/uploads/*
 
