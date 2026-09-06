@@ -5,12 +5,31 @@ from flask import (
     send_file,
     url_for,
     send_from_directory,
+    redirect,
 )
 
 import os
+import sys
 import json
 import tempfile
 import traceback
+import uuid
+from datetime import datetime
+
+# Ensure app directory is on path for modules
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 import numpy as np
 import tensorflow as tf
@@ -20,7 +39,12 @@ from werkzeug.utils import secure_filename
 
 from pdf_generator import generate_pdf
 
-from history import add_prediction
+from history import (
+    add_prediction,
+    get_history,
+    clear_history,
+    delete_prediction,
+)
 
 
 # ==========================================
@@ -28,6 +52,29 @@ from history import add_prediction
 # ==========================================
 
 app = Flask(__name__)
+
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "smart-agri-advisor-dev-key-change-in-production"
+)
+
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+)
+
+
+# ==========================================
+# Security Headers
+# ==========================================
+
+@app.after_request
+def add_security_headers(response):
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    return response
 
 
 # ==========================================
@@ -65,6 +112,7 @@ ALLOWED_EXTENSIONS = {
 
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 
 
 os.makedirs(
@@ -299,6 +347,58 @@ def guide():
 
 
 # ==========================================
+# Prediction History
+# ==========================================
+
+@app.route("/history")
+def history_page():
+
+    history = get_history()
+
+    # Show latest predictions at the top
+    reversed_history = list(reversed(history)) if history else []
+
+    return render_template(
+        "history.html",
+        history=reversed_history
+    )
+
+
+# ==========================================
+# Clear History
+# ==========================================
+
+@app.route(
+    "/history/clear",
+    methods=["POST"]
+)
+def clear_prediction_history():
+
+    clear_history()
+
+    return redirect(
+        url_for("history_page")
+    )
+
+
+# ==========================================
+# Delete Single History Record
+# ==========================================
+
+@app.route(
+    "/history/delete/<int:prediction_id>",
+    methods=["POST"]
+)
+def delete_history_item(prediction_id):
+
+    delete_prediction(prediction_id)
+
+    return redirect(
+        url_for("history_page")
+    )
+
+
+# ==========================================
 # Prediction
 # ==========================================
 
@@ -311,43 +411,27 @@ def predict():
     global latest_prediction
 
     try:
-        print("\n========== UPLOAD DEBUG ==========")
-        print("request.files:", request.files)
-        print("request.form:", request.form)
-        print(
-            "image in request.files:",
-            "image" in request.files
-        )
-        print("==================================\n")
-
-        if "image" not in request.files:
-
-            return render_template(
-                "error.html",
-                error="No image uploaded."
-            )
-
         # ======================================
-        # Check Image
+        # Check Image in Request
         # ======================================
 
         if "image" not in request.files:
 
             return render_template(
                 "error.html",
-                error="No image uploaded."
-            )
+                error="Please select a plant leaf image before analyzing."
+            ), 400
 
 
         file = request.files["image"]
 
 
-        if file.filename == "":
+        if not file or not file.filename or file.filename.strip() == "":
 
             return render_template(
                 "error.html",
-                error="No file selected."
-            )
+                error="Please select a plant leaf image before analyzing."
+            ), 400
 
 
         if not allowed_file(
@@ -358,18 +442,41 @@ def predict():
                 "error.html",
                 error=(
                     "Unsupported file type. "
-                    "Please upload JPG, JPEG or PNG."
+                    "Please upload a valid JPG, JPEG, or PNG image."
                 )
-            )
+            ), 400
 
 
         # ======================================
-        # Save Image
+        # Check Empty / Zero-Byte File
         # ======================================
 
-        filename = secure_filename(
+        file.seek(0, os.SEEK_END)
+        file_size = file.tell()
+        file.seek(0)
+
+        if file_size == 0:
+
+            return render_template(
+                "error.html",
+                error="The selected file is empty (0 bytes). Please upload a valid image."
+            ), 400
+
+
+        # ======================================
+        # Filename Security & Collision Handling
+        # ======================================
+
+        clean_name = secure_filename(
             file.filename
         )
+
+        if not clean_name:
+            clean_name = "leaf_image.jpg"
+
+        timestamp_prefix = datetime.now().strftime("%Y%m%d_%H%M%S")
+        unique_token = uuid.uuid4().hex[:8]
+        filename = f"{timestamp_prefix}_{unique_token}_{clean_name}"
 
 
         filepath = os.path.join(
@@ -394,45 +501,94 @@ def predict():
 
 
         # ======================================
-        # Image Preprocessing
+        # Image Integrity Verification
         # ======================================
 
-        img = Image.open(
-            filepath
-        ).convert("RGB")
+        try:
 
+            with Image.open(filepath) as test_img:
+                test_img.verify()
 
-        img = img.resize(
-            (128, 128)
-        )
+            img = Image.open(
+                filepath
+            ).convert("RGB")
 
+        except Exception as img_err:
 
-        img_array = np.array(
-            img,
-            dtype=np.float32
-        )
+            if os.path.exists(filepath):
+                try:
+                    os.remove(filepath)
+                except OSError:
+                    pass
 
+            print(
+                "⚠️ Corrupted or invalid image uploaded:",
+                img_err
+            )
 
-        img_array /= 255.0
-
-
-        img_array = np.expand_dims(
-            img_array,
-            axis=0
-        )
+            return render_template(
+                "error.html",
+                error=(
+                    "The uploaded file is corrupted or not a valid image. "
+                    "Please select a valid JPG, JPEG, or PNG image."
+                )
+            ), 400
 
 
         # ======================================
-        # CNN Prediction
+        # Model Availability Check
         # ======================================
 
-        predictions = MODEL.predict(
-            img_array,
-            verbose=0
-        )
+        if MODEL is None:
+
+            print("⚠️ CNN Model is not loaded.")
+
+            return render_template(
+                "error.html",
+                error="The AI prediction model is currently unavailable. Please try again later."
+            ), 503
 
 
-        probabilities = predictions[0]
+        # ======================================
+        # Image Preprocessing & Prediction
+        # ======================================
+
+        try:
+
+            img_resized = img.resize(
+                (128, 128)
+            )
+
+            img_array = np.array(
+                img_resized,
+                dtype=np.float32
+            )
+
+            img_array /= 255.0
+
+            img_array = np.expand_dims(
+                img_array,
+                axis=0
+            )
+
+            predictions = MODEL.predict(
+                img_array,
+                verbose=0
+            )
+
+            probabilities = predictions[0]
+
+        except Exception as pred_err:
+
+            print(
+                "⚠️ Prediction error during inference:",
+                pred_err
+            )
+
+            return render_template(
+                "error.html",
+                error="An error occurred while analyzing the image. Please try again with a clear leaf photo."
+            ), 500
 
 
         # ======================================
@@ -857,14 +1013,10 @@ def predict():
 
         traceback.print_exc()
 
-
         return render_template(
-
             "error.html",
-
-            error=str(e)
-
-        )
+            error="An unexpected error occurred while processing your diagnosis. Please try again."
+        ), 500
 
 
 # ==========================================
@@ -883,22 +1035,18 @@ def download_report():
     # Check Prediction
     # ======================================
 
-    if not latest_prediction:
+    if not latest_prediction or not isinstance(latest_prediction, dict):
 
         return render_template(
-
             "error.html",
-
             error=(
                 "No prediction available. "
                 "Please analyze an image first."
             )
-
-        )
+        ), 400
 
 
     try:
-        
 
         # ==================================
         # Temporary PDF
@@ -919,12 +1067,12 @@ def download_report():
         # ==================================
 
         generate_pdf(
-          output_path=pdf_path,
-          info=latest_prediction["info"],
-          prediction=latest_prediction["prediction"],
-          confidence=latest_prediction["confidence"],
-          image_path=latest_prediction["image_path"],
-)
+            output_path=pdf_path,
+            info=latest_prediction.get("info", {}),
+            prediction=latest_prediction.get("prediction", "Unknown"),
+            confidence=latest_prediction.get("confidence", "N/A"),
+            image_path=latest_prediction.get("image_path"),
+        )
 
 
         # ==================================
@@ -932,19 +1080,14 @@ def download_report():
         # ==================================
 
         return send_file(
-
             pdf_path,
-
             as_attachment=True,
-
             download_name=(
                 "Plant_Disease_Report.pdf"
             ),
-
             mimetype=(
                 "application/pdf"
             )
-
         )
 
 
@@ -952,17 +1095,59 @@ def download_report():
 
         traceback.print_exc()
 
-
         return render_template(
-
             "error.html",
+            error="Unable to generate the PDF report at this time. Please try again."
+        ), 500
 
-            error=(
-                "Failed to generate PDF: "
-                + str(e)
-            )
 
-        )
+# ==========================================
+# HTTP Error Handlers
+# ==========================================
+
+@app.errorhandler(400)
+def bad_request(e):
+
+    return render_template(
+        "error.html",
+        error="Bad Request (400). The server could not understand or process the request."
+    ), 400
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+
+    return render_template(
+        "error.html",
+        error="The requested page could not be found (404)."
+    ), 404
+
+
+@app.errorhandler(405)
+def method_not_allowed(e):
+
+    return render_template(
+        "error.html",
+        error="Method Not Allowed (405). The requested HTTP method is not supported for this page."
+    ), 405
+
+
+@app.errorhandler(413)
+def request_entity_too_large(e):
+
+    return render_template(
+        "error.html",
+        error="The uploaded image file is too large. Please upload an image smaller than 16 MB."
+    ), 413
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+
+    return render_template(
+        "error.html",
+        error="An internal server error occurred (500). Please try again later."
+    ), 500
 
 
 # ==========================================
@@ -971,6 +1156,17 @@ def download_report():
 
 if __name__ == "__main__":
 
+    debug_mode = os.environ.get("FLASK_DEBUG", "1").strip().lower() in (
+        "true",
+        "1",
+        "yes"
+    )
+
+    host = os.environ.get("HOST", os.environ.get("FLASK_HOST", "127.0.0.1"))
+    port = int(os.environ.get("PORT", os.environ.get("FLASK_PORT", 5000)))
+
     app.run(
-        debug=True
+        debug=debug_mode,
+        host=host,
+        port=port
     )

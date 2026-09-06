@@ -37,13 +37,18 @@ def load_history():
             data = json.load(file)
 
         if isinstance(data, list):
-            return data
+            valid_entries = []
+            for item in data:
+                if isinstance(item, dict):
+                    valid_entries.append(item)
+            return valid_entries
 
         return []
 
     except (
         json.JSONDecodeError,
-        OSError
+        OSError,
+        Exception
     ):
 
         return []
@@ -54,6 +59,9 @@ def load_history():
 # ==========================================
 
 def save_history(history):
+
+    if not isinstance(history, list):
+        history = []
 
     try:
 
@@ -84,9 +92,12 @@ def save_history(history):
 def add_prediction(
     prediction,
     confidence,
-    info,
+    info=None,
     image_path=None
 ):
+
+    if not isinstance(info, dict):
+        info = {}
 
     history = load_history()
 
@@ -104,9 +115,9 @@ def add_prediction(
                 "%Y-%m-%d %H:%M:%S"
             ),
 
-        "prediction": prediction,
+        "prediction": str(prediction or "Unknown"),
 
-        "confidence": confidence,
+        "confidence": str(confidence or "N/A"),
 
         "image_path": image_path,
 
@@ -117,7 +128,7 @@ def add_prediction(
 
         "disease": info.get(
             "Disease",
-            prediction
+            prediction or "Unknown"
         ),
 
         "scientific_name": info.get(

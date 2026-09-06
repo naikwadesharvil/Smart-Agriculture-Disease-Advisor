@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+
+{% block title %}
+Prediction History | Smart Agriculture Disease Advisor
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+     PAGE HEADER
+     ========================================== -->
+
+<div
+    class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"
+    data-aos="fade-up">
+
+    <div>
+
+        <h1 class="fw-bold text-success mb-1">
+            <i class="bi bi-clock-history me-2"></i>
+            Prediction History
+        </h1>
+
+        <p class="text-muted mb-0">
+            View, track, and manage previous plant disease diagnoses
+        </p>
+
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+
+        <a
+            href="{{ url_for('home') }}#upload"
+            class="btn btn-success">
+
+            <i class="bi bi-plus-circle me-1"></i>
+
+            New Diagnosis
+
+        </a>
+
+        {% if history and history|length > 0 %}
+
+        <form
+            action="{{ url_for('clear_prediction_history') }}"
+            method="POST"
+            class="d-inline"
+            onsubmit="return confirm('Are you sure you want to delete all prediction history? This action cannot be undone.');">
+
+            <button
+                type="submit"
+                class="btn btn-outline-danger"
+                id="clearHistoryBtn">
+
+                <i class="bi bi-trash3-fill me-1"></i>
+
+                Clear History
+
+            </button>
+
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     HISTORY CONTENT
+     ========================================== -->
+
+{% if not history or history|length == 0 %}
+
+<!-- ==========================================
+     EMPTY STATE
+     ========================================== -->
+
+<div
+    class="row justify-content-center align-items-center my-5"
+    data-aos="zoom-in">
+
+    <div class="col-lg-6 col-md-8 text-center">
+
+        <div class="custom-card py-5">
+
+            <div class="mb-4">
+
+                <i
+                    class="bi bi-clock-history text-muted"
+                    style="font-size: 4.5rem; opacity: 0.6;">
+                </i>
+
+            </div>
+
+            <h3 class="fw-bold mb-2">
+                No Prediction History Available Yet
+            </h3>
+
+            <p class="text-muted mb-4">
+                You haven't run any plant leaf diagnoses yet. Upload an image from the home page to start detecting crop diseases.
+            </p>
+
+            <a
+                href="{{ url_for('home') }}#upload"
+                class="btn btn-success btn-lg px-4">
+
+                <i class="bi bi-upload me-2"></i>
+
+                Start Diagnosis
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<!-- ==========================================
+     HISTORY TABLE & RECORDS
+     ========================================== -->
+
+<div
+    class="custom-card mb-4"
+    data-aos="fade-up">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h5 class="mb-0 text-success fw-semibold">
+            Saved Records
+        </h5>
+
+        <span class="badge bg-success fs-6">
+            {{ history|length }} Total Prediction{{ "s" if history|length > 1 else "" }}
+        </span>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th scope="col" style="width: 50px;">#</th>
+
+                    <th scope="col" style="width: 90px;">Leaf</th>
+
+                    <th scope="col">Crop & Disease</th>
+
+                    <th scope="col">Confidence</th>
+
+                    <th scope="col">Risk & Severity</th>
+
+                    <th scope="col">Date / Time</th>
+
+                    <th scope="col" class="text-end" style="width: 90px;">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in history %}
+
+                <tr>
+
+                    <!-- ID -->
+
+                    <td class="text-muted fw-semibold">
+
+                        {{ item.id if item.id else loop.index }}
+
+                    </td>
+
+
+                    <!-- Thumbnail Image -->
+
+                    <td>
+
+                        {% if item.image_path %}
+
+                        <img
+                            src="{{ item.image_path }}"
+                            alt="Leaf Thumbnail"
+                            class="rounded-3 shadow-sm"
+                            style="width: 60px; height: 60px; object-fit: cover;"
+                            onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'rounded-3 bg-light d-flex align-items-center justify-content-center text-muted border\' style=\'width:60px; height:60px;\'><i class=\'bi bi-image fs-4\'></i></div>';">
+
+                        {% else %}
+
+                        <div
+                            class="rounded-3 bg-light d-flex align-items-center justify-content-center text-muted border"
+                            style="width: 60px; height: 60px;">
+
+                            <i class="bi bi-image fs-4"></i>
+
+                        </div>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- Crop, Disease & Scientific Name -->
+
+                    <td>
+
+                        <div class="fw-bold text-success fs-6">
+
+                            {{ item.disease or item.prediction or "Unknown Disease" }}
+
+                        </div>
+
+                        <div class="text-muted small">
+
+                            <strong>Crop:</strong> {{ item.crop or "Unknown" }}
+
+                            {% if item.scientific_name and item.scientific_name != "Unknown" %}
+
+                            <span class="ms-2 fst-italic">({{ item.scientific_name }})</span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- Confidence -->
+
+                    <td>
+
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fs-6">
+
+                            <i class="bi bi-graph-up me-1"></i>
+
+                            {{ item.confidence or "N/A" }}
+
+                        </span>
+
+                    </td>
+
+
+                    <!-- Risk & Severity Badges -->
+
+                    <td>
+
+                        <div class="d-flex flex-column gap-1 align-items-start">
+
+                            <!-- Risk -->
+
+                            {% if item.risk_level == "Low" %}
+
+                            <span class="badge bg-success">
+
+                                🟢 Low Risk
+
+                            </span>
+
+                            {% elif item.risk_level == "Medium" %}
+
+                            <span class="badge bg-warning text-dark">
+
+                                🟡 Medium Risk
+
+                            </span>
+
+                            {% elif item.risk_level == "High" or item.risk_level == "Very High" %}
+
+                            <span class="badge bg-danger">
+
+                                🔴 {{ item.risk_level }} Risk
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-secondary">
+
+                                {{ item.risk_level or "Unknown" }}
+
+                            </span>
+
+                            {% endif %}
+
+
+                            <!-- Severity -->
+
+                            {% if item.severity %}
+
+                            <small class="text-muted">
+
+                                Severity: <strong>{{ item.severity }}</strong>
+
+                            </small>
+
+                            {% endif %}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- Timestamp -->
+
+                    <td>
+
+                        <div class="text-muted small">
+
+                            <i class="bi bi-calendar3 me-1"></i>
+
+                            {{ item.timestamp or "N/A" }}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- Actions -->
+
+                    <td class="text-end">
+
+                        {% if item.id %}
+
+                        <form
+                            action="{{ url_for('delete_history_item', prediction_id=item.id) }}"
+                            method="POST"
+                            class="d-inline"
+                            onsubmit="return confirm('Delete this prediction record?');">
+
+                            <button
+                                type="submit"
+                                class="btn btn-outline-danger btn-sm"
+                                title="Delete record"
+                                aria-label="Delete record">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </form>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

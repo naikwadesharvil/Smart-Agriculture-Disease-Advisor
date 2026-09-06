@@ -55,6 +55,10 @@ document.addEventListener(
 
             updateThemeIcon(true);
 
+        } else {
+
+            updateThemeIcon(false);
+
         }
 
 
@@ -261,17 +265,21 @@ document.addEventListener(
 
 
                     // Validate extension
-
                     const allowedTypes = [
                         "image/jpeg",
-                        "image/png"
+                        "image/png",
+                        "image/jpg"
                     ];
 
+                    const fileName = (file.name || "").toLowerCase();
+                    const hasValidExt =
+                        fileName.endsWith(".jpg") ||
+                        fileName.endsWith(".jpeg") ||
+                        fileName.endsWith(".png");
 
                     if (
-                        !allowedTypes.includes(
-                            file.type
-                        )
+                        !allowedTypes.includes(file.type) &&
+                        !hasValidExt
                     ) {
 
                         alert(
@@ -355,14 +363,20 @@ document.addEventListener(
 
                     const allowedTypes = [
                         "image/jpeg",
-                        "image/png"
+                        "image/png",
+                        "image/jpg"
                     ];
+
+                    const fileName = (file.name || "").toLowerCase();
+                    const hasValidExt =
+                        fileName.endsWith(".jpg") ||
+                        fileName.endsWith(".jpeg") ||
+                        fileName.endsWith(".png");
 
 
                     if (
-                        !allowedTypes.includes(
-                            file.type
-                        )
+                        !allowedTypes.includes(file.type) &&
+                        !hasValidExt
                     ) {
 
                         alert(

@@ -135,6 +135,10 @@ document.addEventListener(
 
                                 data: values,
 
+                                backgroundColor: "rgba(25, 135, 84, 0.75)",
+
+                                borderColor: "#198754",
+
                                 borderWidth: 1,
 
                                 borderRadius: 8,
