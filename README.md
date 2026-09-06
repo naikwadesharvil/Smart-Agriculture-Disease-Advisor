@@ -180,10 +180,10 @@ waitress-serve --listen=0.0.0.0:5000 app.app:app
   - **Original Research Model**: `models/plant_disease_cnn.keras` (~74.7 MB, 6.52M parameters, tracked via Git LFS) preserved for retraining and experimentation.
   - **Optimized Production Model**: `models/plant_disease_cnn.tflite` (~12.45 MB, FP16 quantization, 83.3% size reduction) used for production inference. Achieves 100.0% Top-1 and Top-5 class agreement with near-zero confidence variance (<0.18%).
 - **Low-Memory Inference Architecture**:
-  - Thread-safe lazy loading with `threading.Lock()` and `tf.lite.Interpreter`.
-  - Idle memory: **~38 MB RSS**.
-  - Peak inference memory: **298 MB RSS** (safely below the 512 MB Render Free tier threshold).
-  - Inference latency: **~13 ms** (down from ~200 ms).
+  - Thread-safe lazy loading with `threading.Lock()` and `ai-edge-litert` (`Interpreter`).
+  - Idle memory: **~31.5 MB RSS**.
+  - Peak inference memory: **~106.57 MB RSS** (well below the 512 MB Render Free tier threshold).
+  - Inference latency: **~14 ms** (down from ~210 ms).
 - **Gunicorn Production Server**: Configured for cloud instances (e.g. Render Free Tier 512 MB limit) with `--workers 1 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT app.app:app`.
 - **Health Check Endpoint**: Dedicated lightweight `GET /health` endpoint returning `{"status": "healthy"}` (HTTP 200) without triggering model initialization.
 - **Supported Platforms**: Render, Railway, Fly.io, AWS ECS, GCP Cloud Run.
