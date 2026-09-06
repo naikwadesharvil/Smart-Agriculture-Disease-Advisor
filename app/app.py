@@ -15,11 +15,8 @@ import json
 import tempfile
 import traceback
 import uuid
+import threading
 from datetime import datetime
-
-# Configure TensorFlow memory & logging flags before importing TF
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 # Ensure app directory is on path for modules
 BASE_DIR = os.path.dirname(
@@ -37,7 +34,6 @@ if sys.platform == "win32":
         pass
 
 import numpy as np
-import tensorflow as tf
 
 from PIL import Image
 from werkzeug.utils import secure_filename
@@ -170,7 +166,7 @@ def uploaded_file(filename):
 
 
 # ==========================================
-# Load CNN Model
+# Lazy CNN Model Loading & Thread Safety
 # ==========================================
 
 MODEL_PATH = os.path.join(
@@ -180,25 +176,54 @@ MODEL_PATH = os.path.join(
     "plant_disease_cnn.keras"
 )
 
-try:
-    tf.config.threading.set_inter_op_parallelism_threads(1)
-    tf.config.threading.set_intra_op_parallelism_threads(2)
-except Exception:
-    pass
-
 MODEL = None
+_model_lock = threading.Lock()
 
-try:
-    if os.path.exists(MODEL_PATH):
-        MODEL = tf.keras.models.load_model(
-            MODEL_PATH,
-            compile=False
-        )
-        print("✅ CNN Model Loaded Successfully")
-    else:
-        print(f"⚠️ Model file not found at: {MODEL_PATH}")
-except Exception as model_err:
-    print(f"⚠️ Error loading CNN model: {model_err}")
+
+def get_model():
+    """
+    Thread-safe lazy loader for the CNN model.
+    TensorFlow and the CNN model weights are loaded on-demand during
+    the first prediction request to optimize WSGI startup time and RAM.
+    """
+    global MODEL
+
+    if MODEL is None:
+        with _model_lock:
+            if MODEL is None:
+                try:
+                    # Configure TensorFlow environment before importing
+                    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+                    os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+
+                    import tensorflow as tf
+
+                    try:
+                        tf.config.threading.set_inter_op_parallelism_threads(1)
+                        tf.config.threading.set_intra_op_parallelism_threads(2)
+                    except Exception:
+                        pass
+
+                    if os.path.exists(MODEL_PATH):
+                        loaded = tf.keras.models.load_model(
+                            MODEL_PATH,
+                            compile=False
+                        )
+                        output_size = loaded.output_shape[-1]
+                        if output_size != len(CLASS_NAMES):
+                            print(
+                                f"⚠️ Warning: Model output has {output_size} classes "
+                                f"but CLASS_NAMES contains {len(CLASS_NAMES)}.",
+                                flush=True
+                            )
+                        MODEL = loaded
+                        print("✅ CNN Model Lazy-Loaded Successfully", flush=True)
+                    else:
+                        print(f"⚠️ Model file not found at: {MODEL_PATH}", flush=True)
+                except Exception as model_err:
+                    print(f"⚠️ Error lazy-loading CNN model: {model_err}", flush=True)
+
+    return MODEL
 
 
 # ==========================================
@@ -295,26 +320,8 @@ CLASS_NAMES = [
 
 
 # ==========================================
-# Validate Model / Classes
+# Model Validation (Deferred to get_model)
 # ==========================================
-
-try:
-
-    model_output_size = MODEL.output_shape[-1]
-
-    if model_output_size != len(CLASS_NAMES):
-
-        raise ValueError(
-            f"Model output has {model_output_size} classes "
-            f"but CLASS_NAMES contains {len(CLASS_NAMES)}."
-        )
-
-except Exception as e:
-
-    print(
-        "⚠️ Model/Class validation:",
-        str(e)
-    )
 
 
 # ==========================================
@@ -554,12 +561,14 @@ def predict():
 
 
         # ======================================
-        # Model Availability Check
+        # Model Availability Check (Lazy Load)
         # ======================================
 
-        if MODEL is None:
+        model = get_model()
 
-            print("⚠️ CNN Model is not loaded.")
+        if model is None:
+
+            print("⚠️ CNN Model is not available.", flush=True)
 
             return render_template(
                 "error.html",
@@ -590,7 +599,7 @@ def predict():
             )
 
             # Direct tensor execution (minimal RAM allocation vs model.predict dataset pipeline)
-            predictions = MODEL(
+            predictions = model(
                 img_array,
                 training=False
             ).numpy()
