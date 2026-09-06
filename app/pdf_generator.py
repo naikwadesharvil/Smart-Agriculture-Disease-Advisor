@@ -44,22 +44,32 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_page_decorations(self, page_count):
         self.saveState()
-        self.setFont("Helvetica", 8)
-        self.setFillColor(colors.HexColor("#6c757d"))
         
         # A4 portrait: 210mm width x 297mm height
         margin = 18 * mm
         page_width = 210 * mm
         
         # Footer rule line
-        self.setStrokeColor(colors.HexColor("#e0e0e0"))
+        self.setStrokeColor(colors.HexColor("#dcdcdc"))
         self.setLineWidth(0.5)
         self.line(margin, 14 * mm, page_width - margin, 14 * mm)
         
-        # Footer text
-        self.drawString(margin, 9 * mm, "Smart Agriculture Disease Advisor • AI Diagnosis & Advisory Report")
+        # Footer Left: Document Title / Description
+        self.setFont("Helvetica", 7.5)
+        self.setFillColor(colors.HexColor("#6c757d"))
+        self.drawString(margin, 9.5 * mm, "Smart Agriculture Disease Advisor • AI Diagnosis & Advisory Report")
+        
+        # Footer Center: Author Credit (Prominent Bold Font)
+        self.setFont("Helvetica-Bold", 8.5)
+        self.setFillColor(colors.HexColor("#198754"))
+        self.drawCentredString(page_width / 2.0, 5.0 * mm, "Made By Sharvil")
+        
+        # Footer Right: Dynamic Page Numbering
+        self.setFont("Helvetica", 7.5)
+        self.setFillColor(colors.HexColor("#6c757d"))
         page_text = f"Page {self._pageNumber} of {page_count}"
-        self.drawRightString(page_width - margin, 9 * mm, page_text)
+        self.drawRightString(page_width - margin, 9.5 * mm, page_text)
+        
         self.restoreState()
 
 
@@ -207,15 +217,6 @@ def generate_pdf(
         fontSize=9,
         leading=12,
         textColor=colors.HexColor("#198754")
-    )
-
-    disclaimer_style = ParagraphStyle(
-        "ReportDisclaimer",
-        parent=styles["Normal"],
-        fontName="Helvetica-Oblique",
-        fontSize=7.5,
-        leading=10.5,
-        textColor=colors.HexColor("#6c757d")
     )
 
     story = []
@@ -389,21 +390,13 @@ def generate_pdf(
     # 14. Key Recommendations (From authoritative database actions & prevention)
     rec_actions = safe_list(info.get("Recommended_Actions"))
     if not rec_actions:
-        rec_actions = safe_list(info.get("Prevention"))[:3]
+        rec_actions = safe_list(info.get("Prevention"))[:4]
 
-    story.append(Paragraph("Key Recommendations (Recommended Actions)", heading_style))
+    story.append(Paragraph("Key Recommendations", heading_style))
     if rec_actions:
         for idx, act in enumerate(rec_actions, 1):
             story.append(Paragraph(f"<b>{idx}.</b> {safe_value(act)}", bullet_style))
     else:
         story.append(Paragraph("Consult a local agricultural extension specialist for personalized crop treatment.", body_style))
-    story.append(Spacer(1, 8))
-
-    # 15. Disclaimer
-    story.append(Paragraph(
-        "<b>Disclaimer:</b> This diagnostic report provides AI-generated agronomic decision-support guidance based on computer vision models trained on leaf pathology datasets. "
-        "Diagnostic findings and chemical recommendations should be corroborated with visual field inspections and validated by a certified plant pathologist or agricultural extension officer prior to extensive chemical application.",
-        disclaimer_style
-    ))
 
     document.build(story, canvasmaker=NumberedCanvas)
