@@ -1085,6 +1085,31 @@ def download_report():
     # ======================================
 
     if not latest_prediction or not isinstance(latest_prediction, dict):
+        history = get_history()
+        if history and isinstance(history, list) and len(history) > 0:
+            last_item = history[-1]
+            predicted_class_name = last_item.get("prediction", "")
+            matched_info = disease_database.get(predicted_class_name)
+            if not matched_info:
+                for k, v in disease_database.items():
+                    if normalize_key(k) == normalize_key(predicted_class_name):
+                        matched_info = v
+                        break
+            if not matched_info:
+                matched_info = {}
+
+            img_rel = last_item.get("image_path", "")
+            img_filename = os.path.basename(img_rel) if img_rel else ""
+            img_abs = os.path.join(app.config["UPLOAD_FOLDER"], img_filename) if img_filename else None
+
+            latest_prediction = {
+                "prediction": last_item.get("prediction", "Unknown"),
+                "confidence": last_item.get("confidence", "N/A"),
+                "info": matched_info,
+                "image_path": img_abs if (img_abs and os.path.exists(img_abs)) else None
+            }
+
+    if not latest_prediction or not isinstance(latest_prediction, dict):
 
         return render_template(
             "error.html",
