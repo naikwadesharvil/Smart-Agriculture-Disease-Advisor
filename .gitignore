@@ -16,9 +16,9 @@ env/
 .vscode/
 .pytest_cache/
 
-*.keras
 *.h5
 *.pdf
+!models/plant_disease_cnn.keras
 
 static/uploads/*
 
